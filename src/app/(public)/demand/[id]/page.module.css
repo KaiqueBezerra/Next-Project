@@ -1,0 +1,14 @@
+/* Estilos para o fundo transparente que cobre a tela */
+.modalBackdrop {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4); /* Fundo semi-transparente */
+  z-index: 100; /* Garante que o modal ficará no topo */
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  padding: 2rem; /* Garante um pequeno espaço nas laterais para responsividade */
+}

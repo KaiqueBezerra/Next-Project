@@ -1,0 +1,83 @@
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: justify;
+}
+
+.header {
+  word-break: break-word;
+}
+
+.header h1 {
+  text-transform: capitalize;
+  color: #000;
+}
+
+.description {
+  word-break: break-word;
+  margin: 10px 0;
+}
+
+.description p {
+  font-size: 20px;
+  color: #000;
+  text-align: justify;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+}
+
+.requirements {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px 0;
+}
+
+.requirements p {
+  margin-top: 20px;
+  margin-right: 5px;
+  background-color: var(--color-3);
+  color: #000;
+  border: 1px solid #000;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 0px 10px;
+}
+
+.link {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: 15px;
+  flex: 1;
+}
+
+.link a {
+  border: 1px solid #000;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 10px 0px;
+  text-decoration: none;
+  color: #000;
+}
+
+.link a:hover {
+  background-color: var(--color-3);
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 40rem) {
+  .modalContent {
+    padding: 1.5rem; /* Menos padding em telas pequenas */
+    width: 100%;
+  }
+}

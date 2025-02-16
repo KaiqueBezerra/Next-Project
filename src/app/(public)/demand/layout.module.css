@@ -1,0 +1,19 @@
+.demand {
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  min-height: 100vh;
+}
+
+.demands {
+  padding: 50px;
+}
+
+@media (max-width: 40rem) {
+  .demand {
+    grid-template-columns: 1fr;
+  }
+
+  .demands {
+    max-width: 100%;
+  }
+}

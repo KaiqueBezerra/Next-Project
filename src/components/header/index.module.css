@@ -1,0 +1,25 @@
+.nav {
+  background-color: var(--color-1);
+  border-bottom: 1px solid #fffffe;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.icon {
+  width: 30px;
+  height: 30px;
+}
+
+.link {
+  margin-right: 20px;
+  font-size: 20px;
+  color: #94a1b2;
+}
+
+.link:hover,
+.icon:hover {
+  opacity: 0.5;
+  text-decoration: underline;
+}

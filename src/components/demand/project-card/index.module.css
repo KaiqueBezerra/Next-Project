@@ -1,0 +1,103 @@
+.project {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 350px;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s;
+}
+
+.project:hover {
+  transform: translateY(-10px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  word-break: break-word;
+}
+
+.project h1 {
+  text-transform: capitalize;
+  color: #000;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box; /* Flexbox especializado para controle de altura */
+  -webkit-box-orient: vertical; /* Define a direção como vertical */
+  line-clamp: 3;
+  -webkit-line-clamp: 3; /* Limita o número de linhas (ajuste conforme necessário) */
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.time {
+  font-size: 15px;
+  margin: 10px 0;
+}
+
+.description {
+  word-break: break-word;
+}
+
+.description p {
+  font-size: 20px;
+  color: #000;
+  text-align: justify;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+}
+
+.requirements {
+  display: flex;
+  word-break: break-word;
+}
+
+.requirement {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+}
+
+.requirements p {
+  margin-top: 20px;
+  margin-right: 5px;
+  background-color: var(--color-3);
+  border: 1px solid #000;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 0px 10px;
+}
+
+.link {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: 15px;
+  flex: 1;
+}
+
+.link a {
+  border: 1px solid #000;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 10px 0px;
+  text-decoration: none;
+  color: #000;
+}
+
+.link a:hover {
+  background-color: var(--color-3);
+}
