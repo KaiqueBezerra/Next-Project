@@ -3,12 +3,9 @@ import { StarIcon } from "lucide-react";
 import { Project } from "@/actions/projects-get";
 import { ptBR } from "date-fns/locale";
 import styles from "./index.module.css";
-import Button from "@/components/forms/button";
 import Link from "next/link";
 
 export default function ProjectCard({ project }: { project: Project }) {
-  console.log(project);
-
   const time = project.createdAt;
 
   const parsedDate = parseISO(time);

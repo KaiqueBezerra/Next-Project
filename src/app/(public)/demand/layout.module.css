@@ -8,7 +8,7 @@
   padding: 50px;
 }
 
-@media (max-width: 40rem) {
+@media (max-width: 720px) {
   .demand {
     grid-template-columns: 1fr;
   }

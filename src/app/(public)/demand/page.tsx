@@ -8,20 +8,16 @@ import Projects from "@/components/demand/projects";
 export default function Demand() {
   const [data, setData] = useState<Project[] | null>(null);
   const search = useSearchParams().get("search");
+  const filter = useSearchParams().get("filter");
 
   useEffect(() => {
     async function getProjects() {
-      if (search) {
-        const { data } = await projectsGet(search);
-        setData(data);
-      } else {
-        const { data } = await projectsGet();
-        setData(data);
-      }
+      const { data } = await projectsGet(search, filter);
+      setData(data);
     }
 
     getProjects();
-  }, [search]);
+  }, [search, filter]);
 
   if (!data) return null;
 

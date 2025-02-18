@@ -14,12 +14,18 @@ export interface Project {
   userId: string;
 }
 
-export default async function projectsGet(search?: string) {
+export default async function projectsGet(
+  search: string | null,
+  filter: string | null
+) {
   try {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    const { URL } = PROJECTS_GET(search);
+    if (!search) search = "";
+    if (!filter) filter = "";
+
+    const { URL } = PROJECTS_GET(search, filter);
 
     const response = await fetch(URL, {
       method: "GET",

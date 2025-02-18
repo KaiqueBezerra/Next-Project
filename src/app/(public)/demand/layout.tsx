@@ -14,9 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <div className={styles.demand}>
-      <aside style={{ border: "1px solid red", padding: "10px" }}>
-        <Aside />
-      </aside>
+      <Aside />
       <section className={styles.demands}>{children}</section>
     </div>
   );

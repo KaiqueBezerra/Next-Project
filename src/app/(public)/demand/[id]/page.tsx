@@ -14,8 +14,6 @@ export default function DemandModal() {
   const { id } = useParams() as { id: string };
   const router = useRouter();
 
-  console.log(id);
-
   useEffect(() => {
     async function getProject() {
       const { data } = await projectGet(id);
