@@ -16,27 +16,26 @@ export interface Project {
 
 export default async function projectsGet(
   search: string | null,
-  filter: string | null
+  filter: string | null,
+  page: number = 1,
+  limit: number = 18,
+  optionsFront?: RequestInit
 ) {
   try {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    if (!search) search = "";
-    if (!filter) filter = "";
+    const options = optionsFront || {
+      next: { revalidate: 5, tags: ["projects"], signal },
+    };
 
-    const { URL } = PROJECTS_GET(search, filter);
+    const { URL } = PROJECTS_GET(search, filter, page, limit);
 
-    const response = await fetch(URL, {
-      method: "GET",
-      next: {
-        revalidate: 60,
-        tags: ["projects"],
-      },
-      signal,
-    });
-    if (!response.ok) throw new Error("Erro ao pegar o projetos.");
+    const response = await fetch(URL, options);
+
+    if (!response.ok) throw new Error("Erro ao pegar os projetos.");
     const data = (await response.json()) as Project[];
+
     return { data, ok: true, error: "" };
   } catch (error: unknown) {
     return apiError(error);

@@ -3,7 +3,6 @@
   grid-template-columns: 2fr 1fr;
   min-height: 100vh;
   gap: 2rem;
-  background-color: var(--color-1);
 }
 
 .login::before {
@@ -14,12 +13,12 @@
 }
 
 .forms {
-  max-width: 30rem;
-  padding: 1rem;
+  max-width: 480px;
+  padding: 16px;
   margin-top: 20vh;
 }
 
-@media (max-width: 40rem) {
+@media (max-width: 720px) {
   .login {
     grid-template-columns: 1fr;
   }

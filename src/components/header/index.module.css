@@ -1,6 +1,12 @@
-.nav {
+.header {
   background-color: var(--color-1);
-  border-bottom: 1px solid #fffffe;
+  position: sticky;
+  top: 0; /* Fixa no topo */
+  z-index: 1000;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,18 +14,44 @@
 }
 
 .icon {
-  width: 30px;
-  height: 30px;
+  color: var(--color-2);
+}
+
+.icon:hover {
+  color: var(--color-3);
+  opacity: 0.8;
+}
+
+.iconActive {
+  font-weight: bold;
+  color: var(--color-3);
 }
 
 .link {
   margin-right: 20px;
   font-size: 20px;
-  color: #94a1b2;
+  font-weight: bold;
+  color: var(--color-2);
 }
 
-.link:hover,
-.icon:hover {
-  opacity: 0.5;
+.linkActive {
+  margin-right: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--color-3);
   text-decoration: underline;
+}
+
+.link:hover {
+  color: var(--color-3);
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+@media (max-width: 550px) {
+  .link,
+  .linkActive {
+    font-size: 17px;
+    margin-right: 10px;
+  }
 }

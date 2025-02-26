@@ -1,9 +1,10 @@
-import LoginForm from "@/components/login/login-form";
+import { LoginForm } from "@/components/login/login-form";
+import styles from "./page.module.css";
 
 export default function SignIn() {
   return (
-    <section>
-      <h1 style={{ textAlign: "center", color: "#fffffe" }}>Login</h1>
+    <section className={styles.section}>
+      <h1>Login</h1>
       <LoginForm />
     </section>
   );

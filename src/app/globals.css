@@ -5,19 +5,19 @@
 }
 
 html {
-  --color-1: #16161a;
-  --color-2: #94a1b2;
-  --color-3: #7f5af0;
+  --color-1: #fff; /* #16161a */
+  --color-2: #16161a;
+  --color-3: #ffd803;
 }
 
 a {
   list-style: none;
   text-decoration: none;
-  color: #94a1b2;
+  color: var(--color-2);
 }
 
 p {
-  color: #94a1b2;
+  color: var(--color-2);
 }
 
 h1,
@@ -26,5 +26,5 @@ h3,
 h4,
 h5,
 h6 {
-  color: #fffffe;
+  color: var(--color-2);
 }

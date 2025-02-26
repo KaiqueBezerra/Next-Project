@@ -2,10 +2,10 @@
 
 import { useActionState, useEffect } from "react";
 import { useFormStatus } from "react-dom";
-import Button from "@/components/forms/button";
-import Input from "@/components/forms/input";
+import { ErrorMessage } from "@/components/helper/error-message";
+import { Button } from "@/components/forms/button";
+import { Input } from "@/components/forms/input";
 import login from "@/actions/login";
-import ErrorMessage from "@/components/helper/error-message";
 
 function FormButton() {
   const { pending } = useFormStatus();
@@ -21,7 +21,7 @@ function FormButton() {
   );
 }
 
-export default function LoginForm() {
+export function LoginForm() {
   const [state, action] = useActionState(login, {
     ok: false,
     error: "",

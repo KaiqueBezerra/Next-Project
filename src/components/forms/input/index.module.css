@@ -3,22 +3,22 @@
 }
 
 .input {
-  border: 1px solid #eee;
+  border: 2px solid var(--color-2);
   display: block;
   width: 100%;
   font-size: 1rem;
   padding: 0.8rem;
   border-radius: 0.4rem;
-  background: #16161a;
+  background: var(--color-1);
   transition: 0.2s;
 }
 
 .input:focus,
 .input:hover {
   outline: none;
-  border-color: #fffffe;
-  background: white;
-  box-shadow: #fffffe 0 0 0 3px;
+  border-color: var(--color-1);
+  background: var(--color-1);
+  box-shadow: var(--color-2) 0 0 0 3px;
 }
 
 .label {
@@ -26,7 +26,7 @@
   font-size: 1rem;
   line-height: 1;
   padding-bottom: 0.5rem;
-  color: #94a1b2;
+  color: var(--color-2);
 }
 
 .error {

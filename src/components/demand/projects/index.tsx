@@ -1,8 +1,8 @@
+import { ProjectCard } from "../project-card";
 import { Project } from "@/actions/projects-get";
-import ProjectCard from "../project-card";
 import styles from "./index.module.css";
 
-export default function Projects({ project }: { project: Project[] }) {
+export function Projects({ project }: { project: Project[] }) {
   return (
     <div className={styles.projects}>
       {project.map((project) => (

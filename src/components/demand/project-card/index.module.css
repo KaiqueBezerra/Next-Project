@@ -5,7 +5,7 @@
   height: 350px;
   border-radius: 20px;
   padding: 20px;
-  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
+  outline: 10px double var(--color-2);
   transition: transform 0.5s;
 }
 
@@ -100,4 +100,14 @@
 
 .link a:hover {
   background-color: var(--color-3);
+}
+
+@media (max-width: 720px) {
+  .project {
+    transition: none;
+  }
+
+  .project:hover {
+    transform: none;
+  }
 }

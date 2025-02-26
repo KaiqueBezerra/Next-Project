@@ -1,0 +1,48 @@
+.aside {
+  padding: 20px;
+  outline: 5px double var(--color-2);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  outline: 5px double var(--color-2);
+}
+
+.glassInput {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--color-2);
+  padding: 10px;
+  font-size: 1rem;
+  color: var(--color-2);
+  outline: none;
+  transition: all 0.3s ease;
+  flex-grow: 1;
+}
+
+.icon {
+  background-color: var(--color-3);
+  border: 1px solid #000;
+  height: 40px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icon:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 720px) {
+  .aside {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+  }
+}

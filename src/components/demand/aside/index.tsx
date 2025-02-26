@@ -1,13 +1,17 @@
 "use client";
 
 import { FormEvent, useState, useEffect } from "react";
-import { SearchIcon } from "lucide-react";
+import { FiltersModal } from "./filters-modal";
+import { SearchForm } from "./search-form";
 import { useRouter } from "next/navigation";
+import { MenuIcon } from "lucide-react";
+import { Filters } from "./filters";
 import styles from "./index.module.css";
 
 export default function Aside() {
-  const [search, setSearch] = useState("");
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [search, setSearch] = useState("");
   const router = useRouter();
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -68,53 +72,30 @@ export default function Aside() {
   }, []);
 
   return (
-    <aside className={styles.aside}>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <input
-            type="text"
-            placeholder="Procurar"
-            className={styles.glassInput}
-            value={search}
-            onChange={(event) => setSearch(event.target.value)}
-          />
-          <button className={styles.icon}>
-            <SearchIcon />
-          </button>
+    <div>
+      <aside className={styles.aside}>
+        <SearchForm
+          search={search}
+          setSearch={setSearch}
+          handleSubmit={handleSubmit}
+        />
+
+        <div className={styles.menu}>
+          <MenuIcon onClick={() => setModalOpen(!modalOpen)} />
         </div>
-      </form>
 
-      <div className={styles.filters}>
-        <label htmlFor="hour">
-          <input
-            type="checkbox"
-            value="1h"
-            checked={selectedFilter === "1h"}
-            onChange={handleCheckboxChange}
+        {modalOpen && (
+          <FiltersModal
+            selectedFilter={selectedFilter}
+            handleCheckboxChange={handleCheckboxChange}
           />
-          {""} Até 1 hora atrás
-        </label>
+        )}
 
-        <label htmlFor="day">
-          <input
-            type="checkbox"
-            value="1d"
-            checked={selectedFilter === "1d"}
-            onChange={handleCheckboxChange}
-          />
-          {""} Até 1 dia atrás
-        </label>
-
-        <label htmlFor="week">
-          <input
-            type="checkbox"
-            value="1w"
-            checked={selectedFilter === "1w"}
-            onChange={handleCheckboxChange}
-          />
-          {""} Até 1 semana atrás
-        </label>
-      </div>
-    </aside>
+        <Filters
+          selectedFilter={selectedFilter}
+          handleCheckboxChange={handleCheckboxChange}
+        />
+      </aside>
+    </div>
   );
 }

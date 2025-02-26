@@ -1,37 +1,17 @@
-"use client";
-
-import { useParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Project } from "@/actions/projects-get";
-import DemandModalContent from "@/components/demand/modal-content";
+import { DemandModal } from "@/components/demand/demand-modal";
+import { notFound } from "next/navigation";
 import projectGet from "@/actions/project-get";
-import NotFound from "@/app/not-found";
-import styles from "./page.module.css";
 
-export default function DemandModal() {
-  const [data, setData] = useState<Project | null>(null);
+interface ModalProps {
+  params: Promise<{ id: string }>;
+}
 
-  const { id } = useParams() as { id: string };
-  const router = useRouter();
+export default async function Modal({ params }: ModalProps) {
+  const { id } = await params;
 
-  useEffect(() => {
-    async function getProject() {
-      const { data } = await projectGet(id);
-      setData(data);
-    }
+  const { data } = await projectGet(id);
 
-    getProject();
-  }, [id]);
+  if (!data) return notFound();
 
-  function handleOutsideClick(event: React.MouseEvent<HTMLDivElement>) {
-    if (event.target === event.currentTarget) router.back();
-  }
-
-  if (!data) return NotFound();
-
-  return (
-    <div className={styles.modalBackdrop} onClick={handleOutsideClick}>
-      <DemandModalContent data={data} />
-    </div>
-  );
+  return <DemandModal data={data} />;
 }

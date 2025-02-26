@@ -1,3 +1,18 @@
+/* Estilos para o fundo transparente que cobre a tela */
+.modalBackdrop {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4); /* Fundo semi-transparente */
+  z-index: 100; /* Garante que o modal ficará no topo */
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  padding: 2rem; /* Garante um pequeno espaço nas laterais para responsividade */
+}
+
 .modalContent {
   display: flex;
   flex-direction: column;
@@ -8,6 +23,7 @@
   max-width: 600px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: justify;
+  outline: 10px double var(--color-1);
 }
 
 .header {
@@ -74,10 +90,9 @@
   background-color: var(--color-3);
 }
 
-/* Responsividade para telas pequenas */
-@media (max-width: 40rem) {
+@media (max-width: 720px) {
   .modalContent {
-    padding: 1.5rem; /* Menos padding em telas pequenas */
+    padding: 24px;
     width: 100%;
   }
 }

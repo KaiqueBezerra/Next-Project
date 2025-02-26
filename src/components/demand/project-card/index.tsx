@@ -5,7 +5,7 @@ import { ptBR } from "date-fns/locale";
 import styles from "./index.module.css";
 import Link from "next/link";
 
-export default function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project }: { project: Project }) {
   const time = project.createdAt;
 
   const parsedDate = parseISO(time);

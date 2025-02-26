@@ -1,11 +1,12 @@
+import { ComponentProps } from "react";
 import styles from "./index.module.css";
 
-type InputProps = React.ComponentProps<"input"> & {
+type InputProps = ComponentProps<"input"> & {
   label: string;
   error?: string;
 };
 
-export default function Input({ label, ...props }: InputProps) {
+export function Input({ label, ...props }: InputProps) {
   return (
     <div className={styles.wrapper}>
       <label className={styles.label} htmlFor={props.name}>
