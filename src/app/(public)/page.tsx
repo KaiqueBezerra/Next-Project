@@ -1,14 +1,11 @@
-"use client";
-
-import { Search } from "@/components/search";
-import styles from "./page.module.css";
+import { Search } from "@/components/index/search";
+import { Cards } from "@/components/index/cards";
 
 export default function Home() {
   return (
     <div>
-      <div className={styles.img}>
-        <Search />
-      </div>
+      <Search />
+      <Cards />
     </div>
   );
 }

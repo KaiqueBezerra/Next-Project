@@ -3,6 +3,7 @@
 import { Dispatch, FormEvent, SetStateAction } from "react";
 import { SearchIcon } from "lucide-react";
 import styles from "./index.module.css";
+import { useFormStatus } from "react-dom";
 
 export function SearchForm({
   handleSubmit,
@@ -13,9 +14,27 @@ export function SearchForm({
   search: string;
   setSearch: Dispatch<SetStateAction<string>>;
 }) {
+  function FormButton() {
+    const { pending } = useFormStatus();
+
+    return (
+      <>
+        {pending ? (
+          <button className={styles.disabledIcon} disabled={pending}>
+            <SearchIcon />
+          </button>
+        ) : (
+          <button className={styles.icon}>
+            <SearchIcon />
+          </button>
+        )}
+      </>
+    );
+  }
+
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div className={styles.input}>
         <input
           type="text"
           placeholder="Procurar"
@@ -23,9 +42,7 @@ export function SearchForm({
           value={search}
           onChange={(event) => setSearch(event.target.value)}
         />
-        <button className={styles.icon}>
-          <SearchIcon />
-        </button>
+        <FormButton />
       </div>
     </form>
   );

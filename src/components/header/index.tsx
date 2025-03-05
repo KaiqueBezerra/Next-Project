@@ -1,7 +1,6 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { HomeIcon } from "lucide-react";
 import { useUser } from "@/context/userContext";
 import styles from "./index.module.css";
 import Link from "next/link";

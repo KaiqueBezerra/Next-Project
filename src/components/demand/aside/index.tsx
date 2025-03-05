@@ -80,8 +80,8 @@ export default function Aside() {
           handleSubmit={handleSubmit}
         />
 
-        <div className={styles.menu}>
-          <MenuIcon onClick={() => setModalOpen(!modalOpen)} />
+        <div className={styles.menu} onClick={() => setModalOpen(!modalOpen)}>
+          <MenuIcon />
         </div>
 
         {modalOpen && (

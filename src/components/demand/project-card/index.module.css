@@ -102,6 +102,12 @@
   background-color: var(--color-3);
 }
 
+@media (max-width: 360px) {
+  .project {
+    width: 320px;
+  }
+}
+
 @media (max-width: 720px) {
   .project {
     transition: none;

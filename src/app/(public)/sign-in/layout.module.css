@@ -8,7 +8,7 @@
 .login::before {
   display: block;
   content: "";
-  background: url("/assets/wallpaper.jpg") no-repeat center center;
+  background: url("/assets/wallpaper1.jpg") no-repeat center center;
   background-size: cover;
 }
 

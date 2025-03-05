@@ -69,7 +69,11 @@ export default function Demand() {
       <Projects project={data} />
       <div style={{ height: "20px" }} />
       <div style={{ textAlign: "center" }}>
-        {infinite ? loading && <Loading /> : <p>Não existem mais postagens.</p>}
+        {infinite ? (
+          loading && <Loading />
+        ) : (
+          <p style={{ marginTop: "20px" }}>Não existem mais postagens.</p>
+        )}
       </div>
     </div>
   );
