@@ -2,9 +2,9 @@ import { UserContextProvider } from "@/context/userContext";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/header";
 import type { Metadata } from "next";
+import { Footer } from "@/components/footer";
 import userGet from "@/actions/user-get";
 import "./globals.css";
-import { Footer } from "@/components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

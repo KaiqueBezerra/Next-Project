@@ -10,15 +10,7 @@ export function FiltersModal({
   handleCheckboxChange,
 }: FiltersModalProps) {
   return (
-    <div
-      className={styles.filters}
-      style={{
-        position: "absolute",
-        top: 152,
-        right: 5,
-        border: "1px solid black",
-      }}
-    >
+    <div className={styles.filters}>
       <h2>Filtros de Tempo</h2>
 
       <label htmlFor="hour">

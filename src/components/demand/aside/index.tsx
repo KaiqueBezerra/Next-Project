@@ -82,14 +82,13 @@ export default function Aside() {
 
         <div className={styles.menu} onClick={() => setModalOpen(!modalOpen)}>
           <MenuIcon />
+          {modalOpen && (
+            <FiltersModal
+              selectedFilter={selectedFilter}
+              handleCheckboxChange={handleCheckboxChange}
+            />
+          )}
         </div>
-
-        {modalOpen && (
-          <FiltersModal
-            selectedFilter={selectedFilter}
-            handleCheckboxChange={handleCheckboxChange}
-          />
-        )}
 
         <Filters
           selectedFilter={selectedFilter}

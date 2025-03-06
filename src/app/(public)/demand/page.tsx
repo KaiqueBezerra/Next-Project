@@ -37,17 +37,17 @@ export default function Demand() {
   }, [filter, search]);
 
   useEffect(() => {
-    async function getPagePhotos() {
-      const actionData = await projectsGet(search, filter, page, 9, {
+    async function getPageProjects() {
+      const actionData = await projectsGet(search, filter, page, 12, {
         cache: "no-store",
       });
       if (actionData && actionData.data !== null) {
         const { data } = actionData;
         setData((currentPhotos) => [...currentPhotos, ...data]);
-        if (data.length < 9) setInfinite(false);
+        if (data.length < 12) setInfinite(false);
       }
     }
-    getPagePhotos();
+    getPageProjects();
   }, [filter, page, search]);
 
   useEffect(() => {

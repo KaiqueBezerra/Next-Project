@@ -26,7 +26,7 @@ export default async function projectsGet(
     const signal = controller.signal;
 
     const options = optionsFront || {
-      next: { revalidate: 5, tags: ["projects"], signal },
+      next: { revalidate: 60, tags: ["projects"], signal },
     };
 
     const { URL } = PROJECTS_GET(search, filter, page, limit);

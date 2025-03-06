@@ -6,6 +6,7 @@
 
 .menu {
   display: none;
+  position: relative;
   justify-content: center;
   align-items: center;
   border: 1px solid #000;
@@ -15,22 +16,30 @@
   cursor: pointer;
 }
 
-@media (max-width: 380px) {
+@media (max-width: 355px) {
+  .menu {
+    width: 320px;
+  }
+}
+
+@media (min-width: 355px) and (max-width: 620px) {
+  .menu {
+    width: 350px;
+  }
+}
+
+@media (max-width: 620px) {
   .aside {
     display: flex;
     flex-direction: column;
     gap: 12px;
-  }
-
-  .menu {
-    width: 252px;
   }
 }
 
 @media (max-width: 720px) {
   .aside {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 40px;
   }
