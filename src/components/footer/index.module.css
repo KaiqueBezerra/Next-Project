@@ -1,4 +1,4 @@
-.footer {
+.container {
   background: var(--color-1);
   box-shadow: 0 -4px 5px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -53,8 +53,17 @@
   color: var(--color-3);
 }
 
+.copyright {
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.copyright p {
+  margin-top: 10px;
+}
+
 @media (max-width: 340px) {
-  .footer {
+  .container {
     flex-direction: column;
     align-items: center;
     gap: 20px;
@@ -77,8 +86,8 @@
   }
 }
 
-@media (min-width: 340px) and (max-width: 580px) {
-  .footer {
+@media (min-width: 360px) and (max-width: 580px) {
+  .container {
     flex-direction: column;
     align-items: center;
     gap: 20px;
@@ -97,6 +106,6 @@
   .nextProject,
   .resources,
   .contacts {
-    width: 300px;
+    width: 350px;
   }
 }

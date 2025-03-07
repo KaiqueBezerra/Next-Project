@@ -63,7 +63,7 @@ h6 {
 
 /* Cor do botão ao passar o mouse */
 ::-webkit-scrollbar-thumb:hover {
-  background: #fff;
+  background: #ffeb7c;
 }
 
 /* Opcional: Adicionar sombra ao fundo */

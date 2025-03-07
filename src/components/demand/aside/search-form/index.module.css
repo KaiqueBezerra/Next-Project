@@ -1,7 +1,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 16px;
   outline: 5px double var(--color-2);
 }
 
@@ -16,7 +16,7 @@
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--color-2);
   padding: 10px;
-  font-size: 1rem;
+  font-size: 16px;
   color: var(--color-2);
   outline: none;
   transition: all 0.3s ease;
@@ -51,13 +51,13 @@
 }
 
 @media (max-width: 355px) {
-  .input {
+  .form {
     width: 320px;
   }
 }
 
 @media (min-width: 355px) and (max-width: 620px) {
-  .input {
+  .form {
     width: 350px;
   }
 }

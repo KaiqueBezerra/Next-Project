@@ -1,13 +1,18 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { MenuIcon } from "lucide-react";
+import { useState } from "react";
 import { useUser } from "@/context/userContext";
+import { Links } from "./links";
 import styles from "./index.module.css";
 import Link from "next/link";
+import { LinksModal } from "./links-modal";
 
 export function Header() {
   const pathname = usePathname();
   const { user } = useUser();
+  const [modalOpen, setModalOpen] = useState(false);
 
   // async function handleLogout() {
   //   await logout();
@@ -27,43 +32,15 @@ export function Header() {
             <h1 className={pathname === "/" ? styles.iconActive : styles.icon}>
               Next Project
             </h1>
-            {/* <HomeIcon
-              className={pathname === "/" ? styles.iconActive : styles.icon}
-            /> */}
           </Link>
         </div>
 
-        <div>
-          <Link
-            href="/demand"
-            className={pathname === "/demand" ? styles.linkActive : styles.link}
-          >
-            Pedidos
-          </Link>
-          <Link
-            href="/about"
-            className={pathname === "/about" ? styles.linkActive : styles.link}
-          >
-            Sobre
-          </Link>
-          {user ? (
-            <Link
-              href="/me"
-              className={pathname === "/me" ? styles.linkActive : styles.link}
-            >
-              {user.email}
-            </Link>
-          ) : (
-            <Link
-              href="/sign-in"
-              className={
-                pathname === "/sign-in" ? styles.linkActive : styles.link
-              }
-            >
-              Criar / Entrar
-            </Link>
-          )}
+        <div className={styles.menu} onClick={() => setModalOpen(!modalOpen)}>
+          <MenuIcon />
+          {modalOpen && <LinksModal pathname={pathname} user={user} />}
         </div>
+
+        <Links pathname={pathname} user={user} />
       </nav>
     </header>
   );
