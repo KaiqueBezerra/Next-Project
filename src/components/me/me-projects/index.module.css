@@ -1,0 +1,14 @@
+.projects {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  border: 2px solid #000;
+}
+
+.project {
+  outline: double 5px var(--color-2);
+  height: 350px;
+  width: 350px;
+}
