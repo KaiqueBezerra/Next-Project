@@ -13,7 +13,6 @@
   gap: 10px;
   outline: double 5px var(--color-2);
   padding: 10px;
-  height: 200px;
   width: 300px;
 }
 
@@ -28,7 +27,7 @@
 .user {
   display: flex;
   align-items: center;
-  text-transform: capitalize;
+  word-break: break-word;
 }
 
 .img {
@@ -39,13 +38,74 @@
   margin-right: 10px;
 }
 
+.user h3 {
+  text-transform: capitalize;
+  color: #000;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box; /* Flexbox especializado para controle de altura */
+  -webkit-box-orient: vertical; /* Define a direção como vertical */
+  line-clamp: 2;
+  -webkit-line-clamp: 2; /* Limita o número de linhas (ajuste conforme necessário) */
+}
+
 .icon {
   display: flex;
   align-items: center;
   cursor: pointer;
 }
 
-.bottom {
+/* .bottom {
   border: 1px solid #000;
   flex: 1;
+} */
+
+.favorites {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+  word-break: break-word;
+}
+
+.favorite {
+  display: flex;
+  flex-direction: column;
+  height: 120px;
+  outline: double 5px #000;
+  padding: 10px;
+}
+
+.favorite h3 {
+  text-transform: capitalize;
+  color: #000;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box; /* Flexbox especializado para controle de altura */
+  -webkit-box-orient: vertical; /* Define a direção como vertical */
+  line-clamp: 2;
+  -webkit-line-clamp: 2; /* Limita o número de linhas (ajuste conforme necessário) */
+}
+
+.link {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: 15px;
+  flex: 1;
+}
+
+.link a {
+  border: 1px solid #000;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 10px 0px;
+  text-decoration: none;
+  color: #000;
+}
+
+.link a:hover {
+  background-color: var(--color-3);
 }

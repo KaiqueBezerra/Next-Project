@@ -5,6 +5,7 @@ import { Edit } from "lucide-react";
 import styles from "./index.module.css";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export function Profile() {
   const { user } = useUser();
@@ -30,12 +31,48 @@ export function Profile() {
           </div>
         </div>
 
-        <div className={styles.bottom}></div>
+        {/* <div className={styles.bottom}></div> */}
       </div>
 
-      <div className={styles.profileBox}></div>
+      <div className={styles.profileBox}>
+        <h3>Favoritos</h3>
 
-      <div className={styles.profileBox}></div>
+        <div className={styles.favorites}>
+          <div className={styles.favorite}>
+            <h3>
+              Projetodasdsadsadsdsassdasdassaadasdsdasdsadsdassadasdsadssdasdsadsadsadsdasdsadsadsad
+            </h3>
+
+            <div className={styles.link}>
+              <Link href="">Ver mais</Link>
+            </div>
+          </div>
+
+          <div className={styles.favorite}>
+            <h3>Projeto 2</h3>
+
+            <div className={styles.link}>
+              <Link href="">Ver mais</Link>
+            </div>
+          </div>
+
+          <div className={styles.favorite}>
+            <h3>Projeto 3</h3>
+
+            <div className={styles.link}>
+              <Link href="">Ver mais</Link>
+            </div>
+          </div>
+
+          <div className={styles.favorite}>
+            <h3>Projeto 4</h3>
+
+            <div className={styles.link}>
+              <Link href="">Ver mais</Link>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
