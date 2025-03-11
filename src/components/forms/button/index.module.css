@@ -12,15 +12,15 @@
   padding: 15px;
   box-sizing: border-box;
   transition: 0.1s;
-}
 
-.button:hover,
-.button:focus {
-  outline: none;
-  box-shadow: var(--color-2) 0 0 0 3px;
-}
+  &:hover,
+  &:focus {
+    outline: none;
+    box-shadow: var(--color-2) 0 0 0 3px;
+  }
 
-.button:disabled {
-  opacity: 0.5;
-  cursor: wait;
+  &:disabled {
+    opacity: 0.5;
+    cursor: wait;
+  }
 }

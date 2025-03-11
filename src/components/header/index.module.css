@@ -15,11 +15,11 @@
 
 .icon {
   color: var(--color-2);
-}
 
-.icon:hover {
-  color: var(--color-3);
-  opacity: 0.8;
+  &:hover {
+    color: var(--color-3);
+    opacity: 0.8;
+  }
 }
 
 .iconActive {

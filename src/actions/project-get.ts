@@ -1,8 +1,8 @@
 "use server";
 
 import { PROJECT_GET } from "@/functions/api";
-import apiError from "@/functions/api-error";
 import { Project } from "./projects-get";
+import apiError from "@/functions/api-error";
 
 export default async function projectGet(id: string) {
   try {

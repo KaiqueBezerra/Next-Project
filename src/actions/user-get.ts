@@ -1,8 +1,8 @@
 "use server";
 
 import { USER_GET } from "@/functions/api";
-import apiError from "@/functions/api-error";
 import { cookies } from "next/headers";
+import apiError from "@/functions/api-error";
 
 export interface User {
   id: number;
@@ -28,6 +28,7 @@ export default async function userGet() {
       },
       next: {
         revalidate: 60,
+        tags: ["user"],
       },
       signal,
     });

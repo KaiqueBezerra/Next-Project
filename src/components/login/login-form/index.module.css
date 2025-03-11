@@ -1,0 +1,14 @@
+.form {
+  display: flex;
+  flex-direction: column;
+
+  &.form p {
+    padding: 10px;
+  }
+
+  &.form a {
+    color: var(--color-3);
+    text-decoration: underline;
+    font-weight: bold;
+  }
+}

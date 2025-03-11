@@ -2,7 +2,7 @@ import { ComponentProps } from "react";
 import styles from "./index.module.css";
 
 type InputProps = ComponentProps<"input"> & {
-  label: string;
+  label?: string;
   error?: string;
 };
 

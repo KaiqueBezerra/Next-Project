@@ -5,7 +5,7 @@ import { useFormStatus } from "react-dom";
 import { ErrorMessage } from "@/components/helper/error-message";
 import { Button } from "@/components/forms/button";
 import { Input } from "@/components/forms/input";
-import login from "@/actions/login";
+import Register from "@/actions/register";
 import styles from "./index.module.css";
 import Link from "next/link";
 
@@ -15,34 +15,34 @@ function FormButton() {
   return (
     <>
       {pending ? (
-        <Button disabled={pending}>Entrando...</Button>
+        <Button disabled={pending}>Criando...</Button>
       ) : (
-        <Button>Entrar</Button>
+        <Button>Criar</Button>
       )}
     </>
   );
 }
 
-export function LoginForm() {
-  const [state, action] = useActionState(login, {
+export function RegisterForm() {
+  const [state, action] = useActionState(Register, {
     ok: false,
     error: "",
     data: null,
   });
 
   useEffect(() => {
-    if (state.ok) window.location.href = "/me";
+    if (state.ok) window.location.href = "/sign-in";
   }, [state.ok]);
 
   return (
     <form action={action} className={styles.form}>
+      <Input label="Nome" name="name" type="text" />
       <Input label="Email" name="email" type="email" />
       <Input label="Senha" name="password" type="password" />
       <ErrorMessage error={state.error} />
       <FormButton />
       <p>
-        Ainda não possui uma conta?{" "}
-        <Link href="/sign-in/register">Registrar</Link>
+        Ja possui uma conta? <Link href="/sign-in">Login</Link>
       </p>
     </form>
   );

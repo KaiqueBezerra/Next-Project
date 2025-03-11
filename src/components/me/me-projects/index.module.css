@@ -12,3 +12,13 @@
   height: 350px;
   width: 350px;
 }
+
+@media (max-width: 360px) {
+  .projects {
+    padding: 10px;
+  }
+
+  .project {
+    width: 320px;
+  }
+}

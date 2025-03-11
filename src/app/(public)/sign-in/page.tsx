@@ -2,7 +2,6 @@
 
 import { LoginForm } from "@/components/login/login-form";
 import { useEffect } from "react";
-import styles from "./page.module.css";
 
 export default function SignIn() {
   useEffect(() => {
@@ -16,8 +15,8 @@ export default function SignIn() {
   }, []);
 
   return (
-    <section className={styles.section}>
-      <h1>Login</h1>
+    <section>
+      <h1 style={{ textAlign: "center" }}>Login</h1>
       <LoginForm />
     </section>
   );

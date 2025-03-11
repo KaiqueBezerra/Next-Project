@@ -29,7 +29,7 @@ export function LinksModal({ pathname, user }: LinksProps) {
           href="/me"
           className={pathname === "/me" ? styles.linkActive : styles.link}
         >
-          {user.email}
+          {user.name}
         </Link>
       ) : (
         <Link

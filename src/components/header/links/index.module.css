@@ -11,12 +11,12 @@
   font-weight: bold;
   color: var(--color-3);
   text-decoration: underline;
-}
 
-.link:hover {
-  color: var(--color-3);
-  opacity: 0.8;
-  text-decoration: underline;
+  &:hover {
+    color: var(--color-3);
+    opacity: 0.8;
+    text-decoration: underline;
+  }
 }
 
 @media (max-width: 550px) {

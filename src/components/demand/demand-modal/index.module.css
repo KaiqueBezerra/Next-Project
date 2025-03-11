@@ -84,10 +84,10 @@
   border-radius: 10px 0px;
   text-decoration: none;
   color: #000;
-}
 
-.link a:hover {
-  background-color: var(--color-3);
+  &:hover {
+    background-color: var(--color-3);
+  }
 }
 
 @media (max-width: 720px) {

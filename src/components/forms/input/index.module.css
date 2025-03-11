@@ -11,14 +11,14 @@
   border-radius: 0.4rem;
   background: var(--color-1);
   transition: 0.2s;
-}
 
-.input:focus,
-.input:hover {
-  outline: none;
-  border-color: var(--color-1);
-  background: var(--color-1);
-  box-shadow: var(--color-2) 0 0 0 3px;
+  &:focus,
+  &:hover {
+    outline: none;
+    border-color: var(--color-1);
+    background: var(--color-1);
+    box-shadow: var(--color-2) 0 0 0 3px;
+  }
 }
 
 .label {

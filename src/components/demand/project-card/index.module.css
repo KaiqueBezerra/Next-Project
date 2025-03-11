@@ -7,10 +7,10 @@
   padding: 20px;
   outline: 10px double var(--color-2);
   transition: transform 0.5s;
-}
 
-.project:hover {
-  transform: translateY(-10px);
+  &:hover {
+    transform: translateY(-10px);
+  }
 }
 
 .header {
@@ -96,10 +96,10 @@
   border-radius: 10px 0px;
   text-decoration: none;
   color: #000;
-}
 
-.link a:hover {
-  background-color: var(--color-3);
+  &:hover {
+    background-color: var(--color-3);
+  }
 }
 
 @media (max-width: 360px) {
@@ -111,9 +111,9 @@
 @media (max-width: 720px) {
   .project {
     transition: none;
-  }
 
-  .project:hover {
-    transform: none;
+    &:hover {
+      transform: none;
+    }
   }
 }
