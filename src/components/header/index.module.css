@@ -39,7 +39,7 @@
   cursor: pointer;
 }
 
-@media (max-width: 720px) {
+@media (width <= 720px) {
   .menu {
     display: flex;
   }

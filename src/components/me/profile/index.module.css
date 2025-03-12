@@ -29,6 +29,18 @@
   display: flex;
   align-items: center;
   word-break: break-word;
+
+  & h3 {
+    text-transform: capitalize;
+    color: #000;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box; /* Flexbox especializado para controle de altura */
+    -webkit-box-orient: vertical; /* Define a direção como vertical */
+    line-clamp: 2;
+    -webkit-line-clamp: 2; /* Limita o número de linhas (ajuste conforme necessário) */
+  }
 }
 
 .img {
@@ -39,16 +51,9 @@
   margin-right: 10px;
 }
 
-.user h3 {
-  text-transform: capitalize;
-  color: #000;
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box; /* Flexbox especializado para controle de altura */
-  -webkit-box-orient: vertical; /* Define a direção como vertical */
-  line-clamp: 2;
-  -webkit-line-clamp: 2; /* Limita o número de linhas (ajuste conforme necessário) */
+.icons {
+  display: flex;
+  gap: 5px;
 }
 
 .icon {
@@ -90,18 +95,18 @@
   height: 120px;
   outline: double 5px #000;
   padding: 10px;
-}
 
-.favorite h3 {
-  text-transform: capitalize;
-  color: #000;
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box; /* Flexbox especializado para controle de altura */
-  -webkit-box-orient: vertical; /* Define a direção como vertical */
-  line-clamp: 2;
-  -webkit-line-clamp: 2; /* Limita o número de linhas (ajuste conforme necessário) */
+  & h3 {
+    text-transform: capitalize;
+    color: #000;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+  }
 }
 
 .link {
@@ -110,17 +115,17 @@
   align-items: flex-end;
   margin-top: 15px;
   flex: 1;
-}
 
-.link a {
-  border: 1px solid #000;
-  display: inline-block;
-  padding: 10px;
-  border-radius: 10px 0px;
-  text-decoration: none;
-  color: #000;
+  & a {
+    border: 1px solid #000;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 10px 0px;
+    text-decoration: none;
+    color: #000;
 
-  &:hover {
-    background-color: var(--color-3);
+    &:hover {
+      background-color: var(--color-3);
+    }
   }
 }

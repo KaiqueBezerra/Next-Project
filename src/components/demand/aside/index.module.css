@@ -16,13 +16,13 @@
   cursor: pointer;
 }
 
-@media (max-width: 355px) {
+@media (width <= 355px) {
   .menu {
     width: 320px;
   }
 }
 
-@media (min-width: 355px) and (max-width: 620px) {
+@media (355px <= width <= 620px) {
   .menu {
     width: 350px;
   }
@@ -32,7 +32,7 @@
   }
 }
 
-@media (max-width: 620px) {
+@media (width <= 620px) {
   .aside {
     display: flex;
     flex-direction: column;
@@ -46,7 +46,7 @@
   }
 }
 
-@media (min-width: 620px) and (max-width: 720px) {
+@media (620px <= width <= 720px) {
   .aside {
     display: flex;
     justify-content: space-between;

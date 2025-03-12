@@ -76,8 +76,10 @@ export function middleware(request: NextRequest) {
       // Verifica se o token está expirado
       if (decoded.exp * 1000 < Date.now()) {
         console.log("Token expirado, redirecionando para login.");
-        request.cookies.delete("token");
-        return NextResponse.redirect(new URL(redirectUrl));
+        const response = NextResponse.redirect(new URL(redirectUrl));
+        // Define o cookie "token" com uma data de expiração no passado
+        response.cookies.set("token", "", { expires: new Date(0) });
+        return response;
       }
 
       console.log("Token válido, permitindo o acesso.");

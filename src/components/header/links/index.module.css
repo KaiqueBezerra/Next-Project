@@ -19,7 +19,7 @@
   }
 }
 
-@media (max-width: 550px) {
+@media (width <= 550px) {
   .link,
   .linkActive {
     font-size: 17px;
@@ -27,7 +27,7 @@
   }
 }
 
-@media (max-width: 720px) {
+@media (width <= 720px) {
   .links {
     display: none;
   }

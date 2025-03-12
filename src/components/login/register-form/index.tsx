@@ -5,7 +5,7 @@ import { useFormStatus } from "react-dom";
 import { ErrorMessage } from "@/components/helper/error-message";
 import { Button } from "@/components/forms/button";
 import { Input } from "@/components/forms/input";
-import Register from "@/actions/register";
+import userPost from "@/actions/users/user-post";
 import styles from "./index.module.css";
 import Link from "next/link";
 
@@ -24,7 +24,7 @@ function FormButton() {
 }
 
 export function RegisterForm() {
-  const [state, action] = useActionState(Register, {
+  const [state, action] = useActionState(userPost, {
     ok: false,
     error: "",
     data: null,

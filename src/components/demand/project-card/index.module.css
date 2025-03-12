@@ -11,6 +11,18 @@
   &:hover {
     transform: translateY(-10px);
   }
+
+  & h1 {
+    text-transform: capitalize;
+    color: #000;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box; /* Flexbox especializado para controle de altura */
+    -webkit-box-orient: vertical; /* Define a direção como vertical */
+    line-clamp: 3;
+    -webkit-line-clamp: 3; /* Limita o número de linhas (ajuste conforme necessário) */
+  }
 }
 
 .header {
@@ -18,18 +30,6 @@
   justify-content: space-between;
   align-items: center;
   word-break: break-word;
-}
-
-.project h1 {
-  text-transform: capitalize;
-  color: #000;
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box; /* Flexbox especializado para controle de altura */
-  -webkit-box-orient: vertical; /* Define a direção como vertical */
-  line-clamp: 3;
-  -webkit-line-clamp: 3; /* Limita o número de linhas (ajuste conforme necessário) */
 }
 
 .icon {
@@ -43,18 +43,18 @@
 
 .description {
   word-break: break-word;
-}
 
-.description p {
-  font-size: 20px;
-  color: #000;
-  text-align: justify;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  line-clamp: 3;
-  -webkit-line-clamp: 3;
+  & p {
+    font-size: 20px;
+    color: #000;
+    text-align: justify;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+  }
 }
 
 .requirements {
@@ -69,16 +69,16 @@
   -webkit-box-orient: vertical;
   line-clamp: 1;
   -webkit-line-clamp: 1;
-}
 
-.requirements p {
-  margin-top: 20px;
-  margin-right: 5px;
-  background-color: var(--color-3);
-  border: 1px solid #000;
-  display: inline-block;
-  padding: 10px;
-  border-radius: 0px 10px;
+  & p {
+    margin-top: 20px;
+    margin-right: 5px;
+    background-color: var(--color-3);
+    border: 1px solid #000;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 0px 10px;
+  }
 }
 
 .link {
@@ -87,28 +87,28 @@
   align-items: flex-end;
   margin-top: 15px;
   flex: 1;
-}
 
-.link a {
-  border: 1px solid #000;
-  display: inline-block;
-  padding: 10px;
-  border-radius: 10px 0px;
-  text-decoration: none;
-  color: #000;
+  & a {
+    border: 1px solid #000;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 10px 0px;
+    text-decoration: none;
+    color: #000;
 
-  &:hover {
-    background-color: var(--color-3);
+    &:hover {
+      background-color: var(--color-3);
+    }
   }
 }
 
-@media (max-width: 360px) {
+@media (width <= 360px) {
   .project {
     width: 320px;
   }
 }
 
-@media (max-width: 720px) {
+@media (width <= 720px) {
   .project {
     transition: none;
 

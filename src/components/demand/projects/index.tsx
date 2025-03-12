@@ -1,5 +1,5 @@
 import { ProjectCard } from "../project-card";
-import { Project } from "@/actions/projects-get";
+import { Project } from "@/actions/projects/projects-get";
 import styles from "./index.module.css";
 
 export function Projects({ project }: { project: Project[] }) {

@@ -1,6 +1,6 @@
 import { DemandModal } from "@/components/demand/demand-modal";
 import { notFound } from "next/navigation";
-import projectGet from "@/actions/project-get";
+import projectGet from "@/actions/projects/project-get";
 
 interface ModalProps {
   params: Promise<{ id: string }>;

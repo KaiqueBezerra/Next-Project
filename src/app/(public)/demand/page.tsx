@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { Projects } from "@/components/demand/projects";
-import projectsGet, { Project } from "@/actions/projects-get";
+import projectsGet, { Project } from "@/actions/projects/projects-get";
 import Loading from "@/app/loading";
 
 export default function Demand() {
@@ -72,7 +72,7 @@ export default function Demand() {
         {infinite ? (
           loading && <Loading />
         ) : (
-          <p style={{ marginTop: "20px" }}>Não existem mais postagens.</p>
+          <p style={{ margin: "20px 0px" }}>Não existem mais postagens.</p>
         )}
       </div>
     </div>

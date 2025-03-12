@@ -50,13 +50,13 @@
   opacity: 0.5;
 }
 
-@media (max-width: 355px) {
+@media (width <= 355px) {
   .form {
     width: 320px;
   }
 }
 
-@media (min-width: 355px) and (max-width: 620px) {
+@media (355px <= width <= 620px) {
   .form {
     width: 350px;
   }

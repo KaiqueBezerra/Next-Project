@@ -1,12 +1,19 @@
 import { formatDistanceToNow, parseISO } from "date-fns";
-import { StarIcon } from "lucide-react";
-import { Project } from "@/actions/projects-get";
+import { Star, StarOff } from "lucide-react";
+import { Project } from "@/actions/projects/projects-get";
+import { useUser } from "@/context/userContext";
 import { ptBR } from "date-fns/locale";
 import styles from "./index.module.css";
 import Link from "next/link";
+import favoritePost from "@/actions/favorites/favorite-post";
 
 export function ProjectCard({ project }: { project: Project }) {
+  const { user } = useUser();
+
   const time = project.createdAt;
+
+  console.log(project);
+  console.log(user);
 
   const parsedDate = parseISO(time);
 
@@ -15,11 +22,15 @@ export function ProjectCard({ project }: { project: Project }) {
     locale: ptBR,
   });
 
+  async function addFavorite() {
+    await favoritePost(project.id);
+  }
+
   return (
     <div className={styles.project}>
       <div className={styles.header}>
         <h1>{project.name}</h1>
-        <StarIcon className={styles.icon} />
+        <Star className={styles.icon} onClick={addFavorite} />
       </div>
       <p className={styles.time}>Publicado: {relativeTime}</p>
       <div className={styles.description}>

@@ -3,7 +3,7 @@
 import { USER_POST } from "@/functions/api";
 import apiError from "@/functions/api-error";
 
-export default async function Register(
+export default async function userPost(
   state: {
     data: null;
     ok: boolean;

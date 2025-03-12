@@ -3,15 +3,16 @@
 import { useActionState, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { ErrorMessage } from "@/components/helper/error-message";
+import { Edit, LogOut } from "lucide-react";
 import { useUser } from "@/context/userContext";
 import { Button } from "@/components/forms/button";
 import { Input } from "@/components/forms/input";
-import { Edit } from "lucide-react";
-import userUpdate from "@/actions/user-update";
+import userUpdate from "@/actions/users/user-update";
 import styles from "./index.module.css";
 
 import Image from "next/image";
 import Link from "next/link";
+import logout from "@/actions/users/logout";
 
 function FormButton() {
   const { pending } = useFormStatus();
@@ -43,6 +44,11 @@ export function Profile() {
     if (state.ok) window.location.reload();
   }, [state.ok]);
 
+  async function handleLogout() {
+    await logout();
+    window.location.href = "/sign-in";
+  }
+
   return (
     <div className={styles.profile}>
       <div className={styles.profileBox}>
@@ -59,8 +65,9 @@ export function Profile() {
             <h3>{user?.name}</h3>
           </div>
 
-          <div className={styles.icon}>
-            <Edit onClick={() => setModal(!modal)} />
+          <div className={styles.icons}>
+            <Edit className={styles.icon} onClick={() => setModal(!modal)} />
+            <LogOut className={styles.icon} onClick={handleLogout} />
           </div>
 
           {modal && (

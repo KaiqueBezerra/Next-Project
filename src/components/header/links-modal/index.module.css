@@ -32,13 +32,13 @@
   }
 }
 
-@media (max-width: 360px) {
+@media (width <= 360px) {
   .links {
     right: -50px;
   }
 }
 
-@media (max-width: 720px) {
+@media (width <= 720px) {
   .link,
   .linkActive {
     margin-right: 0px;

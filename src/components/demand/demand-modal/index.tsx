@@ -1,7 +1,7 @@
 "use client";
 
 import { formatDistanceToNow, parseISO } from "date-fns";
-import { Project } from "@/actions/projects-get";
+import { Project } from "@/actions/projects/projects-get";
 import { ptBR } from "date-fns/locale";
 import styles from "./index.module.css";
 import Link from "next/link";

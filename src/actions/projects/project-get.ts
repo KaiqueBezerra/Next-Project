@@ -19,7 +19,7 @@ export default async function projectGet(id: string) {
       },
       signal,
     });
-    if (!response.ok) throw new Error("Erro ao pegar o projetos.");
+    if (!response.ok) throw new Error("Erro ao pegar o projeto.");
     const data = (await response.json()) as Project;
     return { data, ok: true, error: "" };
   } catch (error: unknown) {
