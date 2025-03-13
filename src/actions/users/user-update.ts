@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidateTag } from "next/cache";
-import { USER_UPDATE } from "@/functions/api";
+import { USER_UPDATE } from "@/functions/api/users/users-api";
 import { cookies } from "next/headers";
 import apiError from "@/functions/api-error";
 

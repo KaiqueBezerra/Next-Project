@@ -1,6 +1,6 @@
 "use server";
 
-import { USER_POST } from "@/functions/api";
+import { USER_POST } from "@/functions/api/users/users-api";
 import apiError from "@/functions/api-error";
 
 export default async function userPost(

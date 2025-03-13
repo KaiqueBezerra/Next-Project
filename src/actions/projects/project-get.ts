@@ -1,6 +1,6 @@
 "use server";
 
-import { PROJECT_GET } from "@/functions/api";
+import { PROJECT_GET } from "@/functions/api/projects/projects-api";
 import { Project } from "./projects-get";
 import apiError from "@/functions/api-error";
 

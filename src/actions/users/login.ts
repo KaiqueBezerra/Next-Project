@@ -1,7 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { LOGIN } from "@/functions/api";
+import { LOGIN } from "@/functions/api/users/users-api";
 import apiError from "@/functions/api-error";
 
 export default async function login(
