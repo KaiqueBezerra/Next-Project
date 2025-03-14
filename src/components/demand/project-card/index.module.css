@@ -11,6 +11,10 @@
   &:hover {
     transform: translateY(-10px);
   }
+}
+
+.header {
+  word-break: break-word;
 
   & h1 {
     text-transform: capitalize;
@@ -23,17 +27,6 @@
     line-clamp: 3;
     -webkit-line-clamp: 3; /* Limita o número de linhas (ajuste conforme necessário) */
   }
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  word-break: break-word;
-}
-
-.icon {
-  cursor: pointer;
 }
 
 .time {

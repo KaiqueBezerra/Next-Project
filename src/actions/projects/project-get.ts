@@ -4,6 +4,11 @@ import { PROJECT_GET } from "@/functions/api/projects/projects-api";
 import { Project } from "./projects-get";
 import apiError from "@/functions/api-error";
 
+export interface ProjectAndCount {
+  project: Project;
+  favoriteCount: number;
+}
+
 export default async function projectGet(id: string) {
   try {
     const controller = new AbortController();
@@ -20,7 +25,7 @@ export default async function projectGet(id: string) {
       signal,
     });
     if (!response.ok) throw new Error("Erro ao pegar o projeto.");
-    const data = (await response.json()) as Project;
+    const data = (await response.json()) as ProjectAndCount;
     return { data, ok: true, error: "" };
   } catch (error: unknown) {
     return apiError(error);
