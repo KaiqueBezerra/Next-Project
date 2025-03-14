@@ -1,6 +1,7 @@
 "use server";
 
 import { FAVORITE_DELETE } from "@/functions/api/favorites/favorites-api";
+import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 import apiError from "@/functions/api-error";
 
@@ -20,8 +21,9 @@ export default async function favoriteDelete(projectId: string) {
       signal,
     });
     if (!response.ok) throw new Error("Usuário não autenticado.");
+    revalidateTag("favorites");
 
-    return { data: null, ok: true, error: "" };
+    return { data: false, ok: true, error: "" };
   } catch (error: unknown) {
     return apiError(error);
   }

@@ -12,11 +12,11 @@
   padding: 15px;
   box-sizing: border-box;
   transition: 0.1s;
+  outline: double 5px var(--color-2);
 
   &:hover,
   &:focus {
-    outline: none;
-    box-shadow: var(--color-2) 0 0 0 3px;
+    background-color: #d5c464;
   }
 
   &:disabled {

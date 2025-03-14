@@ -37,8 +37,29 @@
   }
 }
 
-.icon {
+.star {
   cursor: pointer;
+}
+
+.starFavorited {
+  cursor: pointer;
+  fill: var(--color-3);
+}
+
+.iconDisabled {
+  fill: #ccc;
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.favoriteCountContainer {
+  font-size: 20px;
+  display: flex;
+  gap: 5px;
+}
+
+.favoriteCountStar {
+  fill: var(--color-3);
 }
 
 .description {

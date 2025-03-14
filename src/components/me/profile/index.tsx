@@ -4,15 +4,19 @@ import { useActionState, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { ErrorMessage } from "@/components/helper/error-message";
 import { Edit, LogOut } from "lucide-react";
+import { Favorite } from "./favorite";
 import { useUser } from "@/context/userContext";
 import { Button } from "@/components/forms/button";
 import { Input } from "@/components/forms/input";
+import favoritesByUserGet, {
+  FavoritesByUserGet,
+} from "@/actions/favorites/favorites-by-user-get";
 import userUpdate from "@/actions/users/user-update";
+import logout from "@/actions/users/logout";
 import styles from "./index.module.css";
 
 import Image from "next/image";
 import Link from "next/link";
-import logout from "@/actions/users/logout";
 
 function FormButton() {
   const { pending } = useFormStatus();
@@ -37,6 +41,8 @@ export function Profile() {
     data: null,
   });
 
+  const [favorites, setFavorites] = useState<FavoritesByUserGet[] | null>(null);
+  const [showAll, setShowAll] = useState(false);
   const [modal, setModal] = useState(false);
   const { user } = useUser();
 
@@ -44,10 +50,22 @@ export function Profile() {
     if (state.ok) window.location.reload();
   }, [state.ok]);
 
+  useEffect(() => {
+    async function getFavorites() {
+      const { data } = await favoritesByUserGet();
+      setFavorites(data);
+    }
+
+    getFavorites();
+  }, []);
+
+  console.log(favorites);
   async function handleLogout() {
     await logout();
     window.location.href = "/sign-in";
   }
+
+  const displayedFavorites = showAll ? favorites : favorites?.slice(0, 3);
 
   return (
     <div className={styles.profile}>
@@ -85,46 +103,45 @@ export function Profile() {
             </div>
           )}
         </div>
-
-        {/* <div className={styles.bottom}></div> */}
       </div>
 
       <div className={styles.profileBox}>
         <h3>Favoritos</h3>
 
-        <div className={styles.favorites}>
-          <div className={styles.favorite}>
-            <h3>Projeto 1</h3>
+        {favorites && favorites.length > 0 ? (
+          <div className={styles.favorites}>
+            {displayedFavorites?.map((favorite) => (
+              <Favorite favorite={favorite} key={favorite.id} />
+            ))}
 
-            <div className={styles.link}>
-              <Link href="">Ver mais</Link>
+            {favorites && favorites.length > 3 && !showAll && (
+              <Button
+                onClick={() => setShowAll(true)}
+                style={{ height: "30px" }}
+              >
+                Ver mais
+              </Button>
+            )}
+
+            {showAll && favorites && favorites.length > 3 && (
+              <Button
+                onClick={() => setShowAll(false)}
+                style={{ height: "30px" }}
+              >
+                Ver menos
+              </Button>
+            )}
+          </div>
+        ) : (
+          <div className={styles.noFavoriteContainer}>
+            <div>
+              <p>Sem Projetos favoritos</p>
+            </div>
+            <div className={styles.noFavorite}>
+              <Link href="/demand/">Ver projetos</Link>
             </div>
           </div>
-
-          <div className={styles.favorite}>
-            <h3>Projeto 2</h3>
-
-            <div className={styles.link}>
-              <Link href="">Ver mais</Link>
-            </div>
-          </div>
-
-          <div className={styles.favorite}>
-            <h3>Projeto 3</h3>
-
-            <div className={styles.link}>
-              <Link href="">Ver mais</Link>
-            </div>
-          </div>
-
-          <div className={styles.favorite}>
-            <h3>Projeto 4</h3>
-
-            <div className={styles.link}>
-              <Link href="">Ver mais</Link>
-            </div>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

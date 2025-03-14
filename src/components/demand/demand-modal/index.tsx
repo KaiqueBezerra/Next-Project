@@ -3,14 +3,15 @@
 import { formatDistanceToNow, parseISO } from "date-fns";
 import { useEffect, useState } from "react";
 import { ProjectAndCount } from "@/actions/projects/project-get";
-import { Star, StarOff } from "lucide-react";
 import { useUser } from "@/context/userContext";
 import { ptBR } from "date-fns/locale";
-import styles from "./index.module.css";
-import Link from "next/link";
+import { Star } from "lucide-react";
+import verifyFavoriteByUser from "@/actions/favorites/verify-favorite-by-user";
+import favoriteDelete from "@/actions/favorites/favorite-delete";
 import favoritePost from "@/actions/favorites/favorite-post";
-import favoriteDelete from "@/actions/favorites/favorite-delete"; // Função que você mencionou para deletar favorito
-import favoritesByUserGet from "@/actions/favorites/favorites-by-user-get";
+import styles from "./index.module.css";
+
+import Link from "next/link";
 
 export function DemandModal({
   data: { project, favoriteCount },
@@ -18,13 +19,14 @@ export function DemandModal({
   data: ProjectAndCount;
 }) {
   const [isFavorited, setIsFavorited] = useState<boolean | null>(false);
+  const [loading, setLoading] = useState(false);
   const { user } = useUser();
 
   // Função que busca se o projeto foi favoritado
   useEffect(() => {
     async function checkIfFavorited() {
       if (user && project.id) {
-        const { data } = await favoritesByUserGet(project.id);
+        const { data } = await verifyFavoriteByUser(project.id);
         setIsFavorited(data);
       }
     }
@@ -34,16 +36,20 @@ export function DemandModal({
   // Função para adicionar o projeto aos favoritos
   async function addFavorite() {
     if (user) {
-      await favoritePost(project.id);
-      setIsFavorited(true);
+      setLoading(true);
+      const { data } = await favoritePost(project.id);
+      setLoading(false);
+      setIsFavorited(data);
     }
   }
 
   // Função para remover o projeto dos favoritos
   async function removeFavorite() {
     if (user) {
-      await favoriteDelete(project.id);
-      setIsFavorited(false);
+      setLoading(true);
+      const { data } = await favoriteDelete(project.id);
+      setLoading(false);
+      setIsFavorited(data);
     }
   }
 
@@ -65,12 +71,23 @@ export function DemandModal({
           <div>
             {user?.id !== project.userId ? (
               isFavorited ? (
-                <StarOff className={styles.icon} onClick={removeFavorite} />
+                <Star
+                  className={
+                    !loading ? styles.starFavorited : styles.iconDisabled
+                  }
+                  onClick={!loading ? removeFavorite : () => {}}
+                />
               ) : (
-                <Star className={styles.icon} onClick={addFavorite} />
+                <Star
+                  className={!loading ? styles.star : styles.iconDisabled}
+                  onClick={!loading ? addFavorite : () => {}}
+                />
               )
             ) : (
-              <div style={{ fontSize: "20px" }}>⭐{favoriteCount}</div>
+              <div className={styles.favoriteCountContainer}>
+                {favoriteCount}
+                <Star className={styles.favoriteCountStar} />
+              </div>
             )}
           </div>
         </div>

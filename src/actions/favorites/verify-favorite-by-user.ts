@@ -1,40 +1,26 @@
 "use server";
 
-import { FAVORITES_BY_USER_GET } from "@/functions/api/favorites/favorites-api";
+import { VERIFY_FAVORITE_BY_USER } from "@/functions/api/favorites/favorites-api";
 import { cookies } from "next/headers";
 import apiError from "@/functions/api-error";
 
-export interface FavoritesByUserGet {
-  id: string;
-  createdAt: Date;
-  updatedAt: Date;
-  projectId: string;
-  Project: {
-    name: string;
-    description: string;
-  };
-}
-
-export default async function favoritesByUserGet() {
+export default async function verifyFavoriteByUser(projectId: string) {
   try {
     const token = (await cookies()).get("token")?.value;
     const controller = new AbortController();
     const signal = controller.signal;
 
-    const { URL } = FAVORITES_BY_USER_GET();
+    const { URL } = VERIFY_FAVORITE_BY_USER(projectId);
 
     const response = await fetch(URL, {
       method: "GET",
       headers: {
         Authorization: "Bearer " + token,
       },
-      next: {
-        tags: ["favorites"],
-      },
       signal,
     });
 
-    const data = (await response.json()) as FavoritesByUserGet[];
+    const data = (await response.json()) as boolean;
     if (!response.ok) throw new Error("Usuário não autenticado.");
 
     return { data, ok: true, error: "" };

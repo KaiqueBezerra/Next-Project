@@ -3,6 +3,7 @@
 import { FAVORITE_POST } from "@/functions/api/favorites/favorites-api";
 import { cookies } from "next/headers";
 import apiError from "@/functions/api-error";
+import { revalidateTag } from "next/cache";
 
 export interface Favorite {
   id: string;
@@ -28,8 +29,9 @@ export default async function favoritePost(projectId: string) {
       signal,
     });
     if (!response.ok) throw new Error("Usuário não autenticado.");
+    revalidateTag("favorites");
 
-    return { data: null, ok: true, error: "" };
+    return { data: true, ok: true, error: "" };
   } catch (error: unknown) {
     return apiError(error);
   }
