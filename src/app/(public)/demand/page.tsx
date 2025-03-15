@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
-import { Projects } from "@/components/demand/projects";
+import { Projects } from "@/components/projects";
 import projectsGet, { Project } from "@/actions/projects/projects-get";
 import Loading from "@/app/loading";
 

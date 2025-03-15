@@ -16,3 +16,7 @@ export function PROJECTS_GET(
       `/projects/?search=${search}&filter=${filter}&page=${page}&limit=${limit}`,
   };
 }
+
+export function PROJECTS_BY_USER_GET() {
+  return { URL: ApiUrl + "/projects/user" };
+}

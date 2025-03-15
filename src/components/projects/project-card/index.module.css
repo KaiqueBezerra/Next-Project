@@ -1,0 +1,114 @@
+.project {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 350px;
+  border-radius: 20px;
+  padding: 20px;
+  outline: 10px double var(--color-2);
+  transition: transform 0.5s;
+
+  &:hover {
+    transform: translateY(-10px);
+  }
+}
+
+.header {
+  word-break: break-word;
+
+  & h1 {
+    text-transform: capitalize;
+    color: #000;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box; /* Flexbox especializado para controle de altura */
+    -webkit-box-orient: vertical; /* Define a direção como vertical */
+    line-clamp: 3;
+    -webkit-line-clamp: 3; /* Limita o número de linhas (ajuste conforme necessário) */
+  }
+}
+
+.time {
+  font-size: 15px;
+  margin: 10px 0;
+}
+
+.description {
+  word-break: break-word;
+
+  & p {
+    font-size: 20px;
+    color: #000;
+    text-align: justify;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+  }
+}
+
+.requirements {
+  display: flex;
+  word-break: break-word;
+}
+
+.requirement {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+
+  & p {
+    margin-top: 20px;
+    margin-right: 5px;
+    background-color: var(--color-3);
+    border: 1px solid #000;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 0px 10px;
+  }
+}
+
+.link {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: 15px;
+  flex: 1;
+
+  & a {
+    border: 1px solid #000;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 10px 0px;
+    text-decoration: none;
+    color: #000;
+
+    &:hover {
+      background-color: var(--color-3);
+    }
+  }
+}
+
+@media (width <= 360px) {
+  .project {
+    width: 320px;
+    outline: 5px double var(--color-2);
+  }
+}
+
+@media (540px <= width <= 790px) {
+  .project {
+    width: 500px;
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}

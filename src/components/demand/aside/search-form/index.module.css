@@ -50,14 +50,20 @@
   opacity: 0.5;
 }
 
-@media (width <= 355px) {
+@media (width <= 360px) {
   .form {
     width: 320px;
   }
 }
 
-@media (355px <= width <= 620px) {
+@media (360px <= width <= 540px) {
   .form {
     width: 350px;
+  }
+}
+
+@media (540px <= width <= 790px) {
+  .form {
+    width: 500px;
   }
 }

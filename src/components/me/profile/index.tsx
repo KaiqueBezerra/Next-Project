@@ -59,18 +59,17 @@ export function Profile() {
     getFavorites();
   }, []);
 
-  console.log(favorites);
   async function handleLogout() {
     await logout();
     window.location.href = "/sign-in";
   }
 
-  const displayedFavorites = showAll ? favorites : favorites?.slice(0, 3);
+  const displayedFavorites = showAll ? favorites : favorites?.slice(0, 2);
 
   return (
     <div className={styles.profile}>
       <div className={styles.profileBox}>
-        <div className={styles.top}>
+        <div className={styles.userBox}>
           <div className={styles.user}>
             <Image
               className={styles.img}
@@ -106,6 +105,12 @@ export function Profile() {
       </div>
 
       <div className={styles.profileBox}>
+        <div className={styles.projectBox}>
+          <Button style={{ width: "100%" }}>Criar projeto</Button>
+        </div>
+      </div>
+
+      <div className={styles.profileBox}>
         <h3>Favoritos</h3>
 
         {favorites && favorites.length > 0 ? (
@@ -114,7 +119,7 @@ export function Profile() {
               <Favorite favorite={favorite} key={favorite.id} />
             ))}
 
-            {favorites && favorites.length > 3 && !showAll && (
+            {favorites && favorites.length > 2 && !showAll && (
               <Button
                 onClick={() => setShowAll(true)}
                 style={{ height: "30px" }}
@@ -123,7 +128,7 @@ export function Profile() {
               </Button>
             )}
 
-            {showAll && favorites && favorites.length > 3 && (
+            {showAll && favorites && favorites.length > 2 && (
               <Button
                 onClick={() => setShowAll(false)}
                 style={{ height: "30px" }}

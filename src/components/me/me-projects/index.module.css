@@ -1,24 +1,30 @@
 .projects {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
+  padding: 30px 0px;
   border: 2px solid #000;
 }
 
-.project {
-  outline: double 5px var(--color-2);
-  height: 350px;
-  width: 350px;
-}
+.noProjects {
+  text-align: center;
 
-@media (width <= 360px) {
-  .projects {
-    padding: 10px;
+  & h1 {
+    margin-bottom: 20px;
   }
 
-  .project {
-    width: 320px;
+  & h3 {
+    color: var(--color-3);
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 30px;
+}
+
+@media (width <= 410px) {
+  .container {
+    padding: 30px 10px;
   }
 }

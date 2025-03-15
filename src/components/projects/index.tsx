@@ -1,4 +1,4 @@
-import { ProjectCard } from "../project-card";
+import { ProjectCard } from "./project-card";
 import { Project } from "@/actions/projects/projects-get";
 import styles from "./index.module.css";
 

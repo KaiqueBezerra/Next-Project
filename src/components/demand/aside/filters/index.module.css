@@ -26,7 +26,7 @@
   }
 }
 
-@media (width <= 720px) {
+@media (width <= 790px) {
   .filters {
     display: none;
   }

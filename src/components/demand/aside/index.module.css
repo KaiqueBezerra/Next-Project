@@ -16,23 +16,22 @@
   cursor: pointer;
 }
 
-@media (width <= 355px) {
-  .menu {
-    width: 320px;
-  }
-}
-
-@media (355px <= width <= 620px) {
-  .menu {
-    width: 350px;
+@media (width <= 360px) {
+  .aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
   }
 
   .menu {
     display: flex;
+    width: 320px;
   }
 }
 
-@media (width <= 620px) {
+@media (360px <= width <= 540px) {
   .aside {
     display: flex;
     flex-direction: column;
@@ -43,18 +42,21 @@
 
   .menu {
     display: flex;
+    width: 350px;
   }
 }
 
-@media (620px <= width <= 720px) {
+@media (540px <= width <= 790px) {
   .aside {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: 40px;
+    gap: 12px;
+    padding: 20px 0px;
   }
 
   .menu {
+    width: 500px;
     display: flex;
   }
 }

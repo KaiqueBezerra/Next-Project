@@ -8,7 +8,7 @@
   padding: 50px;
 }
 
-@media (width <= 720px) {
+@media (width <= 790px) {
   .demand {
     grid-template-columns: 1fr;
   }

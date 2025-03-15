@@ -81,13 +81,14 @@
   margin-top: 15px;
   flex: 1;
 
-  & a {
+  & p {
     border: 1px solid #000;
     display: inline-block;
     padding: 10px;
     border-radius: 10px 0px;
     text-decoration: none;
     color: #000;
+    cursor: pointer;
 
     &:hover {
       background-color: var(--color-3);
@@ -98,11 +99,13 @@
 @media (width <= 360px) {
   .project {
     width: 320px;
+    outline: 5px double var(--color-2);
   }
 }
 
-@media (width <= 720px) {
+@media (540px <= width <= 790px) {
   .project {
+    width: 500px;
     transition: none;
 
     &:hover {
