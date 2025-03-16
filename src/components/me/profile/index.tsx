@@ -17,6 +17,7 @@ import styles from "./index.module.css";
 
 import Image from "next/image";
 import Link from "next/link";
+import { ProjectBox } from "./projectBox";
 
 function FormButton() {
   const { pending } = useFormStatus();
@@ -71,20 +72,22 @@ export function Profile() {
       <div className={styles.profileBox}>
         <div className={styles.userBox}>
           <div className={styles.user}>
-            <Image
-              className={styles.img}
-              alt="user"
-              src="/assets/eu.jpg"
-              width={50}
-              height={50}
-            />
+            <div className={styles.imgContainer}>
+              <Image
+                className={styles.img}
+                alt="user"
+                src="/assets/eu.jpg"
+                width={50}
+                height={50}
+              />
 
-            <h3>{user?.name}</h3>
-          </div>
+              <h3>{user?.name}</h3>
+            </div>
 
-          <div className={styles.icons}>
-            <Edit className={styles.icon} onClick={() => setModal(!modal)} />
-            <LogOut className={styles.icon} onClick={handleLogout} />
+            <div className={styles.icons}>
+              <Edit className={styles.icon} onClick={() => setModal(!modal)} />
+              <LogOut className={styles.icon} onClick={handleLogout} />
+            </div>
           </div>
 
           {modal && (
@@ -104,10 +107,8 @@ export function Profile() {
         </div>
       </div>
 
-      <div className={styles.profileBox}>
-        <div className={styles.projectBox}>
-          <Button style={{ width: "100%" }}>Criar projeto</Button>
-        </div>
+      <div>
+        <ProjectBox />
       </div>
 
       <div className={styles.profileBox}>

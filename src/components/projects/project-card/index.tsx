@@ -1,11 +1,16 @@
+"use client";
+
 import { formatDistanceToNow, parseISO } from "date-fns";
 import { Project } from "@/actions/projects/projects-get";
 import { ptBR } from "date-fns/locale";
 import styles from "./index.module.css";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function ProjectCard({ project }: { project: Project }) {
+  const pathname = usePathname();
+
   const time = project.createdAt;
   const parsedDate = parseISO(time);
   const relativeTime = formatDistanceToNow(parsedDate, {
@@ -30,7 +35,15 @@ export function ProjectCard({ project }: { project: Project }) {
         </div>
       </div>
       <div className={styles.link}>
-        <Link href={`/demand/${project.id}`}>Ver mais</Link>
+        <Link
+          href={
+            pathname === "/demand"
+              ? `/demand/${project.id}`
+              : `/me/${project.id}`
+          }
+        >
+          Ver mais
+        </Link>
       </div>
     </div>
   );

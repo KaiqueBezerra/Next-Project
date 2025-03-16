@@ -11,6 +11,7 @@ import favoriteDelete from "@/actions/favorites/favorite-delete";
 import favoritePost from "@/actions/favorites/favorite-post";
 import styles from "./index.module.css";
 
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 export function DemandModal({
@@ -21,6 +22,8 @@ export function DemandModal({
   const [isFavorited, setIsFavorited] = useState<boolean | null>(false);
   const [loading, setLoading] = useState(false);
   const { user } = useUser();
+
+  const pathname = usePathname();
 
   // Função que busca se o projeto foi favoritado
   useEffect(() => {
@@ -60,7 +63,13 @@ export function DemandModal({
   });
 
   function handleOutsideClick(event: React.MouseEvent<HTMLDivElement>) {
-    if (event.target === event.currentTarget) window.location.href = "/demand";
+    if (event.target === event.currentTarget) {
+      if (pathname.includes("/demand")) {
+        window.location.href = "/demand";
+      } else {
+        window.location.href = "/me";
+      }
+    }
   }
 
   return (

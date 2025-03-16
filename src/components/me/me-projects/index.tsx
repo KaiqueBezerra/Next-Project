@@ -1,8 +1,8 @@
+import { ProjectExamples } from "./project-exxamples";
 import { Projects } from "@/components/projects";
 import { notFound } from "next/navigation";
 import projectsByUserGet from "@/actions/projects/project-by-user-get";
 import styles from "./index.module.css";
-import { ProjectExamples } from "./project-exxamples";
 
 export async function MeProjects() {
   const { data } = await projectsByUserGet();

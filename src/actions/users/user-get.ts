@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import apiError from "@/functions/api-error";
 
 export interface User {
-  id: number;
+  id: string;
   name: string;
   email: string;
   createdAt: string;
