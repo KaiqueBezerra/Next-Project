@@ -1,4 +1,4 @@
-import { DemandModal } from "@/components/modal/demand-modal";
+import { DemandModal } from "@/components/projects/modal/demand-modal";
 import { notFound } from "next/navigation";
 import projectGet from "@/actions/projects/project-get";
 

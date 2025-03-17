@@ -28,7 +28,6 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
   word-break: break-word;
 
   & h1 {
@@ -96,8 +95,8 @@
 
 .link {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 15px;
   flex: 1;
 

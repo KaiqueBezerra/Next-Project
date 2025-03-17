@@ -77,6 +77,20 @@ export function DemandModal({
       <div className={styles.modalContent}>
         <div className={styles.header}>
           <h1>{project.name}</h1>
+        </div>
+        <p style={{ margin: "10px 0" }}>{relativeTime}</p>
+        <div className={styles.description}>
+          <p>{project.description}</p>
+        </div>
+        <div className={styles.requirements}>
+          {project.requirements.map((requirement) => (
+            <p key={requirement}>{requirement}</p>
+          ))}
+        </div>
+        <div className={styles.link}>
+          <Link href={`https://wa.me/55${project.phoneNumber}`} target="_blank">
+            Estou interessado
+          </Link>
           <div>
             {user?.id !== project.userId ? (
               isFavorited ? (
@@ -99,20 +113,6 @@ export function DemandModal({
               </div>
             )}
           </div>
-        </div>
-        <p style={{ margin: "10px 0" }}>{relativeTime}</p>
-        <div className={styles.description}>
-          <p>{project.description}</p>
-        </div>
-        <div className={styles.requirements}>
-          {project.requirements.map((requirement) => (
-            <p key={requirement}>{requirement}</p>
-          ))}
-        </div>
-        <div className={styles.link}>
-          <Link href={`https://wa.me/55${project.phoneNumber}`} target="_blank">
-            Estou interessado
-          </Link>
         </div>
       </div>
     </div>

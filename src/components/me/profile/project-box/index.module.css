@@ -35,25 +35,6 @@
   background: var(--color-1);
 }
 
-.textArea {
-  border: 2px solid var(--color-2);
-  display: block;
-  width: 100%;
-  font-size: 1rem;
-  padding: 0.8rem;
-  border-radius: 0.4rem;
-  background: var(--color-1);
-  transition: 0.2s;
-
-  &:focus,
-  &:hover {
-    outline: none;
-    border-color: var(--color-1);
-    background: var(--color-1);
-    box-shadow: var(--color-2) 0 0 0 3px;
-  }
-}
-
 @media (width <= 360px) {
   .profileBox {
     width: 320px;

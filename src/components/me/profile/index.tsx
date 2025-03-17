@@ -4,6 +4,7 @@ import { useActionState, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { ErrorMessage } from "@/components/helper/error-message";
 import { Edit, LogOut } from "lucide-react";
+import { ProjectBox } from "./project-box";
 import { Favorite } from "./favorite";
 import { useUser } from "@/context/userContext";
 import { Button } from "@/components/forms/button";
@@ -17,7 +18,6 @@ import styles from "./index.module.css";
 
 import Image from "next/image";
 import Link from "next/link";
-import { ProjectBox } from "./projectBox";
 
 function FormButton() {
   const { pending } = useFormStatus();
@@ -44,7 +44,9 @@ export function Profile() {
 
   const [favorites, setFavorites] = useState<FavoritesByUserGet[] | null>(null);
   const [showAll, setShowAll] = useState(false);
+
   const [modal, setModal] = useState(false);
+
   const { user } = useUser();
 
   useEffect(() => {

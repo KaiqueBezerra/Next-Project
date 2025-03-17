@@ -1,5 +1,9 @@
 import { ApiUrl } from "../api";
 
+export function PROJECT_POST() {
+  return { URL: ApiUrl + "/projects/" };
+}
+
 export function PROJECT_GET(id?: string) {
   return { URL: ApiUrl + `/projects/${id}` };
 }
