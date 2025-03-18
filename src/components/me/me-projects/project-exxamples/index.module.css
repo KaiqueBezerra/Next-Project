@@ -5,7 +5,7 @@
   height: 350px;
   border-radius: 20px;
   padding: 20px;
-  outline: 10px double var(--color-2);
+  border: 10px double var(--color-2);
   transition: transform 0.5s;
 
   &:hover {
@@ -99,7 +99,7 @@
 @media (width <= 360px) {
   .project {
     width: 320px;
-    outline: 5px double var(--color-2);
+    border: 5px double var(--color-2);
   }
 }
 

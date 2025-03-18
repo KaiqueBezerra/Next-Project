@@ -21,6 +21,9 @@ export function PROJECTS_GET(
   };
 }
 
-export function PROJECTS_BY_USER_GET() {
-  return { URL: ApiUrl + "/projects/user" };
+export function PROJECTS_BY_USER_GET(
+  page: number | null,
+  limit: number | null
+) {
+  return { URL: ApiUrl + `/projects/user/?page=${page}&limit=${limit}` };
 }

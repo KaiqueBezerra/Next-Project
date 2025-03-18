@@ -12,7 +12,7 @@ export function Favorite({ favorite }: { favorite: FavoritesByUserGet }) {
       </div>
 
       <div className={styles.link}>
-        <Link href="">Ver mais</Link>
+        <Link href={`/me/${favorite.Project.id}`}>Ver mais</Link>
       </div>
     </div>
   );

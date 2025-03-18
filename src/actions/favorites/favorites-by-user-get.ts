@@ -10,6 +10,7 @@ export interface FavoritesByUserGet {
   updatedAt: Date;
   projectId: string;
   Project: {
+    id: string;
     name: string;
     description: string;
   };

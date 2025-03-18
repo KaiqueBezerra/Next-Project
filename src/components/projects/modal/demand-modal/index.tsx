@@ -43,6 +43,8 @@ export function DemandModal({
       const { data } = await favoritePost(project.id);
       setLoading(false);
       setIsFavorited(data);
+    } else {
+      alert("Vocês precisa estar logado para favoritar um projeto.");
     }
   }
 
@@ -78,7 +80,7 @@ export function DemandModal({
         <div className={styles.header}>
           <h1>{project.name}</h1>
         </div>
-        <p style={{ margin: "10px 0" }}>{relativeTime}</p>
+        <p style={{ margin: "10px 0" }}>Publicado: {relativeTime}</p>
         <div className={styles.description}>
           <p>{project.description}</p>
         </div>

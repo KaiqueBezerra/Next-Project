@@ -15,9 +15,9 @@
 }
 
 .card {
-  outline: 10px double var(--color-2);
-  width: 350px;
-  height: 350px;
+  border: 10px double var(--color-2);
+  width: 370px;
+  height: 370px;
 }
 
 .content {

@@ -5,8 +5,8 @@ import { Project } from "@/actions/projects/projects-get";
 import { ptBR } from "date-fns/locale";
 import styles from "./index.module.css";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export function ProjectCard({ project }: { project: Project }) {
   const pathname = usePathname();

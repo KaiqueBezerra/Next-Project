@@ -1,7 +1,7 @@
 .filters {
   display: flex;
   flex-direction: column;
-  outline: 5px double var(--color-2);
+  border: 5px double var(--color-2);
   background-color: #fff;
   position: absolute;
   top: 50px;

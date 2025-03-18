@@ -29,12 +29,6 @@
   }
 }
 
-.modal {
-  outline: 5px double var(--color-2);
-  padding: 20px;
-  background: var(--color-1);
-}
-
 @media (width <= 360px) {
   .profileBox {
     width: 320px;

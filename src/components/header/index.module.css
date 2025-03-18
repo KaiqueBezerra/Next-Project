@@ -32,8 +32,7 @@
   position: relative;
   justify-content: center;
   align-items: center;
-  border: 1px solid #000;
-  outline: 5px double var(--color-2);
+  border: 5px double var(--color-2);
   height: 40px;
   width: 35px;
   cursor: pointer;

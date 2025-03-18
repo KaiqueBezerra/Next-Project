@@ -1,7 +1,7 @@
 .aside {
   height: 100%;
   padding: 20px;
-  outline: 5px double var(--color-2);
+  border: 5px double var(--color-2);
 }
 
 .menu {

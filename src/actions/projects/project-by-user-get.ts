@@ -15,13 +15,16 @@ export interface Project {
   userId: string;
 }
 
-export default async function projectsByUserGet() {
+export default async function projectsByUserGet(
+  page: number = 1,
+  limit: number = 18
+) {
   try {
     const token = (await cookies()).get("token")?.value;
     const controller = new AbortController();
     const signal = controller.signal;
 
-    const { URL } = PROJECTS_BY_USER_GET();
+    const { URL } = PROJECTS_BY_USER_GET(page, limit);
 
     const response = await fetch(URL, {
       method: "GET",
@@ -29,7 +32,7 @@ export default async function projectsByUserGet() {
         Authorization: "Bearer " + token,
       },
       next: {
-        revalidate: 60,
+        revalidate: 600,
         tags: ["projects"],
       },
       signal,

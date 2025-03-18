@@ -4,7 +4,6 @@
   align-items: center;
   gap: 20px;
   padding: 20px;
-  border: 2px solid #000;
 }
 
 .profileBox {
@@ -51,9 +50,9 @@
 
 .img {
   object-fit: cover;
-  outline: double 5px var(--color-2);
-  height: 50px;
-  width: 50px;
+  border: double 5px var(--color-2);
+  height: 60px;
+  width: 60px;
   margin-right: 10px;
 }
 
@@ -85,40 +84,6 @@
   flex-direction: column;
   gap: 20px;
   padding: 10px;
-}
-
-.favorite {
-  display: flex;
-  flex-direction: column;
-  height: 160px;
-  outline: double 5px #000;
-  padding: 10px;
-  word-break: break-word;
-
-  & h3 {
-    text-transform: capitalize;
-    color: #000;
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    line-clamp: 2;
-    -webkit-line-clamp: 2;
-    margin-bottom: 10px;
-  }
-
-  & p {
-    text-transform: capitalize;
-    color: #000;
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    line-clamp: 2;
-    -webkit-line-clamp: 2;
-  }
 }
 
 .noFavoriteContainer {

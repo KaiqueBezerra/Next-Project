@@ -43,7 +43,19 @@ export default function Demand() {
       });
       if (actionData && actionData.data !== null) {
         const { data } = actionData;
-        setData((currentPhotos) => [...currentPhotos, ...data]);
+
+        // Verificando se os projetos já existentes têm o mesmo ID que os novos
+        setData((currentProjects) => {
+          const newProjects = data.filter(
+            (newProject) =>
+              !currentProjects.some(
+                (existingProject) => existingProject.id === newProject.id
+              )
+          );
+
+          return [...currentProjects, ...newProjects];
+        });
+
         if (data.length < 12) setInfinite(false);
       }
     }
