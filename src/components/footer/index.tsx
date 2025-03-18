@@ -44,6 +44,7 @@ export function Footer() {
           <Link
             href="https://www.instagram.com/bezerra_kaique/"
             className={styles.link}
+            target="_blank"
           >
             <InstagramIcon className={styles.instagram} /> Instagram
           </Link>

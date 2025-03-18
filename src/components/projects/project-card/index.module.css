@@ -1,8 +1,8 @@
 .project {
   display: flex;
   flex-direction: column;
-  width: 350px;
-  height: 350px;
+  width: 360px;
+  height: 380px;
   border-radius: 20px;
   padding: 20px;
   border: 10px double var(--color-2);

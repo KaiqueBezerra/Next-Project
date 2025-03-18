@@ -11,9 +11,14 @@ import Link from "next/link";
 export function ProjectCard({ project }: { project: Project }) {
   const pathname = usePathname();
 
-  const time = project.createdAt;
-  const parsedDate = parseISO(time);
+  const parsedDate = parseISO(project.createdAt);
   const relativeTime = formatDistanceToNow(parsedDate, {
+    addSuffix: true,
+    locale: ptBR,
+  });
+
+  const parsedDateUpdatedAt = parseISO(project.updatedAt);
+  const relativeTimeUpdatedAt = formatDistanceToNow(parsedDateUpdatedAt, {
     addSuffix: true,
     locale: ptBR,
   });
@@ -23,7 +28,12 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className={styles.header}>
         <h1>{project.name}</h1>
       </div>
-      <p className={styles.time}>Publicado: {relativeTime}</p>
+      <div className={styles.time}>
+        <p>Publicado: {relativeTime} </p>
+        {relativeTime !== relativeTimeUpdatedAt && (
+          <p>Atualizado: {relativeTimeUpdatedAt}</p>
+        )}
+      </div>
       <div className={styles.description}>
         <p>{project.description}</p>
         <div className={styles.requirements}>

@@ -15,6 +15,7 @@ export function TextArea({ label, ...props }: TextAreaProps) {
       <textarea
         name="description"
         id={props.name}
+        rows={3}
         className={styles.textArea}
         {...props}
       />

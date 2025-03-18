@@ -1,28 +1,12 @@
-.modalBackdrop {
-  position: fixed;
+.modal {
+  position: absolute;
+  top: -100px;
+  right: 0;
   width: 100%;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-}
-
-.modalContent {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
+  border: 5px double var(--color-2);
   border-radius: 8px;
-  padding: 2rem;
-  width: 100%;
-  max-width: 600px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: justify;
-  outline: 10px double var(--color-1);
+  background-color: var(--color-1);
+  padding: 20px;
 }
 
 .label {
@@ -93,15 +77,10 @@
   }
 }
 
-@media (width <= 580px) {
-  .plus {
-    padding: 0;
-  }
-}
-
-@media (width <= 780px) {
-  .modalContent {
-    padding: 24px;
+@media (width <= 480px) {
+  .modal {
+    top: -50px;
+    padding: 10px;
     width: 100%;
   }
 }

@@ -2,10 +2,11 @@
 
 import { formatDistanceToNow, parseISO } from "date-fns";
 import { useEffect, useState } from "react";
+import { Settings, Star, X } from "lucide-react";
 import { ProjectAndCount } from "@/actions/projects/project-get";
+import { SettingsModal } from "../settings-modal";
 import { useUser } from "@/context/userContext";
 import { ptBR } from "date-fns/locale";
-import { Star } from "lucide-react";
 import verifyFavoriteByUser from "@/actions/favorites/verify-favorite-by-user";
 import favoriteDelete from "@/actions/favorites/favorite-delete";
 import favoritePost from "@/actions/favorites/favorite-post";
@@ -21,6 +22,7 @@ export function DemandModal({
 }) {
   const [isFavorited, setIsFavorited] = useState<boolean | null>(false);
   const [loading, setLoading] = useState(false);
+  const [modal, setModal] = useState(false);
   const { user } = useUser();
 
   const pathname = usePathname();
@@ -64,6 +66,12 @@ export function DemandModal({
     locale: ptBR,
   });
 
+  const parsedDateUpdatedAt = parseISO(project.updatedAt);
+  const relativeTimeUpdatedAt = formatDistanceToNow(parsedDateUpdatedAt, {
+    addSuffix: true,
+    locale: ptBR,
+  });
+
   function handleOutsideClick(event: React.MouseEvent<HTMLDivElement>) {
     if (event.target === event.currentTarget) {
       if (pathname.includes("/demand")) {
@@ -76,11 +84,19 @@ export function DemandModal({
 
   return (
     <div className={styles.modalBackdrop} onClick={handleOutsideClick}>
-      <div className={styles.modalContent}>
+      <div
+        className={styles.modalContent}
+        style={{ outline: modal ? "none" : "" }}
+      >
         <div className={styles.header}>
           <h1>{project.name}</h1>
         </div>
-        <p style={{ margin: "10px 0" }}>Publicado: {relativeTime}</p>
+        <div style={{ margin: "10px 0" }}>
+          <p>Publicado: {relativeTime}</p>
+          {relativeTime !== relativeTimeUpdatedAt && (
+            <p>Atualizado: {relativeTimeUpdatedAt}</p>
+          )}
+        </div>
         <div className={styles.description}>
           <p>{project.description}</p>
         </div>
@@ -90,32 +106,58 @@ export function DemandModal({
           ))}
         </div>
         <div className={styles.link}>
-          <Link href={`https://wa.me/55${project.phoneNumber}`} target="_blank">
-            Estou interessado
-          </Link>
+          <div>
+            <Link
+              href={`https://wa.me/55${project.phoneNumber}`}
+              target="_blank"
+            >
+              Estou interessado
+            </Link>
+          </div>
+
           <div>
             {user?.id !== project.userId ? (
               isFavorited ? (
-                <Star
-                  className={
-                    !loading ? styles.starFavorited : styles.iconDisabled
-                  }
-                  onClick={!loading ? removeFavorite : () => {}}
-                />
+                <div className={styles.favoriteContainer}>
+                  <Star
+                    className={
+                      !loading ? styles.starFavorited : styles.iconDisabled
+                    }
+                    onClick={!loading ? removeFavorite : () => {}}
+                  />
+                  <Settings
+                    className={styles.settings}
+                    onClick={() => setModal(!modal)}
+                  />
+                </div>
               ) : (
-                <Star
-                  className={!loading ? styles.star : styles.iconDisabled}
-                  onClick={!loading ? addFavorite : () => {}}
-                />
+                <div className={styles.favoriteContainer}>
+                  <Star
+                    className={!loading ? styles.star : styles.iconDisabled}
+                    onClick={!loading ? addFavorite : () => {}}
+                  />
+                  <Settings
+                    className={styles.settings}
+                    onClick={() => setModal(!modal)}
+                  />
+                </div>
               )
             ) : (
               <div className={styles.favoriteCountContainer}>
                 {favoriteCount}
                 <Star className={styles.favoriteCountStar} />
+                <Settings
+                  className={styles.settings}
+                  onClick={() => setModal(!modal)}
+                />
               </div>
             )}
           </div>
         </div>
+
+        {modal && (
+          <SettingsModal setModal={setModal} user={user} project={project} />
+        )}
       </div>
     </div>
   );
