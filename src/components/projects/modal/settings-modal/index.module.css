@@ -1,13 +1,10 @@
 .modal {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  min-height: 100%;
+  width: 1200px;
+  min-height: 500px;
   border: 5px double var(--color-2);
   border-radius: 8px;
   background-color: var(--color-1);
-  padding: 20px;
+  padding: 32px;
 }
 
 .x {
@@ -29,6 +26,7 @@
 .report {
   display: flex;
   flex-direction: column;
+  min-height: 400px;
 }
 
 .requirements {
@@ -71,7 +69,7 @@
 }
 
 .input {
-  width: 90%;
+  width: 95%;
   border: 2px solid #000;
   border-radius: 0.4rem 0 0 0.4rem;
   font-size: 16px;
@@ -91,10 +89,8 @@
   }
 }
 
-@media (width <= 480px) {
+/* @media (width <= 480px) {
   .modal {
-    top: -50px;
-    padding: 10px;
     width: 100%;
   }
-}
+} */

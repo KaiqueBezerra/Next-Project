@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
+import { useFormStatus } from "react-dom";
 import { ErrorMessage } from "@/components/helper/error-message";
 import { TextArea } from "@/components/forms/textarea";
 import { Project } from "@/actions/projects/project-by-user-get";
@@ -8,6 +9,23 @@ import { Input } from "@/components/forms/input";
 import { User } from "@/actions/users/user-get";
 import styles from "./index.module.css";
 import projectPut from "@/actions/projects/project-put";
+import reportPost from "@/actions/reports/report-post";
+
+function FormButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <>
+      {pending ? (
+        <Button disabled={pending} style={{ width: "100%" }}>
+          Enviando...
+        </Button>
+      ) : (
+        <Button style={{ width: "100%" }}>Enviar</Button>
+      )}
+    </>
+  );
+}
 
 export function SettingsModal({
   setModal,
@@ -59,6 +77,37 @@ export function SettingsModal({
       window.location.reload();
     } else {
       setError(error);
+
+      const timeoutId = setTimeout(() => {
+        setError("");
+      }, 3000);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }
+
+  async function onReport(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const { ok, error } = await reportPost({
+      comment: event.currentTarget.report.value,
+      projectId: project.id,
+    });
+
+    if (ok) {
+      alert("Reportado com sucesso!");
+    } else {
+      setError(error);
+
+      const timeoutId = setTimeout(() => {
+        setError("");
+      }, 3000);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
     }
   }
 
@@ -68,10 +117,11 @@ export function SettingsModal({
         <X className={styles.x} onClick={() => setModal(false)} />
       </div>
       {user?.id !== project.userId ? (
-        <div className={styles.report}>
+        <form onSubmit={onReport} className={styles.report}>
           <TextArea label="Descreva o problema" name="report" />
-          <Button style={{ width: "100%" }}>Denunciar</Button>
-        </div>
+          <ErrorMessage error={error} />
+          <FormButton />
+        </form>
       ) : (
         <form onSubmit={onSubmit}>
           <Input
@@ -132,7 +182,7 @@ export function SettingsModal({
 
           <ErrorMessage error={error} />
 
-          <Button style={{ width: "100%" }}>Atualizar</Button>
+          <FormButton />
         </form>
       )}
     </div>

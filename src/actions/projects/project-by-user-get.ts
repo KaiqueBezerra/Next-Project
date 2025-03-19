@@ -33,7 +33,7 @@ export default async function projectsByUserGet(
         Authorization: "Bearer " + token,
       },
       next: {
-        revalidate: 600,
+        revalidate: 60,
         tags: ["projects"],
       },
       signal,

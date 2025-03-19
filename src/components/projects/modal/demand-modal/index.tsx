@@ -74,11 +74,7 @@ export function DemandModal({
 
   function handleOutsideClick(event: React.MouseEvent<HTMLDivElement>) {
     if (event.target === event.currentTarget) {
-      if (pathname.includes("/demand")) {
-        window.location.href = "/demand";
-      } else {
-        window.location.href = "/me";
-      }
+      window.location.href = "/demand";
     }
   }
 
@@ -86,7 +82,7 @@ export function DemandModal({
     <div className={styles.modalBackdrop} onClick={handleOutsideClick}>
       <div
         className={styles.modalContent}
-        style={{ outline: modal ? "none" : "" }}
+        style={{ display: modal ? "none" : "" }}
       >
         <div className={styles.header}>
           <h1>{project.name}</h1>
@@ -154,11 +150,11 @@ export function DemandModal({
             )}
           </div>
         </div>
-
-        {modal && (
-          <SettingsModal setModal={setModal} user={user} project={project} />
-        )}
       </div>
+
+      {modal && (
+        <SettingsModal setModal={setModal} user={user} project={project} />
+      )}
     </div>
   );
 }

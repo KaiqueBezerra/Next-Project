@@ -45,15 +45,7 @@ export function ProjectCard({ project }: { project: Project }) {
         </div>
       </div>
       <div className={styles.link}>
-        <Link
-          href={
-            pathname === "/demand"
-              ? `/demand/${project.id}`
-              : `/me/${project.id}`
-          }
-        >
-          Ver mais
-        </Link>
+        <Link href={`/demand/${project.id}`}>Ver mais</Link>
       </div>
     </div>
   );

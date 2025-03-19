@@ -1,5 +1,7 @@
 "use client";
 
+import { useFormStatus } from "react-dom";
+import { ErrorMessage } from "@/components/helper/error-message";
 import { TextArea } from "@/components/forms/textarea";
 import { useState } from "react";
 import { Plus, X } from "lucide-react";
@@ -7,7 +9,22 @@ import { Button } from "@/components/forms/button";
 import { Input } from "@/components/forms/input";
 import styles from "./index.module.css";
 import projectPost from "@/actions/projects/project-post";
-import { ErrorMessage } from "@/components/helper/error-message";
+
+function FormButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <>
+      {pending ? (
+        <Button disabled={pending} style={{ width: "100%" }}>
+          Criando...
+        </Button>
+      ) : (
+        <Button style={{ width: "100%" }}>Criar</Button>
+      )}
+    </>
+  );
+}
 
 export function CreateModal({ onCloseOpen }: { onCloseOpen: () => void }) {
   const [name, setName] = useState("");
@@ -53,6 +70,14 @@ export function CreateModal({ onCloseOpen }: { onCloseOpen: () => void }) {
       window.location.href = "/me";
     } else {
       setError(error);
+
+      const timeoutId = setTimeout(() => {
+        setError("");
+      }, 3000);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
     }
   }
 
@@ -118,7 +143,7 @@ export function CreateModal({ onCloseOpen }: { onCloseOpen: () => void }) {
 
           <ErrorMessage error={error} />
 
-          <Button style={{ width: "100%" }}>Criar</Button>
+          <FormButton />
         </form>
       </div>
     </div>
