@@ -2,7 +2,6 @@
 
 import { revalidateTag } from "next/cache";
 import { PROJECT_POST } from "@/functions/api/projects/projects-api";
-import { Project } from "./projects-get";
 import { cookies } from "next/headers";
 import apiError from "@/functions/api-error";
 
@@ -21,6 +20,7 @@ export default async function projectPost({
 }: ProjectPost) {
   try {
     const token = (await cookies()).get("token")?.value;
+    if (!token) throw new Error("Token não encontrado.");
     const controller = new AbortController();
     const signal = controller.signal;
 
@@ -40,9 +40,8 @@ export default async function projectPost({
       signal,
     });
     if (!response.ok) throw new Error("Erro ao criar projeto.");
-    const data = (await response.json()) as Project;
     revalidateTag("projects");
-    return { data, ok: true, error: "" };
+    return { data: null, ok: true, error: "" };
   } catch (error: unknown) {
     return apiError(error);
   }

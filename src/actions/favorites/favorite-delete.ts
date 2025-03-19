@@ -8,6 +8,7 @@ import apiError from "@/functions/api-error";
 export default async function favoriteDelete(projectId: string) {
   try {
     const token = (await cookies()).get("token")?.value;
+    if (!token) throw new Error("Token não encontrado.");
     const controller = new AbortController();
     const signal = controller.signal;
 

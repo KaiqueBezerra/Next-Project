@@ -69,7 +69,7 @@ export default function Aside() {
 
     // Atualiza a URL sem os parâmetros
     router.push(url.toString());
-  }, []);
+  }, [router]);
 
   return (
     <div>

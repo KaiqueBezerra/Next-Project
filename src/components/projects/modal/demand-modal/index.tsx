@@ -2,8 +2,8 @@
 
 import { formatDistanceToNow, parseISO } from "date-fns";
 import { useEffect, useState } from "react";
-import { Settings, Star, X } from "lucide-react";
 import { ProjectAndCount } from "@/actions/projects/project-get";
+import { Settings, Star } from "lucide-react";
 import { SettingsModal } from "../settings-modal";
 import { useUser } from "@/context/userContext";
 import { ptBR } from "date-fns/locale";

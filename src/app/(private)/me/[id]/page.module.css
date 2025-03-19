@@ -1,0 +1,26 @@
+.projects {
+  padding: 30px 0px;
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
+  border-left: 1px solid;
+  border-right: 1px solid;
+}
+
+.title {
+  text-align: center;
+
+  & h1 {
+    display: inline-block;
+    font-size: 30px;
+    margin-bottom: 30px;
+    border-bottom: 5px double;
+  }
+}
+
+@media (width <= 790px) {
+  .projects {
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+  }
+}

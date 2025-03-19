@@ -65,16 +65,10 @@ export function SettingsModal({
   return (
     <div className={styles.modal}>
       <div style={{ textAlign: "right" }}>
-        <X style={{ cursor: "pointer" }} onClick={() => setModal(false)} />
+        <X className={styles.x} onClick={() => setModal(false)} />
       </div>
       {user?.id !== project.userId ? (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            height: "90%",
-          }}
-        >
+        <div className={styles.report}>
           <TextArea label="Descreva o problema" name="report" />
           <Button style={{ width: "100%" }}>Denunciar</Button>
         </div>

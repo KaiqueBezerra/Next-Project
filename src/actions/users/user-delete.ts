@@ -1,30 +1,28 @@
 "use server";
 
-import { VERIFY_FAVORITE_BY_USER } from "@/functions/api/favorites/favorites-api";
+import { USER_DELETE } from "@/functions/api/users/users-api";
 import { cookies } from "next/headers";
 import apiError from "@/functions/api-error";
 
-export default async function verifyFavoriteByUser(projectId: string) {
+export default async function userDelete() {
   try {
     const token = (await cookies()).get("token")?.value;
     if (!token) throw new Error("Token não encontrado.");
     const controller = new AbortController();
     const signal = controller.signal;
 
-    const { URL } = VERIFY_FAVORITE_BY_USER(projectId);
+    const { URL } = USER_DELETE();
 
     const response = await fetch(URL, {
-      method: "GET",
+      method: "DELETE",
       headers: {
         Authorization: "Bearer " + token,
       },
       signal,
     });
+    if (!response.ok) throw new Error("Erro ao deletar usuário.");
 
-    const data = (await response.json()) as boolean;
-    if (!response.ok) throw new Error("Usuário não autenticado.");
-
-    return { data, ok: true, error: "" };
+    return { data: null, ok: true, error: "" };
   } catch (error: unknown) {
     return apiError(error);
   }

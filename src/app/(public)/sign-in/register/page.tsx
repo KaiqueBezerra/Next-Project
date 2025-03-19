@@ -16,7 +16,6 @@ export default function Register() {
 
   return (
     <section>
-      <h1 style={{ textAlign: "center" }}>Login</h1>
       <RegisterForm />
     </section>
   );

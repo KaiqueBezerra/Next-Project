@@ -15,3 +15,7 @@ export function USER_GET() {
 export function USER_UPDATE() {
   return { URL: ApiUrl + "/users/" };
 }
+
+export function USER_DELETE() {
+  return { URL: ApiUrl + "/users/" };
+}

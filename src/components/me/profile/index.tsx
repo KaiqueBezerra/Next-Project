@@ -18,6 +18,7 @@ import styles from "./index.module.css";
 
 import Image from "next/image";
 import Link from "next/link";
+import userDelete from "@/actions/users/user-delete";
 
 function FormButton() {
   const { pending } = useFormStatus();
@@ -67,6 +68,26 @@ export function Profile() {
     window.location.href = "/sign-in";
   }
 
+  async function handleDelete() {
+    const deleteVerify = confirm(
+      "Tem Certeza que deseja deletar sua conta? Se deletar não conseguirá recuperá-la!"
+    );
+
+    if (deleteVerify) {
+      const deleteVerifyAgain = confirm(
+        "Tem Certeza Absoluta que deseja deletar sua conta?"
+      );
+
+      if (deleteVerifyAgain) {
+        const { ok } = await userDelete();
+
+        if (ok) {
+          handleLogout();
+        }
+      }
+    }
+  }
+
   const displayedFavorites = showAll ? favorites : favorites?.slice(0, 2);
 
   return (
@@ -94,7 +115,7 @@ export function Profile() {
 
           {modal && (
             <div className={styles.modal}>
-              <form action={action} style={{ padding: "10px" }}>
+              <form action={action}>
                 <Input
                   name="name"
                   type="text"
@@ -104,6 +125,9 @@ export function Profile() {
                 <FormButton />
                 <ErrorMessage error={state.error} />
               </form>
+              <button className={styles.btn} onClick={handleDelete}>
+                Excluir perfil
+              </button>
             </div>
           )}
         </div>

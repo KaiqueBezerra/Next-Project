@@ -35,15 +35,18 @@ export function RegisterForm() {
   }, [state.ok]);
 
   return (
-    <form action={action} className={styles.form}>
-      <Input label="Nome" name="name" type="text" />
-      <Input label="Email" name="email" type="email" />
-      <Input label="Senha" name="password" type="password" />
-      <ErrorMessage error={state.error} />
-      <FormButton />
-      <p>
-        Ja possui uma conta? <Link href="/sign-in">Login</Link>
-      </p>
-    </form>
+    <div>
+      <h1 className={styles.title}>Registro</h1>
+      <form action={action} className={styles.form}>
+        <Input label="Nome" name="name" type="text" />
+        <Input label="Email" name="email" type="email" />
+        <Input label="Senha" name="password" type="password" />
+        <ErrorMessage error={state.error} />
+        <FormButton />
+        <p>
+          Ja possui uma conta? <Link href="/sign-in">Login</Link>
+        </p>
+      </form>
+    </div>
   );
 }

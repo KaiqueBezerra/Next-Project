@@ -19,6 +19,7 @@ export interface FavoritesByUserGet {
 export default async function favoritesByUserGet() {
   try {
     const token = (await cookies()).get("token")?.value;
+    if (!token) throw new Error("Token não encontrado.");
     const controller = new AbortController();
     const signal = controller.signal;
 

@@ -35,15 +35,18 @@ export function LoginForm() {
   }, [state.ok]);
 
   return (
-    <form action={action} className={styles.form}>
-      <Input label="Email" name="email" type="email" />
-      <Input label="Senha" name="password" type="password" />
-      <ErrorMessage error={state.error} />
-      <FormButton />
-      <p>
-        Ainda não possui uma conta?{" "}
-        <Link href="/sign-in/register">Registrar</Link>
-      </p>
-    </form>
+    <div>
+      <h1 className={styles.title}>Login</h1>
+      <form action={action} className={styles.form}>
+        <Input label="Email" name="email" type="email" />
+        <Input label="Senha" name="password" type="password" />
+        <ErrorMessage error={state.error} />
+        <FormButton />
+        <p>
+          Ainda não possui uma conta?{" "}
+          <Link href="/sign-in/register">Registrar</Link>
+        </p>
+      </form>
+    </div>
   );
 }

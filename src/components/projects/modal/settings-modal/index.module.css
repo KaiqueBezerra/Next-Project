@@ -1,12 +1,21 @@
 .modal {
   position: absolute;
-  top: -100px;
+  top: 0;
   right: 0;
   width: 100%;
+  min-height: 100%;
   border: 5px double var(--color-2);
   border-radius: 8px;
   background-color: var(--color-1);
   padding: 20px;
+}
+
+.x {
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-3);
+  }
 }
 
 .label {
@@ -15,6 +24,11 @@
   line-height: 1;
   padding-bottom: 8px;
   color: var(--color-2);
+}
+
+.report {
+  display: flex;
+  flex-direction: column;
 }
 
 .requirements {
@@ -46,7 +60,7 @@
   cursor: pointer;
 
   &:hover {
-    color: var(--color-1);
+    color: var(--color-3);
   }
 }
 
