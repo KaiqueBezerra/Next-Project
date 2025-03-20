@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { MouseEventHandler, useActionState, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { ErrorMessage } from "@/components/helper/error-message";
 import { Edit, LogOut } from "lucide-react";
@@ -12,25 +12,35 @@ import { Input } from "@/components/forms/input";
 import favoritesByUserGet, {
   FavoritesByUserGet,
 } from "@/actions/favorites/favorites-by-user-get";
+import userDelete from "@/actions/users/user-delete";
 import userUpdate from "@/actions/users/user-update";
 import logout from "@/actions/users/logout";
 import styles from "./index.module.css";
 
 import Image from "next/image";
 import Link from "next/link";
-import userDelete from "@/actions/users/user-delete";
 
-function FormButton() {
+function FormButton({
+  model,
+  onClick,
+  text,
+}: {
+  model?: string;
+  text: string;
+  onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
+}) {
   const { pending } = useFormStatus();
 
   return (
     <>
       {pending ? (
-        <Button disabled={pending} style={{ width: "100%" }}>
-          Salvando...
+        <Button disabled={pending} style={{ width: "100%" }} model={model}>
+          {text}
         </Button>
       ) : (
-        <Button style={{ width: "100%" }}>Salvar</Button>
+        <Button style={{ width: "100%" }} model={model} onClick={onClick}>
+          {text}
+        </Button>
       )}
     </>
   );
@@ -122,12 +132,15 @@ export function Profile() {
                   placeholder="Novo nome"
                   defaultValue={user?.name}
                 />
-                <FormButton />
+                <FormButton text="Salvar" />
                 <ErrorMessage error={state.error} />
               </form>
-              <button className={styles.btn} onClick={handleDelete}>
-                Excluir perfil
-              </button>
+
+              <FormButton
+                model="1"
+                text="Excluir perfil"
+                onClick={handleDelete}
+              />
             </div>
           )}
         </div>

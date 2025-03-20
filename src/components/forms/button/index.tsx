@@ -1,8 +1,15 @@
 import React, { ComponentProps } from "react";
 import styles from "./index.module.css";
 
-type ButtonProps = ComponentProps<"button">;
+type ButtonProps = ComponentProps<"button"> & {
+  model?: string;
+};
 
-export function Button(props: ButtonProps) {
-  return <button className={styles.button} {...props} />;
+export function Button({ model, ...props }: ButtonProps) {
+  return (
+    <button
+      className={model === "1" ? styles.button1 : styles.button}
+      {...props}
+    />
+  );
 }

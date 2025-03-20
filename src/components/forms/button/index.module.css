@@ -1,4 +1,5 @@
-.button {
+.button,
+.button1 {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6,21 +7,34 @@
   cursor: pointer;
   border: none;
   border-radius: 10px;
-  background: var(--color-3);
-  color: var(--color-2);
   min-width: 128px;
   padding: 15px;
   box-sizing: border-box;
   transition: 0.1s;
   border: double 5px var(--color-2);
 
+  &:disabled {
+    opacity: 0.5;
+    cursor: wait;
+  }
+}
+
+.button {
+  background: var(--color-3);
+  color: var(--color-2);
+
   &:hover,
   &:focus {
     background-color: #d5c464;
   }
+}
 
-  &:disabled {
-    opacity: 0.5;
-    cursor: wait;
+.button1 {
+  background: var(--color-4);
+  color: var(--color-1);
+
+  &:hover,
+  &:focus {
+    background-color: rgb(238, 73, 73);
   }
 }

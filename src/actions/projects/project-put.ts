@@ -2,7 +2,6 @@
 
 import { revalidateTag } from "next/cache";
 import { PROJECT_PUT } from "@/functions/api/projects/projects-api";
-import { Project } from "./project-by-user-get";
 import { cookies } from "next/headers";
 import apiError from "@/functions/api-error";
 
@@ -43,9 +42,8 @@ export default async function projectPut({
       signal,
     });
     if (!response.ok) throw new Error("Erro ao criar projeto.");
-    const data = (await response.json()) as Project;
     revalidateTag("projects");
-    return { data, ok: true, error: "" };
+    return { data: null, ok: true, error: "" };
   } catch (error: unknown) {
     return apiError(error);
   }

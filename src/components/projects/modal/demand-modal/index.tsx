@@ -87,7 +87,7 @@ export function DemandModal({
         <div className={styles.header}>
           <h1>{project.name}</h1>
         </div>
-        <div style={{ margin: "10px 0" }}>
+        <div className={styles.time}>
           <p>Publicado: {relativeTime}</p>
           {relativeTime !== relativeTimeUpdatedAt && (
             <p>Atualizado: {relativeTimeUpdatedAt}</p>

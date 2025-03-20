@@ -31,3 +31,7 @@ export function PROJECTS_BY_USER_GET(
 export function PROJECT_PUT(id: string) {
   return { URL: ApiUrl + `/projects/${id}` };
 }
+
+export function PROJECT_DELETE(id: string) {
+  return { URL: ApiUrl + `/projects/${id}` };
+}

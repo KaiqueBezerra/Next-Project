@@ -26,6 +26,7 @@
   & h1 {
     text-transform: capitalize;
     color: #000;
+    width: 95%;
   }
 }
 
@@ -69,14 +70,19 @@
   }
 }
 
+.time {
+  margin: 10px 0;
+}
+
 .description {
   word-break: break-word;
   margin: 10px 0;
 
   & p {
-    font-size: 20px;
+    font-size: 25px;
     color: #000;
     text-align: justify;
+    width: 95%;
   }
 }
 
@@ -122,10 +128,29 @@
   }
 }
 
-@media (width <= 790px) {
+@media (width <= 515px) {
+  .header h1 {
+    font-size: 25px;
+  }
+
+  .description p {
+    font-size: 15px;
+  }
+
+  .time p {
+    font-size: 12px;
+  }
+}
+
+@media (515px <= width <= 790px) {
   .modalContent {
     padding: 24px;
     width: 100%;
     min-height: 300px;
+  }
+
+  .header h1,
+  .description p {
+    width: 100%;
   }
 }

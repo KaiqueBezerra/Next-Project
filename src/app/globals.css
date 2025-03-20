@@ -8,6 +8,7 @@ html {
   --color-1: #fff; /* #16161a */
   --color-2: #16161a;
   --color-3: #ffd803;
+  --color-4: rgb(215, 32, 32);
 }
 
 a {

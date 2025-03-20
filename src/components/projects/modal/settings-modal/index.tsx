@@ -10,18 +10,19 @@ import { User } from "@/actions/users/user-get";
 import styles from "./index.module.css";
 import projectPut from "@/actions/projects/project-put";
 import reportPost from "@/actions/reports/report-post";
+import projectDelete from "@/actions/projects/project-delete";
 
-function FormButton() {
+function FormButton({ width }: { width?: string }) {
   const { pending } = useFormStatus();
 
   return (
     <>
       {pending ? (
-        <Button disabled={pending} style={{ width: "100%" }}>
+        <Button disabled style={{ width: width }}>
           Enviando...
         </Button>
       ) : (
-        <Button style={{ width: "100%" }}>Enviar</Button>
+        <Button style={{ width: width }}>Enviar</Button>
       )}
     </>
   );
@@ -39,6 +40,8 @@ export function SettingsModal({
   const [name, setName] = useState(project.name);
   const [description, setDescription] = useState(project.description);
   const [phoneNumber, setPhoneNumber] = useState(project.phoneNumber);
+
+  const [loading, setLoading] = useState(false);
 
   const [error, setError] = useState("");
 
@@ -88,7 +91,32 @@ export function SettingsModal({
     }
   }
 
-  async function onReport(event: React.FormEvent<HTMLFormElement>) {
+  async function handleDelete() {
+    const deleteConfirm = confirm("Tem certeza que deseja deletar?");
+
+    if (deleteConfirm) {
+      setLoading(true);
+      const { ok, error } = await projectDelete(project.id);
+
+      if (ok) {
+        window.location.href = "/me";
+      } else {
+        setError(error);
+
+        const timeoutId = setTimeout(() => {
+          setError("");
+        }, 3000);
+
+        return () => {
+          clearTimeout(timeoutId);
+        };
+      }
+
+      setLoading(false);
+    }
+  }
+
+  async function handleReport(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const { ok, error } = await reportPost({
@@ -117,10 +145,10 @@ export function SettingsModal({
         <X className={styles.x} onClick={() => setModal(false)} />
       </div>
       {user?.id !== project.userId ? (
-        <form onSubmit={onReport} className={styles.report}>
+        <form onSubmit={handleReport} className={styles.report}>
           <TextArea label="Descreva o problema" name="report" />
           <ErrorMessage error={error} />
-          <FormButton />
+          <FormButton width="100%" />
         </form>
       ) : (
         <form onSubmit={onSubmit}>
@@ -182,7 +210,12 @@ export function SettingsModal({
 
           <ErrorMessage error={error} />
 
-          <FormButton />
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <FormButton width="40%" />
+            <Button disabled={loading} onClick={handleDelete} model="1">
+              {loading ? "Excluindo" : "Excluir"}
+            </Button>
+          </div>
         </form>
       )}
     </div>
