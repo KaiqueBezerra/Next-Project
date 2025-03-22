@@ -28,6 +28,14 @@ export default async function projectPost({
       throw new Error("Preencha todos os dados.");
     }
 
+    if (requirements.length > 15) {
+      throw new Error("Máximo de 15 requisitos.");
+    }
+
+    if (phoneNumber.length !== 11) {
+      throw new Error("Preencha o telefone corretamente.");
+    }
+
     const { URL } = PROJECT_POST();
 
     const response = await fetch(URL, {

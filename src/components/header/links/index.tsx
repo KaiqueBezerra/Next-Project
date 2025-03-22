@@ -2,6 +2,7 @@
 
 import { User } from "@/actions/users/user-get";
 import styles from "./index.module.css";
+
 import Link from "next/link";
 
 interface LinksProps {
@@ -29,7 +30,7 @@ export function Links({ pathname, user }: LinksProps) {
           href="/me"
           className={pathname === "/me" ? styles.linkActive : styles.link}
         >
-          {user.name}
+          Perfil
         </Link>
       ) : (
         <Link

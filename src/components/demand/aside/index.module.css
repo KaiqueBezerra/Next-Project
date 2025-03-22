@@ -1,5 +1,4 @@
 .aside {
-  height: 100%;
   padding: 20px;
   border: 5px double var(--color-2);
 }
@@ -57,5 +56,11 @@
   .menu {
     width: 500px;
     display: flex;
+  }
+}
+
+@media (790px <= width) {
+  .aside {
+    height: 100%;
   }
 }

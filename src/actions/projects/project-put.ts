@@ -30,6 +30,14 @@ export default async function projectPut({
       throw new Error("Preencha todos os dados.");
     }
 
+    if (requirements.length > 15) {
+      throw new Error("Máximo de 15 requisitos.");
+    }
+
+    if (phoneNumber.length !== 11) {
+      throw new Error("Preencha o telefone corretamente.");
+    }
+
     const { URL } = PROJECT_PUT(id);
 
     const response = await fetch(URL, {
@@ -41,7 +49,7 @@ export default async function projectPut({
       body: JSON.stringify({ name, description, requirements, phoneNumber }),
       signal,
     });
-    if (!response.ok) throw new Error("Erro ao criar projeto.");
+    if (!response.ok) throw new Error("Erro ao atualizar projeto.");
     revalidateTag("projects");
     return { data: null, ok: true, error: "" };
   } catch (error: unknown) {

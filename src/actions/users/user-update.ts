@@ -1,5 +1,6 @@
 "use server";
 
+import { userNameRegex } from "@/functions/regex/user-regex/user-regex";
 import { revalidateTag } from "next/cache";
 import { USER_UPDATE } from "@/functions/api/users/users-api";
 import { cookies } from "next/headers";
@@ -25,6 +26,11 @@ export default async function userUpdate(
 
   try {
     if (!name) throw new Error("Preencha os dados.");
+
+    if (!userNameRegex(name)) {
+      throw new Error("O nome deve conter apenas letras.");
+    }
+
     const token = (await cookies()).get("token")?.value;
     if (!token) throw new Error("Token não encontrado.");
     const controller = new AbortController();

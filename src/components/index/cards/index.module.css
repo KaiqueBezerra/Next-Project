@@ -47,10 +47,21 @@
   margin-top: 10px;
 }
 
-@media (width <= 360px) {
+@media (width <= 370px) {
   .card {
-    width: 320px;
-    height: 320px;
+    width: 335px;
+    height: 370px;
+  }
+
+  .content p {
+    font-size: 17px;
+  }
+}
+
+@media (370px <= width <= 450px) {
+  .card {
+    width: 360px;
+    height: 360px;
   }
 
   .content p {

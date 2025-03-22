@@ -1,7 +1,7 @@
 .filters {
   display: flex;
   flex-direction: column;
-  border: 5px double var(--color-2);
+  outline: 5px double var(--color-2);
   background-color: #fff;
   position: absolute;
   top: 50px;
@@ -18,13 +18,13 @@
     align-items: center;
     font-size: 17px;
     padding: 10px;
-    gap: 5px;
+    gap: 10px;
   }
 
   & input {
     cursor: pointer;
-    width: 15px;
-    height: 15px;
+    width: 30px;
+    height: 30px;
   }
 }
 

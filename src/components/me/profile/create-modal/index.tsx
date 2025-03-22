@@ -1,14 +1,19 @@
 "use client";
 
+import { Info, Plus, X } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { ErrorMessage } from "@/components/helper/error-message";
 import { TextArea } from "@/components/forms/textarea";
 import { useState } from "react";
-import { Plus, X } from "lucide-react";
 import { Button } from "@/components/forms/button";
 import { Input } from "@/components/forms/input";
 import styles from "./index.module.css";
 import projectPost from "@/actions/projects/project-post";
+import {
+  projectDescriptionRegex,
+  projectNameRegex,
+  projectPhoneNumberRegex,
+} from "@/functions/regex/project-regex/project-regex";
 
 function FormButton() {
   const { pending } = useFormStatus();
@@ -31,6 +36,7 @@ export function CreateModal({ onCloseOpen }: { onCloseOpen: () => void }) {
   const [description, setDescription] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
+  const [info, setInfo] = useState(false);
   const [error, setError] = useState("");
 
   const [requirements, setRequirements] = useState<string[]>([]);
@@ -90,7 +96,7 @@ export function CreateModal({ onCloseOpen }: { onCloseOpen: () => void }) {
             name="name"
             value={name}
             onChange={({ target }) => {
-              setName(target.value);
+              projectNameRegex(target.value, setName);
             }}
           />
           <TextArea
@@ -98,31 +104,50 @@ export function CreateModal({ onCloseOpen }: { onCloseOpen: () => void }) {
             name="description"
             value={description}
             onChange={({ target }) => {
-              setDescription(target.value);
-            }}
-          />
-          <Input
-            label="Número para contato"
-            name="phoneNumber"
-            value={phoneNumber}
-            onChange={({ target }) => {
-              setPhoneNumber(target.value);
+              projectDescriptionRegex(target.value, setDescription);
             }}
           />
 
-          <label htmlFor="requirements" className={styles.label}>
-            Requisitos
-          </label>
+          <div>
+            <label htmlFor="phoneNumber" className={styles.label}>
+              Número para contato
+            </label>
 
-          <div className={styles.inputContainer}>
-            <input
-              type="text"
-              id="requirements"
-              className={styles.input}
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-            />
-            <Plus className={styles.plus} onClick={handleAddRequirement} />
+            <div className={styles.inputContainer}>
+              <input
+                type="text"
+                id="phoneNumber"
+                className={styles.input}
+                value={phoneNumber}
+                onChange={(e) =>
+                  projectPhoneNumberRegex(e.target.value, setPhoneNumber)
+                }
+              />
+              <Info className={styles.plus} onClick={() => setInfo(!info)} />
+              {info && (
+                <div className={styles.info}>
+                  <p>O número deve conter 11 dígitos.</p>
+                  <p>Ex: 11234567890</p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="requirements" className={styles.label}>
+              Requisitos
+            </label>
+
+            <div className={styles.inputContainer}>
+              <input
+                type="text"
+                id="requirements"
+                className={styles.input}
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+              />
+              <Plus className={styles.plus} onClick={handleAddRequirement} />
+            </div>
           </div>
 
           <div className={styles.requirements}>

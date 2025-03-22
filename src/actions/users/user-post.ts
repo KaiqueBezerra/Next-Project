@@ -2,6 +2,7 @@
 
 import { USER_POST } from "@/functions/api/users/users-api";
 import apiError from "@/functions/api-error";
+import { userNameRegex } from "@/functions/regex/user-regex/user-regex";
 
 export default async function userPost(
   state: {
@@ -17,6 +18,11 @@ export default async function userPost(
 
   try {
     if (!name || !email || !password) throw new Error("Preencha os dados.");
+
+    if (!userNameRegex(name)) {
+      throw new Error("O nome deve conter apenas letras.");
+    }
+
     const controller = new AbortController();
     const signal = controller.signal;
 

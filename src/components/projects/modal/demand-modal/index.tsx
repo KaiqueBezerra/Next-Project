@@ -12,7 +12,7 @@ import favoriteDelete from "@/actions/favorites/favorite-delete";
 import favoritePost from "@/actions/favorites/favorite-post";
 import styles from "./index.module.css";
 
-import { usePathname } from "next/navigation";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 
 export function DemandModal({
@@ -25,7 +25,7 @@ export function DemandModal({
   const [modal, setModal] = useState(false);
   const { user } = useUser();
 
-  const pathname = usePathname();
+  if (!project) notFound();
 
   // Função que busca se o projeto foi favoritado
   useEffect(() => {

@@ -1,7 +1,6 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
   outline: 5px double var(--color-2);
 }
 

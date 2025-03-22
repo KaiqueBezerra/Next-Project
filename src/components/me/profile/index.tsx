@@ -133,7 +133,6 @@ export function Profile() {
                   defaultValue={user?.name}
                 />
                 <FormButton text="Salvar" />
-                <ErrorMessage error={state.error} />
               </form>
 
               <FormButton
@@ -141,6 +140,8 @@ export function Profile() {
                 text="Excluir perfil"
                 onClick={handleDelete}
               />
+
+              <ErrorMessage error={state.error} />
             </div>
           )}
         </div>

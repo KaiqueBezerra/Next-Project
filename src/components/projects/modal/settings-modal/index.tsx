@@ -1,16 +1,21 @@
 import { Dispatch, SetStateAction, useState } from "react";
+import { Info, Plus, X } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { ErrorMessage } from "@/components/helper/error-message";
 import { TextArea } from "@/components/forms/textarea";
 import { Project } from "@/actions/projects/project-by-user-get";
-import { Plus, X } from "lucide-react";
 import { Button } from "@/components/forms/button";
 import { Input } from "@/components/forms/input";
 import { User } from "@/actions/users/user-get";
-import styles from "./index.module.css";
-import projectPut from "@/actions/projects/project-put";
-import reportPost from "@/actions/reports/report-post";
+import {
+  projectDescriptionRegex,
+  projectNameRegex,
+  projectPhoneNumberRegex,
+} from "@/functions/regex/project-regex/project-regex";
 import projectDelete from "@/actions/projects/project-delete";
+import reportPost from "@/actions/reports/report-post";
+import projectPut from "@/actions/projects/project-put";
+import styles from "./index.module.css";
 
 function FormButton({ width }: { width?: string }) {
   const { pending } = useFormStatus();
@@ -43,6 +48,7 @@ export function SettingsModal({
 
   const [loading, setLoading] = useState(false);
 
+  const [info, setInfo] = useState(false);
   const [error, setError] = useState("");
 
   const [requirements, setRequirements] = useState<string[]>(
@@ -157,7 +163,7 @@ export function SettingsModal({
             name="name"
             value={name}
             onChange={({ target }) => {
-              setName(target.value);
+              projectNameRegex(target.value, setName);
             }}
           />
           <TextArea
@@ -165,31 +171,49 @@ export function SettingsModal({
             name="description"
             value={description}
             onChange={({ target }) => {
-              setDescription(target.value);
+              projectDescriptionRegex(target.value, setDescription);
             }}
           />
-          <Input
-            label="Número para contato"
-            name="phoneNumber"
-            value={phoneNumber}
-            onChange={({ target }) => {
-              setPhoneNumber(target.value);
-            }}
-          />
+          <div>
+            <label htmlFor="phoneNumber" className={styles.label}>
+              Número para contato
+            </label>
 
-          <label htmlFor="requirements" className={styles.label}>
-            Requisitos
-          </label>
+            <div className={styles.inputContainer}>
+              <input
+                type="text"
+                id="phoneNumber"
+                className={styles.input}
+                value={phoneNumber}
+                onChange={(e) =>
+                  projectPhoneNumberRegex(e.target.value, setPhoneNumber)
+                }
+              />
+              <Info className={styles.plus} onClick={() => setInfo(!info)} />
+              {info && (
+                <div className={styles.info}>
+                  <p>O número deve conter 11 dígitos.</p>
+                  <p>Ex: 11234567890</p>
+                </div>
+              )}
+            </div>
+          </div>
 
-          <div className={styles.inputContainer}>
-            <input
-              type="text"
-              id="requirements"
-              className={styles.input}
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-            />
-            <Plus className={styles.plus} onClick={handleAddRequirement} />
+          <div>
+            <label htmlFor="requirements" className={styles.label}>
+              Requisitos
+            </label>
+
+            <div className={styles.inputContainer}>
+              <input
+                type="text"
+                id="requirements"
+                className={styles.input}
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+              />
+              <Plus className={styles.plus} onClick={handleAddRequirement} />
+            </div>
           </div>
 
           <div className={styles.requirements}>

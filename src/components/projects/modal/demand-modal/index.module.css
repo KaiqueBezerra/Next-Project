@@ -89,6 +89,7 @@
 .requirements {
   display: flex;
   flex-wrap: wrap;
+  max-width: 600px;
   margin: 30px 0;
 
   & p {
@@ -134,10 +135,14 @@
   }
 
   .description p {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .time p {
+    font-size: 12px;
+  }
+
+  .requirements p {
     font-size: 12px;
   }
 }
