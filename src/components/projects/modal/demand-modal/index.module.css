@@ -145,6 +145,10 @@
   .requirements p {
     font-size: 12px;
   }
+
+  .link {
+    align-items: center;
+  }
 }
 
 @media (515px <= width <= 790px) {

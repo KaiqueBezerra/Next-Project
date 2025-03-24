@@ -1,6 +1,7 @@
 .cards {
   display: flex;
   justify-content: center;
+  border: 10px double var(--color-2);
 }
 
 .container {
@@ -8,16 +9,20 @@
   justify-content: space-around;
   align-items: center;
   max-width: 1400px;
+  padding: 40px;
   gap: 100px;
-  margin-top: 50px;
-  margin-bottom: 40px;
   flex-wrap: wrap;
+  border-left: 10px double var(--color-2);
+  border-right: 10px double var(--color-2);
+  background-color: var(--color-1);
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
   border: 10px double var(--color-2);
-  width: 370px;
-  height: 370px;
+  width: 600px;
+  max-height: 320px;
 }
 
 .content {
@@ -50,7 +55,7 @@
 @media (width <= 370px) {
   .card {
     width: 335px;
-    height: 370px;
+    max-height: 370px;
   }
 
   .content p {
@@ -61,10 +66,24 @@
 @media (370px <= width <= 450px) {
   .card {
     width: 360px;
-    height: 360px;
+    max-height: 360px;
   }
 
   .content p {
     font-size: 17px;
+  }
+}
+
+@media (450px <= width <= 620px) {
+  .card {
+    width: 400px;
+    max-height: 400px;
+  }
+}
+
+@media (width <= 790px) {
+  .container {
+    border: none;
+    padding: 10px 0px;
   }
 }

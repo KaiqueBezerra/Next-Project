@@ -30,8 +30,8 @@ export function ProjectExamples() {
             <p>Essa seria a descrição do projeto 2.</p>
             <div className={styles.requirements}>
               <div className={styles.requirement}>
-                <p>Requisito 3</p>
-                <p>Requisito 4</p>
+                <p>Requisito 1</p>
+                <p>Requisito 2</p>
               </div>
             </div>
           </div>
@@ -41,7 +41,7 @@ export function ProjectExamples() {
         </div>
       </div>
 
-      <div className={styles.project}>
+      {/* <div className={styles.project}>
         <div className={styles.header}>
           <h1>Nome do projeto 3.</h1>
           <p className={styles.time}>Publicado: há 5 dias </p>
@@ -58,7 +58,7 @@ export function ProjectExamples() {
         <div className={styles.link}>
           <p>Ver mais</p>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

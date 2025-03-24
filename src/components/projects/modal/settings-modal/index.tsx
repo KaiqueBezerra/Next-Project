@@ -152,7 +152,7 @@ export function SettingsModal({
       </div>
       {user?.id !== project.userId ? (
         <form onSubmit={handleReport} className={styles.report}>
-          <TextArea label="Descreva o problema" name="report" />
+          <TextArea label="Descreva o problema" name="report" rows={4} />
           <ErrorMessage error={error} />
           <FormButton width="100%" />
         </form>
@@ -173,6 +173,7 @@ export function SettingsModal({
             onChange={({ target }) => {
               projectDescriptionRegex(target.value, setDescription);
             }}
+            rows={8}
           />
           <div>
             <label htmlFor="phoneNumber" className={styles.label}>

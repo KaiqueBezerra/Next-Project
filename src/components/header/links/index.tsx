@@ -19,12 +19,6 @@ export function Links({ pathname, user }: LinksProps) {
       >
         Pedidos
       </Link>
-      <Link
-        href="/about"
-        className={pathname === "/about" ? styles.linkActive : styles.link}
-      >
-        Sobre
-      </Link>
       {user ? (
         <Link
           href="/me"

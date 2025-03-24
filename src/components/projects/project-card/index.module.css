@@ -18,7 +18,7 @@
 
   & h1 {
     text-transform: capitalize;
-    color: #000;
+    color: var(--color-2);
     flex: 1;
     overflow: hidden;
     text-overflow: ellipsis;

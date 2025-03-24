@@ -1,13 +1,13 @@
-"use client";
-
 import { formatDistanceToNow, parseISO } from "date-fns";
 import { Project } from "@/actions/projects/projects-get";
+import { useUser } from "@/context/userContext";
 import { ptBR } from "date-fns/locale";
 import styles from "./index.module.css";
 
 import Link from "next/link";
 
 export function ProjectCard({ project }: { project: Project }) {
+  const { user } = useUser();
 
   const parsedDate = parseISO(project.createdAt);
   const relativeTime = formatDistanceToNow(parsedDate, {
@@ -24,7 +24,14 @@ export function ProjectCard({ project }: { project: Project }) {
   return (
     <div className={styles.project}>
       <div className={styles.header}>
-        <h1>{project.name}</h1>
+        <h1
+          style={{
+            color:
+              user?.id === project.userId ? "var(--color-3)" : "var(--color-2)",
+          }}
+        >
+          {project.name}
+        </h1>
       </div>
       <div className={styles.time}>
         <p>Publicado: {relativeTime} </p>

@@ -28,9 +28,6 @@ export function Footer() {
           <Link className={styles.link} href="/me">
             Perfil
           </Link>
-          <Link className={styles.link} href="/about">
-            Sobre nós
-          </Link>
         </div>
 
         <div className={styles.contacts}>

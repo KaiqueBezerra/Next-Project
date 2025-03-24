@@ -102,14 +102,16 @@ export function DemandModal({
           ))}
         </div>
         <div className={styles.link}>
-          <div>
-            <Link
-              href={`https://wa.me/55${project.phoneNumber}`}
-              target="_blank"
-            >
-              Estou interessado
-            </Link>
-          </div>
+          {user?.id !== project.userId && (
+            <div>
+              <Link
+                href={`https://wa.me/55${project.phoneNumber}`}
+                target="_blank"
+              >
+                Estou interessado
+              </Link>
+            </div>
+          )}
 
           <div>
             {user?.id !== project.userId ? (

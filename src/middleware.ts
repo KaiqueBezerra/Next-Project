@@ -11,10 +11,6 @@ const publicRoutes = [
     whenAuthenticated: "redirect",
   },
   {
-    path: "/about",
-    whenAuthenticated: "next",
-  },
-  {
     path: "/",
     whenAuthenticated: "next",
   },

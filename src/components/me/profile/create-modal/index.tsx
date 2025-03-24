@@ -31,7 +31,7 @@ function FormButton() {
   );
 }
 
-export function CreateModal({ onCloseOpen }: { onCloseOpen: () => void }) {
+export function CreateModal() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -54,12 +54,6 @@ export function CreateModal({ onCloseOpen }: { onCloseOpen: () => void }) {
     setRequirements((prevRequirements) =>
       prevRequirements.filter((_, i) => i !== index)
     );
-  }
-
-  function handleOutsideClick(event: React.MouseEvent<HTMLDivElement>) {
-    if (event.target === event.currentTarget) {
-      onCloseOpen();
-    }
   }
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -88,7 +82,7 @@ export function CreateModal({ onCloseOpen }: { onCloseOpen: () => void }) {
   }
 
   return (
-    <div className={styles.modalBackdrop} onClick={handleOutsideClick}>
+    <div className={styles.container}>
       <div className={styles.modalContent}>
         <form onSubmit={onSubmit}>
           <Input

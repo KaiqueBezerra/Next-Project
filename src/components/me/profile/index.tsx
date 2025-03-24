@@ -1,6 +1,6 @@
 "use client";
 
-import { MouseEventHandler, useActionState, useEffect, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { ErrorMessage } from "@/components/helper/error-message";
 import { Edit, LogOut } from "lucide-react";
@@ -17,30 +17,24 @@ import userUpdate from "@/actions/users/user-update";
 import logout from "@/actions/users/logout";
 import styles from "./index.module.css";
 
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
-function FormButton({
-  model,
-  onClick,
-  text,
-}: {
-  model?: string;
-  text: string;
-  onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
-}) {
+function FormButton() {
   const { pending } = useFormStatus();
 
   return (
     <>
       {pending ? (
-        <Button disabled={pending} style={{ width: "100%" }} model={model}>
-          {text}
+        <Button
+          disabled={pending}
+          style={{ width: "100%", marginBottom: "10px" }}
+        >
+          Salvando...
         </Button>
       ) : (
-        <Button style={{ width: "100%" }} model={model} onClick={onClick}>
-          {text}
-        </Button>
+        <Button style={{ width: "100%", marginBottom: "10px" }}>Salvar</Button>
       )}
     </>
   );
@@ -56,9 +50,13 @@ export function Profile() {
   const [favorites, setFavorites] = useState<FavoritesByUserGet[] | null>(null);
   const [showAll, setShowAll] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
   const [modal, setModal] = useState(false);
 
   const { user } = useUser();
+
+  const pathname = usePathname();
 
   useEffect(() => {
     if (state.ok) window.location.reload();
@@ -89,11 +87,15 @@ export function Profile() {
       );
 
       if (deleteVerifyAgain) {
+        setLoading(true);
+
         const { ok } = await userDelete();
 
         if (ok) {
           handleLogout();
         }
+
+        setLoading(false);
       }
     }
   }
@@ -132,14 +134,17 @@ export function Profile() {
                   placeholder="Novo nome"
                   defaultValue={user?.name}
                 />
-                <FormButton text="Salvar" />
+                <FormButton />
               </form>
 
-              <FormButton
+              <Button
                 model="1"
-                text="Excluir perfil"
+                style={{ width: "100%" }}
                 onClick={handleDelete}
-              />
+                disabled={loading}
+              >
+                Excluir perfil
+              </Button>
 
               <ErrorMessage error={state.error} />
             </div>
@@ -147,9 +152,11 @@ export function Profile() {
         </div>
       </div>
 
-      <div>
-        <ProjectBox />
-      </div>
+      {pathname !== "/me/create" && (
+        <div>
+          <ProjectBox />
+        </div>
+      )}
 
       <div className={styles.profileBox}>
         <h3>Favoritos</h3>

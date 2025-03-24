@@ -10,32 +10,12 @@ export function Cards() {
         <div className={styles.card}>
           <div className={styles.content}>
             <div>
-              <h1>Crie um pedido</h1>
+              <h1>Como Funciona</h1>
               <p>
-                Tem um projeto incrível e precisa de apoio? Publique seu pedido
-                de ajuda e conecte-se com pessoas dispostas a contribuir.
-                Descreva sua necessidade, defina objetivos e encontre
-                colaboradores para transformar sua ideia em realidade!
-              </p>
-            </div>
-
-            <Link href="/" className={styles.button}>
-              <Button style={{ width: "100%" }}>
-                Criar
-                <ArrowRight style={{ marginLeft: "10px" }} />
-              </Button>
-            </Link>
-          </div>
-        </div>
-        <div className={styles.card}>
-          <div className={styles.content}>
-            <div>
-              <h1>Procure o projeto ideal para você</h1>
-              <p>
-                Quer fazer a diferença? Explore projetos que precisam da sua
-                ajuda! Filtre por categorias, habilidades ou localização e
-                encontre iniciativas alinhadas com seus interesses. Seu apoio
-                pode ser a peça-chave para o sucesso de um grande projeto!
+                Nossa plataforma permite que você crie pedidos de ajuda ou
+                encontre projetos que precisam do seu apoio. Com filtros
+                intuitivos, você pode se conectar com iniciativas alinhadas aos
+                seus interesses.
               </p>
             </div>
 
@@ -47,24 +27,65 @@ export function Cards() {
             </Link>
           </div>
         </div>
+
         <div className={styles.card}>
           <div className={styles.content}>
             <div>
-              <h1>Sobre nós</h1>
+              <h1>Crie um pedido</h1>
               <p>
-                Somos uma plataforma dedicada a conectar pessoas e projetos que
-                precisam de apoio. Acreditamos no poder da colaboração para
-                impulsionar ideias e criar impacto positivo. Saiba mais sobre
-                nossa missão e como você pode fazer parte dessa comunidade!
+                Tem um projeto incrível e precisa de apoio? Publique seu pedido
+                de ajuda e conecte-se com pessoas dispostas a contribuir.
+                Descreva sua necessidade, defina objetivos e encontre
+                colaboradores para transformar sua ideia em realidade!
               </p>
             </div>
 
-            <Link href="/about" className={styles.button}>
+            <Link href="/me" className={styles.button}>
               <Button style={{ width: "100%" }}>
-                Ver mais
+                Criar
                 <ArrowRight style={{ marginLeft: "10px" }} />
               </Button>
             </Link>
+          </div>
+        </div>
+
+        <div className={styles.card}>
+          <div className={styles.content}>
+            <div>
+              <h1>Nossa Missão</h1>
+              <p>
+                Nosso objetivo é conectar pessoas e projetos que precisam de
+                apoio. Através da colaboração, ajudamos a transformar ideias em
+                realidade, criando um impacto positivo na sociedade.
+              </p>
+            </div>
+
+            {/* <Link href="/demand" className={styles.button}>
+              <Button style={{ width: "100%" }}>
+                Procurar
+                <ArrowRight style={{ marginLeft: "10px" }} />
+              </Button>
+            </Link> */}
+          </div>
+        </div>
+
+        <div className={styles.card}>
+          <div className={styles.content}>
+            <div>
+              <h1>Nossa Comunidade</h1>
+              <p>
+                Valorizamos a colaboração e acreditamos que juntos podemos criar
+                soluções inovadoras. Nossa comunidade é formada por pessoas
+                dispostas a ajudar e fazer a diferença.
+              </p>
+            </div>
+
+            {/* <Link href="/demand" className={styles.button}>
+              <Button style={{ width: "100%" }}>
+                Procurar
+                <ArrowRight style={{ marginLeft: "10px" }} />
+              </Button>
+            </Link> */}
           </div>
         </div>
       </div>
