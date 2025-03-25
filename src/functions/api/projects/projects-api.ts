@@ -28,6 +28,16 @@ export function PROJECTS_BY_USER_GET(
   return { URL: ApiUrl + `/projects/user/?page=${page}&limit=${limit}` };
 }
 
+export function PROJECTS_BY_USER_NO_TOKEN_GET(
+  page: number | null,
+  limit: number | null,
+  userId: string
+) {
+  return {
+    URL: ApiUrl + `/projects/user/${userId}?page=${page}&limit=${limit}`,
+  };
+}
+
 export function PROJECT_PUT(id: string) {
   return { URL: ApiUrl + `/projects/${id}` };
 }

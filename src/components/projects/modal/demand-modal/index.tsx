@@ -23,6 +23,7 @@ export function DemandModal({
   const [isFavorited, setIsFavorited] = useState<boolean | null>(false);
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
+
   const { user } = useUser();
 
   if (!project) notFound();
@@ -87,6 +88,15 @@ export function DemandModal({
         <div className={styles.header}>
           <h1>{project.name}</h1>
         </div>
+        {user?.id !== project.userId && (
+          <div>
+            <p className={styles.author}>
+              <Link href={`/profile/${project.userId}`}>
+                {project.User?.name}
+              </Link>
+            </p>
+          </div>
+        )}
         <div className={styles.time}>
           <p>Publicado: {relativeTime}</p>
           {relativeTime !== relativeTimeUpdatedAt && (

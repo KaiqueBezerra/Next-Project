@@ -1,0 +1,19 @@
+.profile {
+  display: flex;
+  justify-content: center;
+  min-height: 92vh;
+}
+
+.container {
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+@media (width <= 450px) {
+  .container {
+    padding: 10px;
+  }
+}

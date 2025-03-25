@@ -1,9 +1,9 @@
 "use client";
 
 import { useActionState, useEffect, useState } from "react";
+import { Camera, Edit, LogOut } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { ErrorMessage } from "@/components/helper/error-message";
-import { Edit, LogOut } from "lucide-react";
 import { ProjectBox } from "./project-box";
 import { Favorite } from "./favorite";
 import { useUser } from "@/context/userContext";
@@ -20,6 +20,7 @@ import styles from "./index.module.css";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { ListBlobResult } from "@vercel/blob";
 
 function FormButton() {
   const { pending } = useFormStatus();
@@ -40,7 +41,7 @@ function FormButton() {
   );
 }
 
-export function Profile() {
+export function Profile({ userPhoto }: { userPhoto: ListBlobResult }) {
   const [state, action] = useActionState(userUpdate, {
     ok: false,
     error: "",
@@ -51,6 +52,7 @@ export function Profile() {
   const [showAll, setShowAll] = useState(false);
 
   const [loading, setLoading] = useState(false);
+  const [loadingPhoto, setLoadingPhoto] = useState(false);
 
   const [modal, setModal] = useState(false);
 
@@ -100,6 +102,35 @@ export function Profile() {
     }
   }
 
+  async function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
+    event.preventDefault();
+
+    const file = event.target.files?.[0];
+
+    if (file && user) {
+      setLoadingPhoto(true);
+
+      const userId = user?.id;
+
+      const formData = new FormData();
+      formData.append("file", file as Blob);
+      formData.append("userId", userId);
+      if (userPhoto.blobs.length > 0)
+        formData.append("url", userPhoto.blobs[0].url);
+
+      const response = await fetch("/api/file", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        window.location.reload();
+      }
+
+      setLoadingPhoto(false);
+    }
+  }
+
   const displayedFavorites = showAll ? favorites : favorites?.slice(0, 2);
 
   return (
@@ -108,13 +139,31 @@ export function Profile() {
         <div className={styles.userBox}>
           <div className={styles.user}>
             <div className={styles.imgContainer}>
-              <Image
-                className={styles.img}
-                alt="user"
-                src="/assets/eu.jpg"
-                width={50}
-                height={50}
-              />
+              <div style={{ position: "relative" }}>
+                <label htmlFor="file">
+                  {userPhoto && userPhoto.blobs.length > 0 ? (
+                    <Image
+                      className={styles.img}
+                      alt="user"
+                      src={userPhoto.blobs[0].url}
+                      style={{ opacity: loadingPhoto ? 0.5 : 1 }}
+                      width={50}
+                      height={50}
+                    />
+                  ) : (
+                    <Camera className={styles.img} />
+                  )}
+                </label>
+
+                <input
+                  name="image"
+                  type="file"
+                  disabled={loadingPhoto}
+                  id="file"
+                  style={{ display: "none" }}
+                  onChange={handleFileChange}
+                />
+              </div>
 
               <h3>{user?.name}</h3>
             </div>

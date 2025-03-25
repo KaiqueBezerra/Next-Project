@@ -70,6 +70,21 @@
   }
 }
 
+.author {
+  display: inline-block;
+  margin-top: 10px;
+  cursor: pointer;
+
+  & a {
+    border-bottom: 1px solid var(--color-2);
+
+    &:hover {
+      color: var(--color-3);
+      border-color: var(--color-3);
+    }
+  }
+}
+
 .time {
   margin: 10px 0;
 }

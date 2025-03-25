@@ -18,13 +18,17 @@ const publicRoutes = [
     path: "/demand",
     whenAuthenticated: "next",
   },
+  {
+    path: "/profile",
+    whenAuthenticated: "next",
+  },
 ] as const;
 
 const REDIRECT_WHEN_NOT_AUTHENTICATED = "/sign-in";
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  console.log(`Request path: ${pathname}`);
+  // console.log(`Request path: ${pathname}`);
 
   const publicRoute = publicRoutes.find(
     (route) => pathname === route.path || pathname.startsWith(route.path + "/")
@@ -34,13 +38,13 @@ export function middleware(request: NextRequest) {
 
   // Se não houver token e a rota for pública, permite o acesso
   if (!authToken && publicRoute) {
-    console.log("Acesso permitido, rota pública sem token.");
+    // console.log("Acesso permitido, rota pública sem token.");
     return NextResponse.next();
   }
 
   // Se não houver token e a rota não for pública, redireciona para login
   if (!authToken && !publicRoute) {
-    console.log("Redirecionando para login devido à falta de token.");
+    // console.log("Redirecionando para login devido à falta de token.");
     const redirectUrl = request.nextUrl.clone();
     redirectUrl.pathname = REDIRECT_WHEN_NOT_AUTHENTICATED;
     return NextResponse.redirect(redirectUrl);
@@ -53,9 +57,9 @@ export function middleware(request: NextRequest) {
     publicRoute &&
     publicRoute.whenAuthenticated === "redirect"
   ) {
-    console.log(
-      "Redirecionando para a página principal porque o usuário já está autenticado."
-    );
+    // console.log(
+    //   "Redirecionando para a página principal porque o usuário já está autenticado."
+    // );
     const redirectUrl = request.nextUrl.clone();
     redirectUrl.pathname = "/";
     return NextResponse.redirect(redirectUrl);
@@ -71,20 +75,20 @@ export function middleware(request: NextRequest) {
 
       // Verifica se o token está expirado
       if (decoded.exp * 1000 < Date.now()) {
-        console.log("Token expirado, redirecionando para login.");
+        // console.log("Token expirado, redirecionando para login.");
         const response = NextResponse.redirect(new URL(redirectUrl));
         // Define o cookie "token" com uma data de expiração no passado
         response.cookies.set("token", "", { expires: new Date(0) });
         return response;
       }
 
-      console.log("Token válido, permitindo o acesso.");
+      // console.log("Token válido, permitindo o acesso.");
       return NextResponse.next();
     } catch (error) {
-      console.log(
-        "Erro ao decodificar o token, redirecionando para login",
-        error
-      );
+      // console.log(
+      //   "Erro ao decodificar o token, redirecionando para login",
+      //   error
+      // );
       return NextResponse.redirect(new URL(redirectUrl));
     }
   }

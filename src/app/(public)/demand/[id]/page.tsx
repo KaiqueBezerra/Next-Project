@@ -2,11 +2,11 @@ import { DemandModal } from "@/components/projects/modal/demand-modal";
 import { notFound } from "next/navigation";
 import projectGet from "@/actions/projects/project-get";
 
-interface ModalProps {
+interface ModalParams {
   params: Promise<{ id: string }>;
 }
 
-export default async function Modal({ params }: ModalProps) {
+export default async function Modal({ params }: ModalParams) {
   const { id } = await params;
 
   const { data } = await projectGet(id);

@@ -85,5 +85,6 @@
   .container {
     border: none;
     padding: 10px 0px;
+    gap: 20px;
   }
 }

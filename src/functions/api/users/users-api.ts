@@ -12,6 +12,10 @@ export function USER_GET() {
   return { URL: ApiUrl + "/auth/user" };
 }
 
+export function USER_BY_ID_GET(userId: string) {
+  return { URL: ApiUrl + `/users/${userId}` };
+}
+
 export function USER_UPDATE() {
   return { URL: ApiUrl + "/users/" };
 }

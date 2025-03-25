@@ -28,7 +28,6 @@ export default async function reportPost({ comment, projectId }: ReportCreate) {
       body: JSON.stringify({ comment }),
       signal,
     });
-    console.log(response);
     if (!response.ok) throw new Error("Erro ao reportar.");
     return { data: null, ok: true, error: "" };
   } catch (error: unknown) {

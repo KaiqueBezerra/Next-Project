@@ -8,6 +8,7 @@
   text-align: center;
   justify-content: center;
   padding: 50px;
+  border: 10px double var(--color-2);
 }
 
 .container {

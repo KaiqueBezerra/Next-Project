@@ -1,7 +1,7 @@
 "use server";
 
-import { PROJECTS_GET } from "@/functions/api/projects/projects-api";
 import apiError from "@/functions/api-error";
+import { PROJECTS_BY_USER_NO_TOKEN_GET } from "@/functions/api/projects/projects-api";
 
 export interface Project {
   id: string;
@@ -12,29 +12,27 @@ export interface Project {
   createdAt: string;
   updatedAt: string;
   userId: string;
-  User?: {
-    name: string;
-  };
 }
 
-export default async function projectsGet(
-  search: string | null,
-  filter: string | null,
+export default async function projectsByUserNoTokenGet(
   page: number = 1,
   limit: number = 18,
-  optionsFront?: RequestInit
+  userId: string
 ) {
   try {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    const options = optionsFront || {
-      next: { revalidate: 60, tags: ["projects"], signal },
-    };
+    const { URL } = PROJECTS_BY_USER_NO_TOKEN_GET(page, limit, userId);
 
-    const { URL } = PROJECTS_GET(search, filter, page, limit);
-
-    const response = await fetch(URL, options);
+    const response = await fetch(URL, {
+      method: "GET",
+      next: {
+        revalidate: 60,
+        tags: ["projects"],
+      },
+      signal,
+    });
 
     if (!response.ok) throw new Error("Erro ao pegar os projetos.");
     const data = (await response.json()) as Project[];

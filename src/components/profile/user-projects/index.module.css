@@ -1,0 +1,11 @@
+.container {
+  border: 5px double var(--color-2);
+  max-width: 1000px;
+  padding: 20px 0;
+}
+
+@media (width <= 450px) {
+  .container {
+    border: none;
+  }
+}

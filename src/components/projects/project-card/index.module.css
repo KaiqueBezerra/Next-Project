@@ -26,6 +26,7 @@
     -webkit-box-orient: vertical; /* Define a direção como vertical */
     line-clamp: 3;
     -webkit-line-clamp: 3; /* Limita o número de linhas (ajuste conforme necessário) */
+    font-size: 24px;
   }
 }
 
