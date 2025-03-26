@@ -1,1 +1,1 @@
-export const ApiUrl = "http://localhost:3100";
+export const ApiUrl = "https://next-project-api-brown.vercel.app/";
