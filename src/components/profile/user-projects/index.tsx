@@ -3,13 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Projects } from "@/components/projects";
 import { Project } from "@/actions/projects/project-by-user-get";
+import { useUser } from "@/context/userContext";
 
 import projectsByUserNoTokenGet from "@/actions/projects/projects-by-user-no-token-get";
 import Loading from "@/app/loading";
 import styles from "./index.module.css";
 
 import { notFound } from "next/navigation";
-import { useUser } from "@/context/userContext";
 
 export function UserProjects({ userId }: { userId: string }) {
   const [data, setData] = useState<Project[]>([]);

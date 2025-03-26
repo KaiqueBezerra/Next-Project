@@ -2,6 +2,7 @@
 
 import { useActionState, useEffect, useState } from "react";
 import { Camera, Edit, LogOut } from "lucide-react";
+import { ListBlobResult } from "@vercel/blob";
 import { useFormStatus } from "react-dom";
 import { ErrorMessage } from "@/components/helper/error-message";
 import { ProjectBox } from "./project-box";
@@ -12,15 +13,15 @@ import { Input } from "@/components/forms/input";
 import favoritesByUserGet, {
   FavoritesByUserGet,
 } from "@/actions/favorites/favorites-by-user-get";
-import userDelete from "@/actions/users/user-delete";
-import userUpdate from "@/actions/users/user-update";
-import logout from "@/actions/users/logout";
-import styles from "./index.module.css";
 
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ListBlobResult } from "@vercel/blob";
+
+import userDelete from "@/actions/users/user-delete";
+import userUpdate from "@/actions/users/user-update";
+import logout from "@/actions/users/logout";
+import styles from "./index.module.css";
 
 function FormButton() {
   const { pending } = useFormStatus();

@@ -1,4 +1,5 @@
 import { FavoritesByUserGet } from "@/actions/favorites/favorites-by-user-get";
+
 import styles from "./index.module.css";
 
 import Link from "next/link";

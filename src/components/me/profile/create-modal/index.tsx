@@ -7,13 +7,14 @@ import { TextArea } from "@/components/forms/textarea";
 import { useState } from "react";
 import { Button } from "@/components/forms/button";
 import { Input } from "@/components/forms/input";
-import styles from "./index.module.css";
-import projectPost from "@/actions/projects/project-post";
 import {
   projectDescriptionRegex,
   projectNameRegex,
   projectPhoneNumberRegex,
 } from "@/functions/regex/project-regex/project-regex";
+
+import projectPost from "@/actions/projects/project-post";
+import styles from "./index.module.css";
 
 function FormButton() {
   const { pending } = useFormStatus();

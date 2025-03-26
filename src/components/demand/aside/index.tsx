@@ -3,9 +3,11 @@
 import { FormEvent, useState, useEffect } from "react";
 import { FiltersModal } from "./filters-modal";
 import { SearchForm } from "./search-form";
-import { useRouter } from "next/navigation";
 import { MenuIcon } from "lucide-react";
 import { Filters } from "./filters";
+
+import { useRouter } from "next/navigation";
+
 import styles from "./index.module.css";
 
 export default function Aside() {

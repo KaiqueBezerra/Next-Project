@@ -3,10 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import { ProjectExamples } from "./project-exxamples";
 import { Projects } from "@/components/projects";
-import { notFound } from "next/navigation";
 import projectsByUserGet, {
   Project,
 } from "@/actions/projects/project-by-user-get";
+
+import { notFound } from "next/navigation";
+
 import Loading from "@/app/loading";
 import styles from "./index.module.css";
 
@@ -89,6 +91,7 @@ export function MeProjects() {
           </div>
         </div>
       )}
+      
       {data.length > 0 && (
         <div style={{ textAlign: "center" }}>
           {infinite ? (

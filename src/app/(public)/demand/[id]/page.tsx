@@ -1,6 +1,13 @@
 import { DemandModal } from "@/components/projects/modal/demand-modal";
+
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
 import projectGet from "@/actions/projects/project-get";
+
+export const metadata: Metadata = {
+  title: "Next Project | Pedido",
+};
 
 interface ModalParams {
   params: Promise<{ id: string }>;

@@ -96,16 +96,23 @@
   }
 }
 
-@media (width <= 360px) {
+@media (width <= 380px) {
   .project {
     width: 320px;
     border: 5px double var(--color-2);
   }
 }
 
-@media (540px <= width <= 790px) {
+@media (380px <= width <= 640px) {
   .project {
-    width: 500px;
+    width: 360px;
+    border: 5px double var(--color-2);
+  }
+}
+
+@media (640px <= width <= 790px) {
+  .project {
+    width: 610px;
     transition: none;
 
     &:hover {

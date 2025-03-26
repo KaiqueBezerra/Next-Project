@@ -1,13 +1,15 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { LinksModal } from "./links-modal";
 import { MenuIcon } from "lucide-react";
 import { useState } from "react";
 import { useUser } from "@/context/userContext";
 import { Links } from "./links";
-import styles from "./index.module.css";
+
+import { usePathname } from "next/navigation";
 import Link from "next/link";
+
+import styles from "./index.module.css";
 
 export function Header() {
   const pathname = usePathname();

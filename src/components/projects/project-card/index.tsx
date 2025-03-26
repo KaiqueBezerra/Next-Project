@@ -1,7 +1,9 @@
-import { formatDistanceToNow, parseISO } from "date-fns";
 import { Project } from "@/actions/projects/projects-get";
 import { useUser } from "@/context/userContext";
+
+import { formatDistanceToNow, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
+
 import styles from "./index.module.css";
 
 import Link from "next/link";

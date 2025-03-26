@@ -44,9 +44,8 @@
 
 @media (width <= 790px) {
   .projects {
+    box-shadow: none;
     border-left: none;
     border-right: none;
-    border-top: 1px solid;
-    border-bottom: 1px solid;
   }
 }

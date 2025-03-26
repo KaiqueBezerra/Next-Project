@@ -38,6 +38,10 @@ export function PROJECTS_BY_USER_NO_TOKEN_GET(
   };
 }
 
+export function PROJECTS_COUNT_BY_USER_GET(userId: string) {
+  return { URL: ApiUrl + `/projects/count/${userId}` };
+}
+
 export function PROJECT_PUT(id: string) {
   return { URL: ApiUrl + `/projects/${id}` };
 }

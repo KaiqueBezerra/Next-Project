@@ -28,13 +28,12 @@ export default async function projectsGet(
     const controller = new AbortController();
     const signal = controller.signal;
 
-    const options = optionsFront || {
-      next: { revalidate: 60, tags: ["projects"], signal },
-    };
-
     const { URL } = PROJECTS_GET(search, filter, page, limit);
 
-    const response = await fetch(URL, options);
+    const response = await fetch(URL, {
+      next: { revalidate: 60, tags: ["projects"] },
+      signal,
+    });
 
     if (!response.ok) throw new Error("Erro ao pegar os projetos.");
     const data = (await response.json()) as Project[];

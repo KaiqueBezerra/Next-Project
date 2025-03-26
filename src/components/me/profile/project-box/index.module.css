@@ -29,20 +29,20 @@
   }
 }
 
-@media (width <= 360px) {
+@media (width <= 380px) {
   .profileBox {
     width: 320px;
   }
 }
 
-@media (360px <= width <= 540px) {
+@media (360px <= width <= 640px) {
   .profileBox {
     width: 350px;
   }
 }
 
-@media (540px <= width <= 790px) {
+@media (640px <= width <= 790px) {
   .profileBox {
-    width: 500px;
+    width: 600px;
   }
 }

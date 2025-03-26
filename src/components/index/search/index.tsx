@@ -1,8 +1,10 @@
 "use client";
 
 import { ArrowBigRight } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { Button } from "../../forms/button";
+
+import { useRouter } from "next/navigation";
+
 import styles from "./index.module.css";
 
 export function Search() {

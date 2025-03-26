@@ -1,7 +1,18 @@
 import { Profile } from "@/components/me/profile";
 import { list } from "@vercel/blob";
+
+import { Metadata } from "next";
+
 import styles from "./layout.module.css";
 import userGet from "@/actions/users/user-get";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { data: user } = await userGet();
+
+  return {
+    title: `Next Project | ${user?.name}`,
+  };
+}
 
 export default async function MeLayout({
   children,

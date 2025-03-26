@@ -1,9 +1,10 @@
 "use client";
 
 import { Dispatch, FormEvent, SetStateAction } from "react";
-import { SearchIcon } from "lucide-react";
-import styles from "./index.module.css";
 import { useFormStatus } from "react-dom";
+import { SearchIcon } from "lucide-react";
+
+import styles from "./index.module.css";
 
 export function SearchForm({
   handleSubmit,

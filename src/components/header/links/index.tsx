@@ -1,9 +1,10 @@
 "use client";
 
 import { User } from "@/actions/users/user-get";
-import styles from "./index.module.css";
 
 import Link from "next/link";
+
+import styles from "./index.module.css";
 
 interface LinksProps {
   pathname: string;

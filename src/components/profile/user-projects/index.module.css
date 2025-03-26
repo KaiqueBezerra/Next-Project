@@ -2,10 +2,24 @@
   border: 5px double var(--color-2);
   max-width: 1000px;
   padding: 20px 0;
+  width: 1000px;
 }
 
-@media (width <= 450px) {
+@media (width <= 570px) {
   .container {
     border: none;
+    width: 320px;
+  }
+}
+
+@media (570px <= width <= 700px) {
+  .container {
+    width: 550px;
+  }
+}
+
+@media (700px <= width <= 1100px) {
+  .container {
+    width: 600px;
   }
 }

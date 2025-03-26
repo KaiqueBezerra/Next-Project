@@ -1,9 +1,11 @@
 "use client";
 
 import { InstagramIcon, MailIcon } from "lucide-react";
+
 import { usePathname } from "next/navigation";
-import styles from "./index.module.css";
 import Link from "next/link";
+
+import styles from "./index.module.css";
 
 export function Footer() {
   const pathname = usePathname();

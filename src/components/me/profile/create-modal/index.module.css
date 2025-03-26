@@ -1,23 +1,23 @@
 .container {
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
   border-left: 1px solid;
   border-right: 1px solid;
+  padding: 20px;
 }
 
 .modalContent {
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
-  padding: 32px;
   width: 100%;
-  max-width: 600px;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 610px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: justify;
-  border: 10px double var(--color-2);
+  border: 5px double var(--color-2);
 }
 
 .label {
@@ -105,14 +105,36 @@
   background-color: var(--color-1);
 }
 
-@media (width <= 780px) {
-  .modalContent {
-    padding: 24px;
-    width: 100%;
+@media (width <= 380px) {
+  .container {
+    padding: 10px 5px;
   }
 
+  .modalContent {
+    padding: 24px;
+    width: 330px;
+  }
+}
+
+@media (380px <= width <= 640px) {
+  .modalContent {
+    padding: 24px;
+    width: 360px;
+  }
+}
+
+@media (640px <= width <= 790px) {
+  .modalContent {
+    padding: 24px;
+    width: 610px;
+  }
+}
+
+@media (width <= 790px) {
   .container {
+    box-shadow: none;
     border-left: none;
     border-right: none;
+    margin-bottom: 50px;
   }
 }

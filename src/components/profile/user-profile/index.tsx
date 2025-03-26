@@ -11,9 +11,11 @@ import Image from "next/image";
 export function UserProfile({
   user,
   userPhoto,
+  projectsCount,
 }: {
   user: User;
   userPhoto: ListBlobResult;
+  projectsCount: number | null;
 }) {
   const parsedDate = parseISO(user.createdAt);
   const relativeTime = formatDistanceToNow(parsedDate, {
@@ -41,7 +43,7 @@ export function UserProfile({
       <div className={styles.description}>
         <h2>{user?.name}</h2>
         <p>Registrado: {relativeTime}</p>
-        <p>Total de projetos: 10</p>
+        {projectsCount && <p>Total de projetos: {projectsCount}</p>}
       </div>
     </div>
   );

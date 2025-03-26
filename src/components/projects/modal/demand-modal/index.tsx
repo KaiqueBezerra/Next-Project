@@ -1,19 +1,22 @@
 "use client";
 
-import { formatDistanceToNow, parseISO } from "date-fns";
 import { useEffect, useState } from "react";
 import { ProjectAndCount } from "@/actions/projects/project-get";
 import { Settings, Star } from "lucide-react";
 import { SettingsModal } from "../settings-modal";
 import { useUser } from "@/context/userContext";
+
+import { formatDistanceToNow, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
+
+import { notFound } from "next/navigation";
+import Link from "next/link";
+
 import verifyFavoriteByUser from "@/actions/favorites/verify-favorite-by-user";
 import favoriteDelete from "@/actions/favorites/favorite-delete";
 import favoritePost from "@/actions/favorites/favorite-post";
 import styles from "./index.module.css";
 
-import { notFound } from "next/navigation";
-import Link from "next/link";
 
 export function DemandModal({
   data: { project, favoriteCount },

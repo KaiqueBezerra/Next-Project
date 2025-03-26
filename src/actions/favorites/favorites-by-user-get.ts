@@ -31,6 +31,7 @@ export default async function favoritesByUserGet() {
         Authorization: "Bearer " + token,
       },
       next: {
+        revalidate: 60,
         tags: ["favorites"],
       },
       signal,

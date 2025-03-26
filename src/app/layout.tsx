@@ -4,6 +4,7 @@ import { Header } from "@/components/header";
 import type { Metadata } from "next";
 import { Footer } from "@/components/footer";
 import userGet from "@/actions/users/user-get";
+
 import "./globals.css";
 
 const geistSans = Geist({

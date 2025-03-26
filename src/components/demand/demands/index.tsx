@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { useSearchParams } from "next/navigation";
 import { Projects } from "@/components/projects";
 import projectsGet, { Project } from "@/actions/projects/projects-get";
+
+import { useSearchParams } from "next/navigation";
+
 import Loading from "@/app/loading";
 
 export default function Demands() {
@@ -39,9 +41,7 @@ export default function Demands() {
   useEffect(() => {
     async function getPageProjects() {
       setLoading(true);
-      const actionData = await projectsGet(search, filter, page, 12, {
-        cache: "no-store",
-      });
+      const actionData = await projectsGet(search, filter, page, 9);
       if (actionData && actionData.data !== null) {
         const { data } = actionData;
 
@@ -57,7 +57,7 @@ export default function Demands() {
           return [...currentProjects, ...newProjects];
         });
 
-        if (data.length < 12) setInfinite(false);
+        if (data.length < 9) setInfinite(false);
       }
       setLoading(false);
     }
