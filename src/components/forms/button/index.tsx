@@ -1,7 +1,5 @@
 import React, { ComponentProps } from "react";
 
-import styles from "./index.module.css";
-
 type ButtonProps = ComponentProps<"button"> & {
   model?: string;
 };
@@ -9,7 +7,9 @@ type ButtonProps = ComponentProps<"button"> & {
 export function Button({ model, ...props }: ButtonProps) {
   return (
     <button
-      className={model === "1" ? styles.button1 : styles.button}
+      className="flex justify-center items-center cursor-pointer rounded-md p-3.5 font-bold
+      transition duration-200 border-5 border-double border-zinc-800 bg-amber-500 hover:bg-amber-800
+      disabled:opacity-5 disabled:cursor-wait"
       {...props}
     />
   );

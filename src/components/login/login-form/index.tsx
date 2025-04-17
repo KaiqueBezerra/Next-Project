@@ -6,7 +6,6 @@ import { ErrorMessage } from "@/components/helper/error-message";
 import { Button } from "@/components/forms/button";
 import { Input } from "@/components/forms/input";
 
-import styles from "./index.module.css";
 import login from "@/actions/users/login";
 
 import Link from "next/link";
@@ -37,16 +36,21 @@ export function LoginForm() {
   }, [state.ok]);
 
   return (
-    <div>
-      <h1 className={styles.title}>Login</h1>
-      <form action={action} className={styles.form}>
+    <div className="flex flex-col gap-10 text-white">
+      <h1 className="text-2xl text-center font-serif">Login</h1>
+      <form action={action} className="flex flex-col">
         <Input label="Email" name="email" type="email" />
         <Input label="Senha" name="password" type="password" />
         <ErrorMessage error={state.error} />
         <FormButton />
-        <p>
+        <p className="p-2.5">
           Ainda não possui uma conta?{" "}
-          <Link href="/sign-in/register">Registrar</Link>
+          <Link
+            href="/sign-in/register"
+            className="underline font-bold text-amber-500 hover:text-amber-800"
+          >
+            Registrar
+          </Link>
         </p>
       </form>
     </div>
