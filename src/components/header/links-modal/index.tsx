@@ -2,8 +2,6 @@
 
 import { User } from "@/actions/users/user-get";
 
-import styles from "./index.module.css";
-
 import Link from "next/link";
 
 interface LinksProps {
@@ -13,24 +11,37 @@ interface LinksProps {
 
 export function LinksModal({ pathname, user }: LinksProps) {
   return (
-    <div className={styles.links}>
+    <div
+      className="flex flex-col items-center border-5 border-double text-white
+     bg-zinc-900 border-zinc-800 w-[150px] absolute top-[35px] right-[-55px]"
+    >
       <Link
         href="/demand"
-        className={pathname === "/demand" ? styles.linkActive : styles.link}
+        className="text-lg font-bold hover:text-amber-500"
+        style={{
+          color: pathname === "/demand" ? "#FE9A00" : "",
+        }}
       >
         Pedidos
       </Link>
+
       {user ? (
         <Link
           href="/me"
-          className={pathname === "/me" ? styles.linkActive : styles.link}
+          className="text-lg font-bold hover:text-amber-500"
+          style={{
+            color: pathname === "/me" ? "#FE9A00" : "",
+          }}
         >
           Perfil
         </Link>
       ) : (
         <Link
           href="/sign-in"
-          className={pathname === "/sign-in" ? styles.linkActive : styles.link}
+          className="text-lg font-bold hover:text-amber-500"
+          style={{
+            color: pathname === "/sign-in" ? "#FE9A00" : "",
+          }}
         >
           Criar / Entrar
         </Link>

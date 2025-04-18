@@ -4,8 +4,6 @@ import { User } from "@/actions/users/user-get";
 
 import Link from "next/link";
 
-import styles from "./index.module.css";
-
 interface LinksProps {
   pathname: string;
   user: User | null;
@@ -13,24 +11,33 @@ interface LinksProps {
 
 export function Links({ pathname, user }: LinksProps) {
   return (
-    <div className={styles.links}>
+    <div className="flex gap-5 max-md:hidden">
       <Link
         href="/demand"
-        className={pathname === "/demand" ? styles.linkActive : styles.link}
+        className="text-lg font-bold hover:text-amber-500"
+        style={{
+          color: pathname === "/demand" ? "#FE9A00" : "",
+        }}
       >
         Pedidos
       </Link>
       {user ? (
         <Link
           href="/me"
-          className={pathname === "/me" ? styles.linkActive : styles.link}
+          className="text-lg font-bold hover:text-amber-500"
+          style={{
+            color: pathname === "/me" ? "#FE9A00" : "",
+          }}
         >
           Perfil
         </Link>
       ) : (
         <Link
           href="/sign-in"
-          className={pathname === "/sign-in" ? styles.linkActive : styles.link}
+          className="text-lg font-bold hover:text-amber-500"
+          style={{
+            color: pathname === "/sign-in" ? "#FE9A00" : "",
+          }}
         >
           Criar / Entrar
         </Link>

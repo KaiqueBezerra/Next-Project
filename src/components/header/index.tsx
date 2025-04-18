@@ -9,35 +9,37 @@ import { Links } from "./links";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-import styles from "./index.module.css";
-
 export function Header() {
   const pathname = usePathname();
   const { user } = useUser();
   const [modalOpen, setModalOpen] = useState(false);
 
-  // async function handleLogout() {
-  //   await logout();
-  //   window.location.href = "/sign-in";
-  // }
-
   return (
-    <header className={styles.header}>
+    <header className="sticky bg-zinc-800 top-0 z-50 shadow-2xl text-white">
       <nav
-        className={styles.nav}
+        className="flex justify-between items-center p-4 max-md:justify-around"
         style={{
           display: pathname.startsWith("/sign-in") ? "none" : "flex",
         }}
       >
         <div>
           <Link href="/">
-            <h1 className={pathname === "/" ? styles.iconActive : styles.icon}>
+            <h1
+              className="text-xl font-bold hover:text-amber-500"
+              style={{
+                color: pathname === "/" ? "#FE9A00" : "",
+              }}
+            >
               Next Project
             </h1>
           </Link>
         </div>
 
-        <div className={styles.menu} onClick={() => setModalOpen(!modalOpen)}>
+        <div
+          className="hidden justify-center items-center border-5 border-double
+          border-zinc-900 h-10 w-9 cursor-pointer relative max-md:flex shadow-2xl"
+          onClick={() => setModalOpen(!modalOpen)}
+        >
           <MenuIcon />
           {modalOpen && <LinksModal pathname={pathname} user={user} />}
         </div>

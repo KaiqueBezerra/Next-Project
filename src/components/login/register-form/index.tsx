@@ -7,7 +7,6 @@ import { Button } from "@/components/forms/button";
 import { Input } from "@/components/forms/input";
 
 import userPost from "@/actions/users/user-post";
-import styles from "./index.module.css";
 
 import Link from "next/link";
 
@@ -37,16 +36,22 @@ export function RegisterForm() {
   }, [state.ok]);
 
   return (
-    <div>
-      <h1 className={styles.title}>Registro</h1>
-      <form action={action} className={styles.form}>
+    <div className="flex flex-col gap-10 text-white">
+      <h1 className="text-2xl text-center font-serif">Registro</h1>
+      <form action={action} className="flex flex-col">
         <Input label="Nome" name="name" type="text" />
         <Input label="Email" name="email" type="email" />
         <Input label="Senha" name="password" type="password" />
         <ErrorMessage error={state.error} />
         <FormButton />
-        <p>
-          Ja possui uma conta? <Link href="/sign-in">Login</Link>
+        <p className="p-2.5">
+          Ja possui uma conta?{" "}
+          <Link
+            href="/sign-in"
+            className="underline font-bold  text-amber-500 hover:text-amber-800"
+          >
+            Login
+          </Link>
         </p>
       </form>
     </div>

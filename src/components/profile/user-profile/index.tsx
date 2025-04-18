@@ -1,7 +1,6 @@
 import { ListBlobResult } from "@vercel/blob";
 import { Smile } from "lucide-react";
 import { User } from "@/actions/users/user-get";
-import styles from "./index.module.css";
 
 import { formatDistanceToNow, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -24,11 +23,18 @@ export function UserProfile({
   });
 
   return (
-    <div className={styles.container}>
-      <div className={styles.imgContainer}>
+    <div
+      className="flex border-5 border-double bg-zinc-800
+    border-zinc-900 text-white p-5 gap-5 shadow-2xl
+      max-md:flex-col max-md:items-center"
+    >
+      <div
+        className="border-5 border-double
+      border-zinc-900 size-52"
+      >
         {userPhoto && userPhoto.blobs.length > 0 ? (
           <Image
-            className={styles.img}
+            className="size-full object-cover"
             alt="user"
             src={userPhoto.blobs[0].url}
             width={200}
@@ -36,14 +42,18 @@ export function UserProfile({
             priority
           />
         ) : (
-          <Smile className={styles.icon} />
+          <Smile className="size-full" />
         )}
       </div>
 
-      <div className={styles.description}>
-        <h2>{user?.name}</h2>
-        <p>Registrado: {relativeTime}</p>
-        {projectsCount && <p>Total de projetos: {projectsCount}</p>}
+      <div className="flex flex-col p-5 gap-2 max-md:text-center">
+        <h2 className="text-2xl md:text-4xl">{user?.name}</h2>
+        <p className="text-lg md:text-xl">Registrado: {relativeTime}</p>
+        {projectsCount && (
+          <p className="text-lg md:text-xl">
+            Total de projetos: {projectsCount}
+          </p>
+        )}
       </div>
     </div>
   );
