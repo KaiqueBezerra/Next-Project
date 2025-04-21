@@ -37,10 +37,10 @@ export default async function Profile({ params }: ProfileParams) {
 
   return (
     <div
-      className="container flex flex-col place-self-center min-h-[92vh] 
-      gap-5 py-5 px-10 md:px-15"
+      className="container place-self-center min-h-[92vh] 
+      py-5 px-2 md:px-15"
     >
-      <div>
+      <div className="flex flex-col gap-4">
         <UserProfile
           user={user}
           userPhoto={userPhoto}

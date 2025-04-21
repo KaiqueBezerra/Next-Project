@@ -15,8 +15,6 @@ import Link from "next/link";
 import verifyFavoriteByUser from "@/actions/favorites/verify-favorite-by-user";
 import favoriteDelete from "@/actions/favorites/favorite-delete";
 import favoritePost from "@/actions/favorites/favorite-post";
-import styles from "./index.module.css";
-
 
 export function DemandModal({
   data: { project, favoriteCount },
@@ -83,43 +81,58 @@ export function DemandModal({
   }
 
   return (
-    <div className={styles.modalBackdrop} onClick={handleOutsideClick}>
+    <div
+      className="flex items-center justify-center p-2 min-h-[92vh]"
+      onClick={handleOutsideClick}
+    >
       <div
-        className={styles.modalContent}
+        className="flex flex-col bg-zinc-700 rounded-md p-6 sm:p-8 border-10 border-double border-zinc-800 
+        text-white text-justify w-[1200px] min-h-[500px] shadow-[0px_0px_10px_0px_black] gap-2"
         style={{ display: modal ? "none" : "" }}
       >
-        <div className={styles.header}>
-          <h1>{project.name}</h1>
+        <div className="flex break-all">
+          <h1 className="capitalize text-2xl">{project.name}</h1>
         </div>
         {user?.id !== project.userId && (
           <div>
-            <p className={styles.author}>
+            <p
+              className="inline cursor-pointer underline-offset-5 text-amber-500 
+              hover:underline hover:text-amber-800 transition-colors duration-300"
+            >
               <Link href={`/profile/${project.userId}`}>
                 {project.User?.name}
               </Link>
             </p>
           </div>
         )}
-        <div className={styles.time}>
+        <div className="italic">
           <p>Publicado: {relativeTime}</p>
           {relativeTime !== relativeTimeUpdatedAt && (
             <p>Atualizado: {relativeTimeUpdatedAt}</p>
           )}
         </div>
-        <div className={styles.description}>
-          <p>{project.description}</p>
+        <div className="break-all mt-2">
+          <p className="text-2xl">{project.description}</p>
         </div>
-        <div className={styles.requirements}>
+        <div className="flex flex-wrap gap-2 max-w-[600px] mt-6">
           {project.requirements.map((requirement) => (
-            <p key={requirement}>{requirement}</p>
+            <p
+              key={requirement}
+              className="bg-amber-500 border border-zinc-800
+              p-2 sm:p-2.5 inline-block font-bold text-black"
+            >
+              {requirement}
+            </p>
           ))}
         </div>
-        <div className={styles.link}>
+        <div className="flex justify-between items-end flex-1">
           {user?.id !== project.userId && (
             <div>
               <Link
                 href={`https://wa.me/55${project.phoneNumber}`}
                 target="_blank"
+                className="border border-zinc-800 font-bold text-black 
+              bg-amber-500 hover:bg-amber-800 p-2 sm:p-2.5"
               >
                 Estou interessado
               </Link>
@@ -129,38 +142,48 @@ export function DemandModal({
           <div>
             {user?.id !== project.userId ? (
               isFavorited ? (
-                <div className={styles.favoriteContainer}>
+                <div className="flex gap-2 text-xl">
                   <Star
-                    className={
-                      !loading ? styles.starFavorited : styles.iconDisabled
-                    }
+                    fill={!loading ? "#FE9A00" : ""}
+                    style={{
+                      cursor: !loading ? "pointer" : "wait",
+                      opacity: !loading ? 1 : 0.5,
+                    }}
                     onClick={!loading ? removeFavorite : () => {}}
                   />
                   <Settings
-                    className={styles.settings}
+                    className="cursor-pointer hover:fill-amber-500"
                     onClick={() => setModal(!modal)}
                   />
                 </div>
               ) : (
-                <div className={styles.favoriteContainer}>
+                <div className="flex gap-2 text-xl">
                   <Star
-                    className={!loading ? styles.star : styles.iconDisabled}
+                    className="hover:fill-amber-500"
+                    style={{
+                      cursor: !loading ? "pointer" : "wait",
+                      opacity: !loading ? 1 : 0.5,
+                    }}
                     onClick={!loading ? addFavorite : () => {}}
                   />
                   <Settings
-                    className={styles.settings}
+                    className="cursor-pointer hover:fill-amber-500"
                     onClick={() => setModal(!modal)}
                   />
                 </div>
               )
             ) : (
-              <div className={styles.favoriteCountContainer}>
-                {favoriteCount}
-                <Star className={styles.favoriteCountStar} />
-                <Settings
-                  className={styles.settings}
-                  onClick={() => setModal(!modal)}
-                />
+              <div className="flex gap-2 items-center text-xl">
+                <div className="flex gap-1 items-center">
+                  {favoriteCount}
+                  <Star fill="#FE9A00" />
+                </div>
+                <div>
+                  <Settings
+                    className="cursor-pointer hover:fill-amber-500"
+                    onClick={() => setModal(!modal)}
+                  />
+                </div>
               </div>
             )}
           </div>

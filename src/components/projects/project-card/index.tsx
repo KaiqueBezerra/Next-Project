@@ -4,8 +4,6 @@ import { useUser } from "@/context/userContext";
 import { formatDistanceToNow, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
-import styles from "./index.module.css";
-
 import Link from "next/link";
 
 export function ProjectCard({ project }: { project: Project }) {
@@ -24,35 +22,56 @@ export function ProjectCard({ project }: { project: Project }) {
   });
 
   return (
-    <div className={styles.project}>
-      <div className={styles.header}>
+    <div
+      className="flex flex-col w-[310px] h-80 rounded-md p-5 border-10 border-double bg-zinc-700
+    border-zinc-800 transition hover:translate-y-[-10] text-white gap-2 sm:size-96 shadow-[0px_0px_10px_0px_black]"
+    >
+      <div className="break-all">
         <h1
+          className="capitalize overflow-hidden text-ellipsis line-clamp-3 
+          text-xl font-serif flex-1 sm:text-2xl"
           style={{
-            color:
-              user?.id === project.userId ? "var(--color-3)" : "var(--color-2)",
+            color: user?.id === project.userId ? "#FE9A00" : "#fff",
           }}
         >
           {project.name}
         </h1>
       </div>
-      <div className={styles.time}>
+      <div className="text-sm italic">
         <p>Publicado: {relativeTime} </p>
         {relativeTime !== relativeTimeUpdatedAt && (
           <p>Atualizado: {relativeTimeUpdatedAt}</p>
         )}
       </div>
-      <div className={styles.description}>
-        <p>{project.description}</p>
-        <div className={styles.requirements}>
-          <div className={styles.requirement}>
+      <div className="break-all mt-2 sm:mt-3">
+        <p
+          className="text-justify overflow-hidden text-ellipsis line-clamp-3 
+          text-md sm:text-lg"
+        >
+          {project.description}
+        </p>
+        <div className="flex break-all">
+          <div className="overflow-hidden text-ellipsis line-clamp-1 mt-4">
             {project.requirements.map((requirement) => (
-              <p key={requirement}>{requirement}</p>
+              <p
+                key={requirement}
+                className="bg-amber-500 border border-zinc-800
+                p-2 sm:p-2.5 inline-block font-bold text-black"
+              >
+                {requirement}
+              </p>
             ))}
           </div>
         </div>
       </div>
-      <div className={styles.link}>
-        <Link href={`/demand/${project.id}`}>Ver mais</Link>
+      <div className="flex justify-end items-end flex-1">
+        <Link
+          href={`/demand/${project.id}`}
+          className="border border-zinc-800 font-bold text-black 
+          bg-amber-500 hover:bg-amber-800 p-2 sm:p-2.5"
+        >
+          Ver mais
+        </Link>
       </div>
     </div>
   );

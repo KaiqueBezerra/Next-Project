@@ -38,7 +38,7 @@ export function RegisterForm() {
   return (
     <div className="flex flex-col gap-10 text-white">
       <h1 className="text-2xl text-center font-serif">Registro</h1>
-      <form action={action} className="flex flex-col">
+      <form action={action} className="flex flex-col gap-4">
         <Input label="Nome" name="name" type="text" />
         <Input label="Email" name="email" type="email" />
         <Input label="Senha" name="password" type="password" />

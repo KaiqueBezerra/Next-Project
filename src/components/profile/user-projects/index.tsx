@@ -7,7 +7,6 @@ import { useUser } from "@/context/userContext";
 
 import projectsByUserNoTokenGet from "@/actions/projects/projects-by-user-no-token-get";
 import Loading from "@/app/loading";
-import styles from "./index.module.css";
 
 import { notFound } from "next/navigation";
 
@@ -79,23 +78,25 @@ export function UserProjects({ userId }: { userId: string }) {
   if (!data) return notFound();
 
   return (
-    <div className={styles.container}>
+    <div
+      className="flex flex-col border-5 border-double bg-zinc-800
+    border-zinc-900 text-white p-5 gap-5 shadow-2xl
+      max-md:flex-col max-md:items-center"
+    >
       {data.length > 0 ? (
         <Projects project={data} />
       ) : (
-        <div style={{ textAlign: "center", padding: "20px" }}>
+        <div className="text-center p-5">
           <h3>Este usuário ainda não criou nenhum projeto.</h3>
         </div>
       )}
 
       {data.length > 0 && (
-        <div style={{ textAlign: "center" }}>
+        <div className="text-center">
           {infinite ? (
             loading && <Loading />
           ) : (
-            <p style={{ margin: "30px 0px" }}>
-              Não há mais projetos para carregar.
-            </p>
+            <p className="m-4">Não há mais projetos para carregar.</p>
           )}
         </div>
       )}

@@ -16,19 +16,16 @@ import {
 import projectDelete from "@/actions/projects/project-delete";
 import reportPost from "@/actions/reports/report-post";
 import projectPut from "@/actions/projects/project-put";
-import styles from "./index.module.css";
 
-function FormButton({ width }: { width?: string }) {
+function FormButton() {
   const { pending } = useFormStatus();
 
   return (
     <>
       {pending ? (
-        <Button disabled style={{ width: width }}>
-          Enviando...
-        </Button>
+        <Button disabled>Enviando...</Button>
       ) : (
-        <Button style={{ width: width }}>Enviar</Button>
+        <Button>Enviar</Button>
       )}
     </>
   );
@@ -147,18 +144,27 @@ export function SettingsModal({
   }
 
   return (
-    <div className={styles.modal}>
-      <div style={{ textAlign: "right" }}>
-        <X className={styles.x} onClick={() => setModal(false)} />
+    <div
+      className="flex flex-col bg-zinc-700 rounded-md p-6 sm:p-8 border-10 border-double border-zinc-800 
+      text-white text-justify w-[1200px] shadow-[0px_0px_10px_0px_black] gap-2"
+    >
+      <div className="flex justify-end">
+        <X
+          className="cursor-pointer hover:text-amber-500"
+          onClick={() => setModal(false)}
+        />
       </div>
       {user?.id !== project.userId ? (
-        <form onSubmit={handleReport} className={styles.report}>
+        <form
+          onSubmit={handleReport}
+          className="flex flex-col gap-4 min-h-[400px]"
+        >
           <TextArea label="Descreva o problema" name="report" rows={4} />
           <ErrorMessage error={error} />
-          <FormButton width="100%" />
+          <FormButton />
         </form>
       ) : (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className="flex flex-col gap-4">
           <Input
             label="Nome"
             name="name"
@@ -177,70 +183,95 @@ export function SettingsModal({
             rows={8}
           />
           <div>
-            <label htmlFor="phoneNumber" className={styles.label}>
+            <label
+              htmlFor="phoneNumber"
+              className="block text-lg leading-none pb-2"
+            >
               Número para contato
             </label>
 
-            <div className={styles.inputContainer}>
+            <div className="flex relative h-16">
               <input
                 type="text"
                 id="phoneNumber"
-                className={styles.input}
+                className="border border-zinc-700 block text-lg p-4 rounded-bl-md rounded-tl-md transition duration-200 w-full 
+                bg-zinc-800 focus:outline-none focus:border-amber-800 focus:shadow-2xl hover:outline-none hover:shadow-2xl"
                 value={phoneNumber}
                 onChange={(e) =>
                   projectPhoneNumberRegex(e.target.value, setPhoneNumber)
                 }
               />
-              <Info className={styles.plus} onClick={() => setInfo(!info)} />
+              <Info
+                className="border border-zinc-700 bg-zinc-800 rounded-br-md rounded-tr-md 
+                cursor-pointer h-16 w-16 p-3 hover:border-amber-800 hover:shadow-2xl"
+                onClick={() => setInfo(!info)}
+              />
               {info && (
-                <div className={styles.info}>
+                <div
+                  className="flex flex-col items-center justify-center p-2 right-0 bottom-[-70px]
+                  rounded-md absolute z-50 bg-zinc-800 shadow-[0px_0px_10px_0px_black]"
+                >
                   <p>O número deve conter 11 dígitos.</p>
                   <p>Ex: 11234567890</p>
                 </div>
               )}
             </div>
           </div>
-
           <div>
-            <label htmlFor="requirements" className={styles.label}>
+            <label
+              htmlFor="requirements"
+              className="block text-lg leading-none pb-2"
+            >
               Requisitos
             </label>
 
-            <div className={styles.inputContainer}>
+            <div className="flex relative h-16">
               <input
                 type="text"
                 id="requirements"
-                className={styles.input}
+                className="border border-zinc-700 block text-lg p-4 rounded-bl-md rounded-tl-md transition duration-200
+                w-full bg-zinc-800 focus:outline-none focus:border-amber-800 focus:shadow-2xl hover:outline-none hover:shadow-2xl"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
               />
-              <Plus className={styles.plus} onClick={handleAddRequirement} />
+              <Plus
+                className="border border-zinc-700 bg-zinc-800 rounded-br-md rounded-tr-md 
+                cursor-pointer h-16 w-16 p-3 hover:border-amber-800 hover:shadow-2xl"
+                onClick={handleAddRequirement}
+              />
             </div>
           </div>
 
-          <div className={styles.requirements}>
+          <div className="flex flex-wrap gap-2.5 bg-zinc-800 p-5 rounded-md">
             {requirements.length === 0 ? (
               <p>Nenhum requisito adicionado</p>
             ) : (
               requirements.map((requirement, index) => (
-                <div key={index} className={styles.requirement}>
+                <div
+                  key={index}
+                  className="bg-amber-500 border border-zinc-800
+                  font-bold text-black relative pr-6 px-3 py-3"
+                >
                   <p>{requirement}</p>
                   <X
-                    className={styles.icon}
+                    className="absolute top-[1px] right-[1px]
+                    cursor-pointer hover:text-zinc-900 text-white"
                     onClick={() => handleRemoveRequirement(index)}
                   />
                 </div>
               ))
             )}
           </div>
-
           <ErrorMessage error={error} />
-
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <FormButton width="40%" />
-            <Button disabled={loading} onClick={handleDelete} model="1">
-              {loading ? "Excluindo" : "Excluir"}
-            </Button>
+          <div className="flex justify-end gap-2">
+            <div className="w-[30%]">
+              <FormButton />
+            </div>
+            <div className="w-[30%]">
+              <Button disabled={loading} onClick={handleDelete} model="1">
+                {loading ? "Excluindo" : "Excluir"}
+              </Button>
+            </div>
           </div>
         </form>
       )}
