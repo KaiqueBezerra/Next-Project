@@ -8,8 +8,6 @@ import { Filters } from "./filters";
 
 import { useRouter } from "next/navigation";
 
-import styles from "./index.module.css";
-
 export default function Aside() {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -74,29 +72,35 @@ export default function Aside() {
   }, [router]);
 
   return (
-    <div>
-      <aside className={styles.aside}>
-        <SearchForm
-          search={search}
-          setSearch={setSearch}
-          handleSubmit={handleSubmit}
-        />
+    <aside
+      className="md:p-5 border-5 border-double bg-zinc-800 border-zinc-900
+      max-md:flex md:h-full flex-col items-center justify-center gap-1 max-md:h-[150px]"
+    >
+      <SearchForm
+        search={search}
+        setSearch={setSearch}
+        handleSubmit={handleSubmit}
+      />
 
-        <div className={styles.menu} onClick={() => setModalOpen(!modalOpen)}>
-          <MenuIcon />
-          {modalOpen && (
-            <FiltersModal
-              selectedFilter={selectedFilter}
-              handleCheckboxChange={handleCheckboxChange}
-            />
-          )}
-        </div>
+      <div
+        onClick={() => setModalOpen(!modalOpen)}
+        className="justify-center items-center border-5 border-double bg-zinc-700
+      border-zinc-900 h-10 w-[310px] cursor-pointer relative sm:hidden
+        max-md:flex text-white sm:w-[384px] md:w-2xs"
+      >
+        <MenuIcon />
+        {modalOpen && (
+          <FiltersModal
+            selectedFilter={selectedFilter}
+            handleCheckboxChange={handleCheckboxChange}
+          />
+        )}
+      </div>
 
-        <Filters
-          selectedFilter={selectedFilter}
-          handleCheckboxChange={handleCheckboxChange}
-        />
-      </aside>
-    </div>
+      <Filters
+        selectedFilter={selectedFilter}
+        handleCheckboxChange={handleCheckboxChange}
+      />
+    </aside>
   );
 }

@@ -81,12 +81,12 @@ export default function Demands() {
   return (
     <div>
       <Projects project={data} />
-      <div style={{ height: "20px" }} />
-      <div style={{ textAlign: "center" }}>
+      <div className="h-5" />
+      <div className="text-center">
         {infinite ? (
           loading && <Loading />
         ) : (
-          <p style={{ margin: "20px 0px" }}>Não existem mais postagens.</p>
+          <p className="mx-5 text-white">Não existem mais postagens.</p>
         )}
       </div>
     </div>

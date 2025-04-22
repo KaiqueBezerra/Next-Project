@@ -22,9 +22,9 @@ export default async function RootLayout({
     <html lang="pt-br">
       <body className="bg-zinc-900">
         <UserContextProvider user={user}>
-          <div className="App">
+          <div className="flex flex-col min-h-[calc(100vh+10rem)]">
             <Header />
-            <main className="AppBody">{children}</main>
+            <main className="flex-1">{children}</main>
             <Footer />
           </div>
         </UserContextProvider>

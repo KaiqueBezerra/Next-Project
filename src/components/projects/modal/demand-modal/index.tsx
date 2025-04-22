@@ -82,7 +82,7 @@ export function DemandModal({
 
   return (
     <div
-      className="flex items-center justify-center p-2 min-h-[92vh]"
+      className="flex items-center justify-center p-2 min-h-screen"
       onClick={handleOutsideClick}
     >
       <div
@@ -166,10 +166,12 @@ export function DemandModal({
                     }}
                     onClick={!loading ? addFavorite : () => {}}
                   />
-                  <Settings
-                    className="cursor-pointer hover:fill-amber-500"
-                    onClick={() => setModal(!modal)}
-                  />
+                  {user && (
+                    <Settings
+                      className="cursor-pointer hover:fill-amber-500"
+                      onClick={() => setModal(!modal)}
+                    />
+                  )}
                 </div>
               )
             ) : (

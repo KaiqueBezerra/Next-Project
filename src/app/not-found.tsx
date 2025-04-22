@@ -1,10 +1,11 @@
-import styles from "./not-found.module.css";
-
 export default function NotFound() {
   return (
-    <div className={styles.notFoundContainer}>
-      <h1 className={styles.notFoundTitle}>404</h1>
-      <p className={styles.notFoundText}>Página não encontrada</p>
+    <div
+      className="flex flex-col items-center justify-center
+      min-h-screen text-amber-500"
+    >
+      <h1 className="text-4xl font-bold">404</h1>
+      <p className="text-2xl">Página não encontrada</p>
     </div>
   );
 }
