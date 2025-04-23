@@ -23,7 +23,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
   return (
     <div
-      className="flex flex-col w-[310px] h-80 rounded-md p-5 border-10 border-double bg-zinc-700
+      className="flex flex-col w-[320px] h-80 rounded-md p-5 border-10 border-double bg-zinc-700
     border-zinc-900 transition hover:translate-y-[-10] text-white gap-2 sm:size-96 shadow-[0px_0px_10px_0px_black]"
     >
       <div className="break-all">
@@ -56,7 +56,7 @@ export function ProjectCard({ project }: { project: Project }) {
               <p
                 key={requirement}
                 className="bg-amber-500 border border-zinc-800
-                p-2 sm:p-2.5 inline-block font-bold text-black"
+                p-2 mr-1 sm:p-2.5 inline-block font-bold text-black"
               >
                 {requirement}
               </p>

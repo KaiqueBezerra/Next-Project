@@ -3,7 +3,6 @@ import { list } from "@vercel/blob";
 
 import { Metadata } from "next";
 
-import styles from "./layout.module.css";
 import userGet from "@/actions/users/user-get";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -26,12 +25,10 @@ export default async function MeLayout({
   });
 
   return (
-    <section className={styles.me}>
-      <div className={styles.container}>
-        <div className={styles.grid}>
-          <Profile userPhoto={userPhoto} />
-          {children}
-        </div>
+    <section className="container place-self-center">
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_3fr] min-h-[93vh]">
+        <Profile userPhoto={userPhoto} />
+        {children}
       </div>
     </section>
   );

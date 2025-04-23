@@ -21,7 +21,6 @@ import Link from "next/link";
 import userDelete from "@/actions/users/user-delete";
 import userUpdate from "@/actions/users/user-update";
 import logout from "@/actions/users/logout";
-import styles from "./index.module.css";
 
 function FormButton() {
   const { pending } = useFormStatus();
@@ -29,14 +28,9 @@ function FormButton() {
   return (
     <>
       {pending ? (
-        <Button
-          disabled={pending}
-          style={{ width: "100%", marginBottom: "10px" }}
-        >
-          Salvando...
-        </Button>
+        <Button disabled={pending}>Salvando...</Button>
       ) : (
-        <Button style={{ width: "100%", marginBottom: "10px" }}>Salvar</Button>
+        <Button>Salvar</Button>
       )}
     </>
   );
@@ -135,114 +129,121 @@ export function Profile({ userPhoto }: { userPhoto: ListBlobResult }) {
   const displayedFavorites = showAll ? favorites : favorites?.slice(0, 2);
 
   return (
-    <div className={styles.profile}>
-      <div className={styles.profileBox}>
-        <div className={styles.userBox}>
-          <div className={styles.user}>
-            <div className={styles.imgContainer}>
-              <div style={{ position: "relative" }}>
-                <label htmlFor="file">
-                  {userPhoto && userPhoto.blobs.length > 0 ? (
-                    <Image
-                      className={styles.img}
-                      alt="user"
-                      src={userPhoto.blobs[0].url}
-                      style={{ opacity: loadingPhoto ? 0.5 : 1 }}
-                      width={50}
-                      height={50}
-                    />
-                  ) : (
-                    <Camera className={styles.img} />
-                  )}
-                </label>
+    <div className="flex flex-col items-center p-5">
+      <div
+        className="flex border-5 border-double border-zinc-900 p-5
+        bg-zinc-800 text-white shadow-2xl w-[320px] lg:w-96"
+      >
+        <div className="flex items-center gap-2 break-all">
+          <div className="flex items-center gap-2">
+            <div>
+              <label htmlFor="file">
+                {userPhoto && userPhoto.blobs.length > 0 ? (
+                  <Image
+                    className="object-cover border-5 border-double border-zinc-900
+                    size-16 cursor-pointer rounded-md"
+                    alt="user"
+                    src={userPhoto.blobs[0].url}
+                    style={{ opacity: loadingPhoto ? 0.5 : 1 }}
+                    width={50}
+                    height={50}
+                  />
+                ) : (
+                  <Camera
+                    className="object-cover border-5 border-double border-zinc-900
+                    size-16 cursor-pointer rounded-md"
+                  />
+                )}
+              </label>
 
-                <input
-                  name="image"
-                  type="file"
-                  disabled={loadingPhoto}
-                  id="file"
-                  style={{ display: "none" }}
-                  onChange={handleFileChange}
-                />
-              </div>
-
-              <h3>{user?.name}</h3>
+              <input
+                name="image"
+                type="file"
+                disabled={loadingPhoto}
+                id="file"
+                style={{ display: "none" }}
+                onChange={handleFileChange}
+              />
             </div>
 
-            <div className={styles.icons}>
-              <Edit className={styles.icon} onClick={() => setModal(!modal)} />
-              <LogOut className={styles.icon} onClick={handleLogout} />
-            </div>
+            <h3
+              className="capitalize flex-1 overflow-hidden 
+              text-ellipsis line-clamp-2 text-lg font-serif"
+            >
+              {user?.name}
+            </h3>
           </div>
 
-          {modal && (
-            <div className={styles.modal}>
-              <form action={action}>
-                <Input
-                  name="name"
-                  type="text"
-                  placeholder="Novo nome"
-                  defaultValue={user?.name}
-                />
-                <FormButton />
-              </form>
-
-              <Button
-                model="1"
-                style={{ width: "100%" }}
-                onClick={handleDelete}
-                disabled={loading}
-              >
-                Excluir perfil
-              </Button>
-
-              <ErrorMessage error={state.error} />
-            </div>
-          )}
+          <div className="flex gap-2">
+            <Edit
+              onClick={() => setModal(!modal)}
+              className="cursor-pointer hover:text-amber-500 transition-colors"
+            />
+            <LogOut
+              onClick={handleLogout}
+              className="cursor-pointer hover:text-amber-500 transition-colors"
+            />
+          </div>
         </div>
       </div>
 
-      {pathname !== "/me/create" && (
-        <div>
-          <ProjectBox />
+      {modal && (
+        <div
+          className="border-5 border-double border-zinc-900 w-[320px] lg:w-96
+          p-5 bg-zinc-800 shadow-2xl"
+        >
+          <form action={action} className="flex flex-col gap-4">
+            <Input
+              name="name"
+              type="text"
+              placeholder="Novo nome"
+              defaultValue={user?.name}
+            />
+            <FormButton />
+          </form>
+
+          <div className="mt-2">
+            <Button onClick={handleDelete} disabled={loading}>
+              Excluir perfil
+            </Button>
+          </div>
+
+          <div className="mt-2">
+            <ErrorMessage error={state.error} />
+          </div>
         </div>
       )}
 
-      <div className={styles.profileBox}>
-        <h3>Favoritos</h3>
+      {pathname !== "/me/create" && <ProjectBox />}
+
+      <div
+        className="flex flex-col border-5 border-double border-zinc-900 p-5
+        bg-zinc-800 text-white shadow-2xl w-[320px] lg:w-96"
+      >
+        <h3 className="text-xl font-serif text-amber-500">Favoritos</h3>
 
         {favorites && favorites.length > 0 ? (
-          <div className={styles.favorites}>
+          <div className="flex flex-col gap-5 p-2.5">
             {displayedFavorites?.map((favorite) => (
               <Favorite favorite={favorite} key={favorite.id} />
             ))}
 
             {favorites && favorites.length > 2 && !showAll && (
-              <Button
-                onClick={() => setShowAll(true)}
-                style={{ height: "30px" }}
-              >
-                Ver mais
-              </Button>
+              <Button onClick={() => setShowAll(true)}>Ver mais</Button>
             )}
 
             {showAll && favorites && favorites.length > 2 && (
-              <Button
-                onClick={() => setShowAll(false)}
-                style={{ height: "30px" }}
-              >
-                Ver menos
-              </Button>
+              <Button onClick={() => setShowAll(false)}>Ver menos</Button>
             )}
           </div>
         ) : (
-          <div className={styles.noFavoriteContainer}>
+          <div className="flex flex-col gap-4 mt-2">
             <div>
-              <p>Sem Projetos favoritos</p>
+              <p className="text-lg">Sem Projetos favoritos</p>
             </div>
-            <div className={styles.noFavorite}>
-              <Link href="/demand/">Ver projetos</Link>
-            </div>
+            <Link href="/demand">
+              <Button>Ver projetos</Button>
+            </Link>
           </div>
         )}
       </div>

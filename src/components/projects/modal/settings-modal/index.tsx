@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { Info, Plus, X } from "lucide-react";
+import { X } from "lucide-react";
 import { useFormStatus } from "react-dom";
 import { ErrorMessage } from "@/components/helper/error-message";
 import { TextArea } from "@/components/forms/textarea";
@@ -10,12 +10,14 @@ import { User } from "@/actions/users/user-get";
 import {
   projectDescriptionRegex,
   projectNameRegex,
-  projectPhoneNumberRegex,
 } from "@/functions/regex/project-regex/project-regex";
 
 import projectDelete from "@/actions/projects/project-delete";
 import reportPost from "@/actions/reports/report-post";
 import projectPut from "@/actions/projects/project-put";
+
+import { PhoneInput } from "@/components/forms/demand-form/phone-input";
+import { Requirements } from "@/components/forms/demand-form/requirements-input";
 
 function FormButton() {
   const { pending } = useFormStatus();
@@ -46,7 +48,6 @@ export function SettingsModal({
 
   const [loading, setLoading] = useState(false);
 
-  const [info, setInfo] = useState(false);
   const [error, setError] = useState("");
 
   const [requirements, setRequirements] = useState<string[]>(
@@ -182,93 +183,26 @@ export function SettingsModal({
             }}
             rows={8}
           />
-          <div>
-            <label
-              htmlFor="phoneNumber"
-              className="block text-lg leading-none pb-2"
-            >
-              Número para contato
-            </label>
 
-            <div className="flex relative h-16">
-              <input
-                type="text"
-                id="phoneNumber"
-                className="border border-zinc-700 block text-lg p-4 rounded-bl-md rounded-tl-md transition duration-200 w-full 
-                bg-zinc-800 focus:outline-none focus:border-amber-800 focus:shadow-2xl hover:outline-none hover:shadow-2xl"
-                value={phoneNumber}
-                onChange={(e) =>
-                  projectPhoneNumberRegex(e.target.value, setPhoneNumber)
-                }
-              />
-              <Info
-                className="border border-zinc-700 bg-zinc-800 rounded-br-md rounded-tr-md 
-                cursor-pointer h-16 w-16 p-3 hover:border-amber-800 hover:shadow-2xl"
-                onClick={() => setInfo(!info)}
-              />
-              {info && (
-                <div
-                  className="flex flex-col items-center justify-center p-2 right-0 bottom-[-70px]
-                  rounded-md absolute z-50 bg-zinc-800 shadow-[0px_0px_10px_0px_black]"
-                >
-                  <p>O número deve conter 11 dígitos.</p>
-                  <p>Ex: 11234567890</p>
-                </div>
-              )}
-            </div>
-          </div>
-          <div>
-            <label
-              htmlFor="requirements"
-              className="block text-lg leading-none pb-2"
-            >
-              Requisitos
-            </label>
+          <PhoneInput
+            phoneNumber={phoneNumber}
+            setPhoneNumber={setPhoneNumber}
+          />
+          <Requirements
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            handleAddRequirement={handleAddRequirement}
+            handleRemoveRequirement={handleRemoveRequirement}
+            requirements={requirements}
+          />
 
-            <div className="flex relative h-16">
-              <input
-                type="text"
-                id="requirements"
-                className="border border-zinc-700 block text-lg p-4 rounded-bl-md rounded-tl-md transition duration-200
-                w-full bg-zinc-800 focus:outline-none focus:border-amber-800 focus:shadow-2xl hover:outline-none hover:shadow-2xl"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-              />
-              <Plus
-                className="border border-zinc-700 bg-zinc-800 rounded-br-md rounded-tr-md 
-                cursor-pointer h-16 w-16 p-3 hover:border-amber-800 hover:shadow-2xl"
-                onClick={handleAddRequirement}
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-wrap gap-2.5 bg-zinc-800 p-5 rounded-md">
-            {requirements.length === 0 ? (
-              <p>Nenhum requisito adicionado</p>
-            ) : (
-              requirements.map((requirement, index) => (
-                <div
-                  key={index}
-                  className="bg-amber-500 border border-zinc-800
-                  font-bold text-black relative pr-6 px-3 py-3"
-                >
-                  <p>{requirement}</p>
-                  <X
-                    className="absolute top-[1px] right-[1px]
-                    cursor-pointer hover:text-zinc-900 text-white"
-                    onClick={() => handleRemoveRequirement(index)}
-                  />
-                </div>
-              ))
-            )}
-          </div>
           <ErrorMessage error={error} />
           <div className="flex justify-end gap-2">
             <div className="w-[30%]">
               <FormButton />
             </div>
             <div className="w-[30%]">
-              <Button disabled={loading} onClick={handleDelete} model="1">
+              <Button disabled={loading} onClick={handleDelete} type="button">
                 {loading ? "Excluindo" : "Excluir"}
               </Button>
             </div>

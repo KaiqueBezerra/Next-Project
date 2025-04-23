@@ -1,8 +1,6 @@
 .projects {
   padding: 30px 0px;
-  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
-  border-left: 1px solid;
-  border-right: 1px solid;
+  box-shadow: 0px 0px 50px 0px black;
 }
 
 .title {

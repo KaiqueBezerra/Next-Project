@@ -114,7 +114,7 @@ export function DemandModal({
         <div className="break-all mt-2">
           <p className="text-2xl">{project.description}</p>
         </div>
-        <div className="flex flex-wrap gap-2 max-w-[600px] mt-6">
+        <div className="flex flex-wrap gap-2 max-w-[600px] mt-6 mb-8">
           {project.requirements.map((requirement) => (
             <p
               key={requirement}
