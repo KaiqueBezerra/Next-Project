@@ -24,7 +24,7 @@ export function UserProfile({
 
   return (
     <div
-      className="flex border-5 border-double bg-zinc-800
+      className="flex border-5 border-double bg-zinc-800/90
     border-zinc-900 text-white p-5 gap-5 shadow-2xl
       max-md:flex-col max-md:items-center"
     >

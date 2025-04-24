@@ -79,8 +79,7 @@ export function UserProjects({ userId }: { userId: string }) {
 
   return (
     <div
-      className="flex flex-col border-5 border-double bg-zinc-800
-    border-zinc-900 text-white p-5 gap-5 shadow-2xl
+      className="flex flex-col text-white p-5 gap-5
       max-md:flex-col max-md:items-center"
     >
       {data.length > 0 ? (
