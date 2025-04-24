@@ -11,7 +11,7 @@ export function Search() {
   return (
     <section
       className="flex flex-col items-center justify-center p-12
-    bg-[url('/assets/home.png')] bg-cover min-h-[90vh] text-white"
+      min-h-[90vh] text-white"
     >
       <div
         className="flex flex-col bg-zinc-700 rounded-md p-5

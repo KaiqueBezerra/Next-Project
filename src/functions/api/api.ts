@@ -1,1 +1,1 @@
-export const ApiUrl = "https://next-project-api-brown.vercel.app/";
+export const ApiUrl = process.env.API_URL;

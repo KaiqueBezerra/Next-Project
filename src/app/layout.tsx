@@ -20,7 +20,7 @@ export default async function RootLayout({
 
   return (
     <html lang="pt-br">
-      <body className="bg-zinc-900">
+      <body className="bg-zinc-900 bg-[url('/assets/wallpaper.png')] bg-cover">
         <UserContextProvider user={user}>
           <div className="flex flex-col min-h-[calc(100vh+10rem)]">
             <Header />
