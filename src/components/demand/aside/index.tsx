@@ -85,8 +85,8 @@ export default function Aside() {
       <div
         onClick={() => setModalOpen(!modalOpen)}
         className="justify-center items-center border-5 border-double bg-zinc-700
-      border-zinc-900 h-10 w-[310px] cursor-pointer relative sm:hidden
-        max-md:flex text-white sm:w-[384px] md:w-2xs"
+      border-zinc-900 h-10 w-[380px]  cursor-pointer relative sm:hidden
+        max-md:flex text-white max-[390px]:w-[320px] sm:w-[340px] md:w-2xs"
       >
         <MenuIcon />
         {modalOpen && (

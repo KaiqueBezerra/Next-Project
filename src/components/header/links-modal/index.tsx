@@ -13,7 +13,7 @@ export function LinksModal({ pathname, user }: LinksProps) {
   return (
     <div
       className="flex flex-col items-center border-5 border-double text-white
-     bg-zinc-900 border-zinc-800 w-[150px] absolute top-[35px] right-[-55px]"
+     bg-zinc-700 border-zinc-900 w-[150px] absolute top-[35px] right-[-55px]"
     >
       <Link
         href="/demand"

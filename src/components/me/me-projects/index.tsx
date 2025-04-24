@@ -1,16 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ProjectExamples } from "./project-exxamples";
+import { notFound } from "next/navigation";
+
 import { Projects } from "@/components/projects";
 import projectsByUserGet, {
   Project,
 } from "@/actions/projects/project-by-user-get";
 
-import { notFound } from "next/navigation";
-
 import Loading from "@/app/loading";
-import styles from "./index.module.css";
 
 export function MeProjects() {
   const [data, setData] = useState<Project[]>([]);
@@ -71,35 +69,35 @@ export function MeProjects() {
 
   if (!data) return notFound();
   return (
-    <div className={styles.projects}>
-      <div className={styles.title}>
-        <h1>Projetos</h1>
+    <div className="flex flex-col gap-6 py-7 text-white">
+      <div className="text-center">
+        <h1 className="text-4xl font-serif underline">Projetos</h1>
       </div>
 
       {data.length > 0 ? (
         <Projects project={data} />
       ) : (
         <div>
-          <div className={styles.noProjects}>
-            <h1>Nenhum Projeto Criado</h1>
-
-            <h3>Seu projeto ficaria assim</h3>
+          <div className="text-center">
+            <h1 className="text-2xl font-serif">Nenhum Projeto Criado.</h1>
           </div>
 
-          <div className={styles.container}>
+          {/* <h3 className="text-2xl text-amber-500">
+              Seus projetos ficariam assim
+            </h3>
+          </div>
+          <div className="flex justify-around flex-wrap gap-7 p-7">
             <ProjectExamples />
-          </div>
+          </div> */}
         </div>
       )}
-      
+
       {data.length > 0 && (
-        <div style={{ textAlign: "center" }}>
+        <div className="text-center">
           {infinite ? (
             loading && <Loading />
           ) : (
-            <p style={{ margin: "30px 0px" }}>
-              Não há mais projetos para carregar.
-            </p>
+            <p>Não há mais projetos para carregar.</p>
           )}
         </div>
       )}

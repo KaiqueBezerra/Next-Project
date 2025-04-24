@@ -131,8 +131,8 @@ export function Profile({ userPhoto }: { userPhoto: ListBlobResult }) {
   return (
     <div className="flex flex-col items-center p-5">
       <div
-        className="flex border-5 border-double border-zinc-900 p-5
-        bg-zinc-800 text-white shadow-2xl w-[320px] lg:w-96"
+        className="flex border-5 border-double border-zinc-900 p-5 w-[380px]
+        bg-zinc-800 text-white shadow-2xl max-[390px]:w-[320px] sm:w-[360px]"
       >
         <div className="flex items-center gap-2 break-all">
           <div className="flex items-center gap-2">
@@ -189,8 +189,8 @@ export function Profile({ userPhoto }: { userPhoto: ListBlobResult }) {
 
       {modal && (
         <div
-          className="border-5 border-double border-zinc-900 w-[320px] lg:w-96
-          p-5 bg-zinc-800 shadow-2xl"
+          className="border-5 border-double border-zinc-900 w-[380px] 
+          p-5 bg-zinc-800 shadow-2xl max-[390px]:w-[320px] sm:w-[360px]"
         >
           <form action={action} className="flex flex-col gap-4">
             <Input
@@ -203,7 +203,13 @@ export function Profile({ userPhoto }: { userPhoto: ListBlobResult }) {
           </form>
 
           <div className="mt-2">
-            <Button onClick={handleDelete} disabled={loading}>
+            <Button
+              onClick={handleDelete}
+              disabled={loading}
+              className="flex justify-center items-center cursor-pointer p-3.5 font-bold text-black
+              transition duration-200 border border-zinc-700 bg-red-500 hover:opacity-80
+              disabled:opacity-60 disabled:cursor-wait w-full"
+            >
               Excluir perfil
             </Button>
           </div>
@@ -217,8 +223,8 @@ export function Profile({ userPhoto }: { userPhoto: ListBlobResult }) {
       {pathname !== "/me/create" && <ProjectBox />}
 
       <div
-        className="flex flex-col border-5 border-double border-zinc-900 p-5
-        bg-zinc-800 text-white shadow-2xl w-[320px] lg:w-96"
+        className="flex flex-col border-5 border-double border-zinc-900 p-5 w-[380px]
+        bg-zinc-800 text-white shadow-2xl max-[390px]:w-[320px] sm:w-[360px]"
       >
         <h3 className="text-xl font-serif text-amber-500">Favoritos</h3>
 

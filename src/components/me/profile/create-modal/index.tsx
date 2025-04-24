@@ -1,20 +1,22 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
-import { ErrorMessage } from "@/components/helper/error-message";
-import { TextArea } from "@/components/forms/textarea";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+
+import { Requirements } from "@/components/forms/demand-form/requirements-input";
+import { ErrorMessage } from "@/components/helper/error-message";
+import { PhoneInput } from "@/components/forms/demand-form/phone-input";
+import { TextArea } from "@/components/forms/textarea";
 import { Button } from "@/components/forms/button";
 import { Input } from "@/components/forms/input";
 import {
   projectDescriptionRegex,
   projectNameRegex,
 } from "@/functions/regex/project-regex/project-regex";
+import { X } from "lucide-react";
 
 import projectPost from "@/actions/projects/project-post";
-
-import { PhoneInput } from "@/components/forms/demand-form/phone-input";
-import { Requirements } from "@/components/forms/demand-form/requirements-input";
 
 function FormButton() {
   const { pending } = useFormStatus();
@@ -35,11 +37,12 @@ export function CreateModal() {
   const [description, setDescription] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
+  const [requirements, setRequirements] = useState<string[]>([]);
+  const [inputValue, setInputValue] = useState("");
+
   const [error, setError] = useState("");
 
-  const [requirements, setRequirements] = useState<string[]>([]);
-
-  const [inputValue, setInputValue] = useState("");
+  const router = useRouter();
 
   function handleAddRequirement() {
     if (inputValue.trim() !== "") {
@@ -80,11 +83,18 @@ export function CreateModal() {
   }
 
   return (
-    <div className="flex justify-center xl:items-center xl:shadow-[0px_0px_50px_0px_black] p-5">
+    <div className="flex items-center justify-center p-2 min-h-screen">
       <div
-        className="flex flex-col w-full rounded-md p-5 border-5 border-double border-zinc-900
-        bg-zinc-700 max-w-[610px] shadow-[0px_0px_50px_0px_black] text-white max-xl:h-[650px]"
+        className="flex flex-col bg-zinc-700 rounded-md p-6 sm:p-8 border-10 border-double border-zinc-800 
+      text-white text-justify w-[1200px] shadow-[0px_0px_10px_0px_black] gap-2"
       >
+        <div className="flex justify-end">
+          <X
+            className="cursor-pointer hover:text-amber-500"
+            onClick={() => router.back()}
+          />
+        </div>
+
         <form onSubmit={onSubmit} className="grid gap-3">
           <Input
             label="Nome"

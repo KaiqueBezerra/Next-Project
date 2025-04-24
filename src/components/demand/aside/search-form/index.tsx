@@ -42,7 +42,7 @@ export function SearchForm({
     <form onSubmit={handleSubmit}>
       <div
         className="flex border-5 border-double border-zinc-900 
-        h-12 w-[310px] sm:w-[384px] md:w-2xs bg-zinc-700 text-white"
+        h-12 w-[380px] max-[390px]:w-[320px] sm:w-[340px] bg-zinc-700 text-white"
       >
         <input
           type="text"

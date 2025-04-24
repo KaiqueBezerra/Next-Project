@@ -9,9 +9,9 @@ export function FiltersModal({
 }: FiltersModalProps) {
   return (
     <div
-      className="flex flex-col border-5 border-double w-[310px]
+      className="flex flex-col border-5 border-double
     border-zinc-900 bg-zinc-700 text-white top-[35px]
-      sm:w-[384px] md:w-2xs md:hidden absolute"
+      w-[380px] max-[390px]:w-[320px] sm:w-[340px] md:hidden absolute"
     >
       <h2 className="text-amber-500 text-lg font-bold font-serif m-2.5">
         Filtros de Tempo

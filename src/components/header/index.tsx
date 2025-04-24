@@ -37,7 +37,7 @@ export function Header() {
 
         <div
           className="hidden justify-center items-center border-5 border-double bg-zinc-700
-          border-zinc-900 h-10 w-9 cursor-pointer relative max-md:flex shadow-2xl hover:opacity-75"
+          border-zinc-900 h-10 w-9 cursor-pointer relative max-md:flex shadow-2xl"
           onClick={() => setModalOpen(!modalOpen)}
         >
           <MenuIcon />

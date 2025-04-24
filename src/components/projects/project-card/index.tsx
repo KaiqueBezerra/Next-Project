@@ -23,8 +23,9 @@ export function ProjectCard({ project }: { project: Project }) {
 
   return (
     <div
-      className="flex flex-col w-[320px] h-80 rounded-md p-5 border-10 border-double bg-zinc-700
-    border-zinc-900 transition hover:translate-y-[-10] text-white gap-2 sm:size-96 shadow-[0px_0px_10px_0px_black]"
+      className="flex flex-col gap-2 w-[380px] h-[380px] rounded-md p-5 border-10 border-double bg-zinc-700 text-white
+    border-zinc-900 transition hover:translate-y-[-10] max-[390px]:h-[320px] max-[390px]:w-[320px] sm:size-[360px] 
+      shadow-[0px_0px_10px_0px_black]"
     >
       <div className="break-all">
         <h1

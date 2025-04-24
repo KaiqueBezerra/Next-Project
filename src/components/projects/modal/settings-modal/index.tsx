@@ -1,7 +1,9 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { X } from "lucide-react";
 import { useFormStatus } from "react-dom";
+
+import { Requirements } from "@/components/forms/demand-form/requirements-input";
 import { ErrorMessage } from "@/components/helper/error-message";
+import { PhoneInput } from "@/components/forms/demand-form/phone-input";
 import { TextArea } from "@/components/forms/textarea";
 import { Project } from "@/actions/projects/project-by-user-get";
 import { Button } from "@/components/forms/button";
@@ -11,13 +13,11 @@ import {
   projectDescriptionRegex,
   projectNameRegex,
 } from "@/functions/regex/project-regex/project-regex";
+import { X } from "lucide-react";
 
 import projectDelete from "@/actions/projects/project-delete";
 import reportPost from "@/actions/reports/report-post";
 import projectPut from "@/actions/projects/project-put";
-
-import { PhoneInput } from "@/components/forms/demand-form/phone-input";
-import { Requirements } from "@/components/forms/demand-form/requirements-input";
 
 function FormButton() {
   const { pending } = useFormStatus();
@@ -202,7 +202,14 @@ export function SettingsModal({
               <FormButton />
             </div>
             <div className="w-[30%]">
-              <Button disabled={loading} onClick={handleDelete} type="button">
+              <Button
+                disabled={loading}
+                onClick={handleDelete}
+                type="button"
+                className="flex justify-center items-center cursor-pointer p-3.5 font-bold text-black
+                transition duration-200 border border-zinc-700 bg-red-500 hover:opacity-80
+                disabled:opacity-60 disabled:cursor-wait w-full"
+              >
                 {loading ? "Excluindo" : "Excluir"}
               </Button>
             </div>
