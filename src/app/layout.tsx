@@ -1,4 +1,5 @@
 import { UserContextProvider } from "@/context/userContext";
+import { Analytics } from "@vercel/analytics/next";
 import { Header } from "@/components/header";
 import type { Metadata } from "next";
 import { Footer } from "@/components/footer";
@@ -28,6 +29,7 @@ export default async function RootLayout({
             <Footer />
           </div>
         </UserContextProvider>
+        <Analytics />
       </body>
     </html>
   );
