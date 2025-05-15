@@ -37,11 +37,11 @@ export function LoginForm() {
 
   return (
     <div className="flex flex-col gap-10 text-white">
-      <h1 className="text-4xl text-center font-serif">Login</h1>
+      <h1 className="text-2xl text-center font-serif sm:text-4xl">Login</h1>
       <form
         action={action}
-        className="flex flex-col gap-4 w-[310px] 
-        min-[410px]:w-[400px] min-[510px]:w-[500px]"
+        className="flex flex-col gap-4 w-[300px] 
+        min-[410px]:w-[390px] min-[510px]:w-[490px]"
       >
         <Input label="Email" name="email" type="email" />
         <Input label="Senha" name="password" type="password" />

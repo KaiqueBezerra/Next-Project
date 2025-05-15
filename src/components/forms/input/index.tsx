@@ -8,7 +8,7 @@ type InputProps = ComponentProps<"input"> & {
 export function Input({ label, ...props }: InputProps) {
   return (
     <div className="text-white">
-      <label className="block text-lg leading-none pb-2" htmlFor={props.name}>
+      <label className="block leading-none pb-2" htmlFor={props.name}>
         {label}
       </label>
       <input

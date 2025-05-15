@@ -18,7 +18,7 @@ export function Requirements({
 }: InputProps) {
   return (
     <div>
-      <label htmlFor="requirements" className="block text-lg leading-none pb-2">
+      <label htmlFor="requirements" className="block leading-none pb-2">
         Requisitos
       </label>
 

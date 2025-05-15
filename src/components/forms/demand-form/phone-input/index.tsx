@@ -16,13 +16,13 @@ export function PhoneInput({
 
   return (
     <div>
-      <label htmlFor="phoneNumber" className="block text-lg leading-none pb-2">
+      <label htmlFor="phoneNumber" className="block leading-none pb-2">
         Número para contato
       </label>
 
       <div className="flex relative h-16 w-full">
         <input
-          type="text"
+          type="tel"
           id="phoneNumber"
           className="border border-zinc-700 block text-lg p-4 transition duration-200 w-full 
         bg-zinc-800 focus:outline-none focus:border-amber-800 focus:shadow-2xl hover:outline-none hover:shadow-2xl"

@@ -29,7 +29,7 @@ export function ProjectCard({ project }: { project: Project }) {
     >
       <div className="break-all">
         <h1
-          className="capitalize overflow-hidden text-ellipsis line-clamp-3 
+          className="capitalize overflow-hidden text-ellipsis line-clamp-2 
           text-xl font-serif flex-1 sm:text-2xl"
           style={{
             color: user?.id === project.userId ? "#FE9A00" : "#fff",
@@ -46,7 +46,7 @@ export function ProjectCard({ project }: { project: Project }) {
       </div>
       <div className="break-all mt-2 sm:mt-3">
         <p
-          className="text-justify overflow-hidden text-ellipsis line-clamp-3 
+          className="text-justify overflow-hidden text-ellipsis line-clamp-2
           text-md sm:text-lg"
         >
           {project.description}
@@ -54,13 +54,16 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="flex break-all">
           <div className="overflow-hidden text-ellipsis line-clamp-1 mt-4">
             {project.requirements.map((requirement) => (
-              <p
+              <div
                 key={requirement}
                 className="bg-amber-500 border border-zinc-800
-                p-2 mr-1 sm:p-2.5 inline-block font-bold text-black"
+                p-2 mr-1 sm:p-2.5 inline-block font-bold text-black
+                break-all"
               >
-                {requirement}
-              </p>
+                <p className="overflow-hidden text-ellipsis line-clamp-1 ">
+                  {requirement}
+                </p>
+              </div>
             ))}
           </div>
         </div>

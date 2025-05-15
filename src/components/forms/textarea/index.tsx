@@ -8,7 +8,7 @@ type TextAreaProps = ComponentProps<"textarea"> & {
 export function TextArea({ label, ...props }: TextAreaProps) {
   return (
     <div className="flex flex-col flex-1">
-      <label className="block text-lg leading-none pb-2" htmlFor={props.name}>
+      <label className="block leading-none pb-2" htmlFor={props.name}>
         {label}
       </label>
       <textarea

@@ -1,8 +1,13 @@
-import { UserContextProvider } from "@/context/userContext";
-import { Analytics } from "@vercel/analytics/next";
-import { Header } from "@/components/header";
 import type { Metadata } from "next";
+
+import { UserContextProvider } from "@/context/userContext";
+
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
+
+import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+
 import userGet from "@/actions/users/user-get";
 
 import "./globals.css";
@@ -30,6 +35,7 @@ export default async function RootLayout({
           </div>
         </UserContextProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
