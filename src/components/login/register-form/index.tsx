@@ -2,6 +2,7 @@
 
 import { useActionState, useEffect } from "react";
 import { useFormStatus } from "react-dom";
+
 import { ErrorMessage } from "@/components/helper/error-message";
 import { Button } from "@/components/forms/button";
 import { Input } from "@/components/forms/input";
@@ -32,7 +33,7 @@ export function RegisterForm() {
   });
 
   useEffect(() => {
-    if (state.ok) window.location.href = "/sign-in";
+    if (state.ok) window.location.href = "/me";
   }, [state.ok]);
 
   return (

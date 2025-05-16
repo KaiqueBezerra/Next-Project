@@ -1,23 +1,25 @@
 "use client";
 
 import { useActionState, useEffect, useState } from "react";
+import { useFormStatus } from "react-dom";
+
 import { Camera, Edit, LogOut } from "lucide-react";
 import { ListBlobResult } from "@vercel/blob";
-import { useFormStatus } from "react-dom";
+
 import { ErrorMessage } from "@/components/helper/error-message";
 import { ProjectBox } from "./project-box";
 import { Favorite } from "./favorite";
 import { useUser } from "@/context/userContext";
 import { Button } from "@/components/forms/button";
 import { Input } from "@/components/forms/input";
-import favoritesByUserGet, {
-  FavoritesByUserGet,
-} from "@/actions/favorites/favorites-by-user-get";
 
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
+import favoritesByUserGet, {
+  FavoritesByUserGet,
+} from "@/actions/favorites/favorites-by-user-get";
 import userDelete from "@/actions/users/user-delete";
 import userUpdate from "@/actions/users/user-update";
 import logout from "@/actions/users/logout";
@@ -36,12 +38,23 @@ function FormButton() {
   );
 }
 
+type State = {
+  ok: boolean;
+  error: string;
+  data: string | null;
+};
+
+const initialState: State = {
+  ok: false,
+  error: "",
+  data: null,
+};
+
 export function Profile({ userPhoto }: { userPhoto: ListBlobResult }) {
-  const [state, action] = useActionState(userUpdate, {
-    ok: false,
-    error: "",
-    data: null,
-  });
+  const [state, action] = useActionState<State, FormData>(
+    userUpdate,
+    initialState
+  );
 
   const [favorites, setFavorites] = useState<FavoritesByUserGet[] | null>(null);
   const [showAll, setShowAll] = useState(false);
@@ -53,11 +66,13 @@ export function Profile({ userPhoto }: { userPhoto: ListBlobResult }) {
 
   const { user } = useUser();
 
+  const [name, setName] = useState<string | undefined | null>(user?.name);
+
   const pathname = usePathname();
 
   useEffect(() => {
-    if (state.ok) window.location.reload();
-  }, [state.ok]);
+    if (state.ok) setName(state.data);
+  }, [state.ok, state.data]);
 
   useEffect(() => {
     async function getFavorites() {
@@ -74,25 +89,27 @@ export function Profile({ userPhoto }: { userPhoto: ListBlobResult }) {
   }
 
   async function handleDelete() {
-    const deleteVerify = confirm(
-      "Tem Certeza que deseja deletar sua conta? Se deletar não conseguirá recuperá-la!"
-    );
-
-    if (deleteVerify) {
-      const deleteVerifyAgain = confirm(
-        "Tem Certeza Absoluta que deseja deletar sua conta?"
+    if (user) {
+      const deleteVerify = confirm(
+        "Tem Certeza que deseja deletar sua conta? Se deletar não conseguirá recuperá-la!"
       );
 
-      if (deleteVerifyAgain) {
-        setLoading(true);
+      if (deleteVerify) {
+        const deleteVerifyAgain = confirm(
+          "Tem Certeza Absoluta que deseja deletar sua conta?"
+        );
 
-        const { ok } = await userDelete();
+        if (deleteVerifyAgain) {
+          setLoading(true);
 
-        if (ok) {
-          handleLogout();
+          const { ok } = await userDelete(user.id);
+
+          if (ok) {
+            handleLogout();
+          }
+
+          setLoading(false);
         }
-
-        setLoading(false);
       }
     }
   }
@@ -170,7 +187,7 @@ export function Profile({ userPhoto }: { userPhoto: ListBlobResult }) {
               className="capitalize flex-1 overflow-hidden 
               text-ellipsis line-clamp-2 text-lg font-serif"
             >
-              {user?.name}
+              {name}
             </h3>
           </div>
 
@@ -197,7 +214,7 @@ export function Profile({ userPhoto }: { userPhoto: ListBlobResult }) {
               name="name"
               type="text"
               placeholder="Novo nome"
-              defaultValue={user?.name}
+              defaultValue={name ? name : user?.name}
             />
             <FormButton />
           </form>

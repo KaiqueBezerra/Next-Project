@@ -1,8 +1,9 @@
 "use server";
 
+import { loginWithCredentials } from "./login-helper";
+import { userNameRegex } from "@/functions/regex/user-regex/user-regex";
 import { USER_POST } from "@/functions/api/users/users-api";
 import apiError from "@/functions/api-error";
-import { userNameRegex } from "@/functions/regex/user-regex/user-regex";
 
 export default async function userPost(
   state: {
@@ -36,7 +37,12 @@ export default async function userPost(
       body: JSON.stringify({ name, email, password }),
       signal,
     });
-    if (!response.ok) throw new Error("Senha ou usuário inválidos.");
+
+    if (!response.ok) throw new Error("Erro ao criar usuário.");
+
+    // Faz login automático após o registro
+    const loginResult = await loginWithCredentials(email, password);
+    if (!loginResult.ok) throw new Error(loginResult.error);
 
     return { data: null, ok: true, error: "" };
   } catch (error: unknown) {

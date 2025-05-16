@@ -1,9 +1,10 @@
 "use server";
 
-import { userNameRegex } from "@/functions/regex/user-regex/user-regex";
 import { revalidateTag } from "next/cache";
-import { USER_UPDATE } from "@/functions/api/users/users-api";
 import { cookies } from "next/headers";
+
+import { userNameRegex } from "@/functions/regex/user-regex/user-regex";
+import { USER_UPDATE } from "@/functions/api/users/users-api";
 import apiError from "@/functions/api-error";
 
 export interface User {
@@ -16,7 +17,7 @@ export interface User {
 
 export default async function userUpdate(
   state: {
-    data: null;
+    data: string | null;
     ok: boolean;
     error: string;
   },
@@ -49,7 +50,7 @@ export default async function userUpdate(
     });
     if (!response.ok) throw new Error("Erro ao atualizar o usuário.");
     revalidateTag("user");
-    return { data: null, ok: true, error: "" };
+    return { data: name, ok: true, error: "" };
   } catch (error: unknown) {
     return apiError(error);
   }

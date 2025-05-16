@@ -1,17 +1,18 @@
 "use client";
 
 import { ArrowBigRight } from "lucide-react";
-import { Button } from "../../forms/button";
 
 import { useRouter } from "next/navigation";
+
+import { Button } from "../../forms/button";
 
 export function Search() {
   const router = useRouter();
 
   return (
     <section
-      className="flex flex-col items-center justify-center p-12
-      min-h-[90vh] text-white"
+      className="flex flex-col items-center justify-center
+      min-h-[90vh] text-white px-5 lg:px-28"
     >
       <div
         className="flex flex-col bg-zinc-700 rounded-md p-5
