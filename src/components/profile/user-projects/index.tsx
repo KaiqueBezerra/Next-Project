@@ -37,7 +37,7 @@ export function UserProjects({ userId }: { userId: string }) {
 
   useEffect(() => {
     async function getPageProjects() {
-      const actionData = await projectsByUserNoTokenGet(page, 4, userId);
+      const actionData = await projectsByUserNoTokenGet(page, 6, userId);
       if (actionData && actionData.data !== null) {
         const { data, ok } = actionData;
 
@@ -59,7 +59,7 @@ export function UserProjects({ userId }: { userId: string }) {
           return [...currentProjects, ...newProjects];
         });
 
-        if (data.length < 4) setInfinite(false);
+        if (data.length < 6) setInfinite(false);
       }
     }
     getPageProjects();

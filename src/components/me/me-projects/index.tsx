@@ -35,7 +35,7 @@ export function MeProjects() {
 
   useEffect(() => {
     async function getPageProjects() {
-      const actionData = await projectsByUserGet(page, 4);
+      const actionData = await projectsByUserGet(page, 6);
       if (actionData && actionData.data !== null) {
         const { data, ok } = actionData;
 
@@ -57,7 +57,7 @@ export function MeProjects() {
           return [...currentProjects, ...newProjects];
         });
 
-        if (data.length < 4) setInfinite(false);
+        if (data.length < 6) setInfinite(false);
       }
     }
     getPageProjects();
