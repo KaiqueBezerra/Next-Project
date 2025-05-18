@@ -1,9 +1,9 @@
+import { Metadata } from "next";
+
 import { MeProjects } from "@/components/me/me-projects";
 import { Profile } from "@/components/me/profile";
 
 import { list } from "@vercel/blob";
-
-import { Metadata } from "next";
 
 import userGet from "@/actions/users/user-get";
 

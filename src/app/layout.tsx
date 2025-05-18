@@ -11,6 +11,7 @@ import { Footer } from "@/components/footer";
 import userGet from "@/actions/users/user-get";
 
 import "./globals.css";
+import { Toast } from "@/components/toast";
 
 export const metadata: Metadata = {
   title: "Next Project",
@@ -35,6 +36,7 @@ export default async function RootLayout({
           </div>
         </UserContextProvider>
         <Analytics />
+        <Toast />
         <SpeedInsights />
       </body>
     </html>

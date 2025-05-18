@@ -5,6 +5,7 @@ import { useFormStatus } from "react-dom";
 
 import { Camera, Edit, LogOut } from "lucide-react";
 import { ListBlobResult } from "@vercel/blob";
+import { toast } from "react-toastify";
 
 import { ErrorMessage } from "@/components/helper/error-message";
 import { ProjectBox } from "./project-box";
@@ -71,13 +72,21 @@ export function Profile({ userPhoto }: { userPhoto: ListBlobResult }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (state.ok) setName(state.data);
+    if (state.ok) {
+      setName(state.data);
+      toast.success("Nome alterado com sucesso!");
+    }
   }, [state.ok, state.data]);
 
   useEffect(() => {
     async function getFavorites() {
-      const { data } = await favoritesByUserGet();
-      setFavorites(data);
+      const { data, ok } = await favoritesByUserGet();
+
+      if (ok) {
+        setFavorites(data);
+      } else {
+        toast.error("Erro ao buscar favoritos.");
+      }
     }
 
     getFavorites();
@@ -106,6 +115,8 @@ export function Profile({ userPhoto }: { userPhoto: ListBlobResult }) {
 
           if (ok) {
             handleLogout();
+          } else {
+            toast.error("Erro ao deletar conta. Tente novamente mais tarde.");
           }
 
           setLoading(false);
@@ -137,6 +148,8 @@ export function Profile({ userPhoto }: { userPhoto: ListBlobResult }) {
 
       if (response.ok) {
         window.location.reload();
+      } else {
+        toast.error("Erro ao adicionar foto. Tente novamente mais tarde.");
       }
 
       setLoadingPhoto(false);
@@ -161,7 +174,7 @@ export function Profile({ userPhoto }: { userPhoto: ListBlobResult }) {
                     size-16 cursor-pointer rounded-md"
                     alt="user"
                     src={userPhoto.blobs[0].url}
-                    style={{ opacity: loadingPhoto ? 0.5 : 1 }}
+                    style={{ opacity: loadingPhoto ? 0.3 : 1 }}
                     width={50}
                     height={50}
                   />
@@ -169,6 +182,7 @@ export function Profile({ userPhoto }: { userPhoto: ListBlobResult }) {
                   <Camera
                     className="object-cover border-5 border-double border-zinc-900
                     size-16 cursor-pointer rounded-md"
+                    style={{ opacity: loadingPhoto ? 0.3 : 1 }}
                   />
                 )}
               </label>

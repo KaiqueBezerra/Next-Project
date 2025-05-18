@@ -8,13 +8,12 @@ import { TextArea } from "@/components/forms/textarea";
 import { Project } from "@/actions/projects/project-by-user-get";
 import { Button } from "@/components/forms/button";
 import { Input } from "@/components/forms/input";
-import { User } from "@/actions/users/user-get";
-import {
-  projectDescriptionRegex,
-  projectNameRegex,
-} from "@/functions/regex/project-regex/project-regex";
+
 import { X } from "lucide-react";
 
+import { projectRegex } from "@/functions/regex/project-regex/project-regex";
+
+import { User } from "@/actions/users/user-get";
 import projectDelete from "@/actions/projects/project-delete";
 import reportPost from "@/actions/reports/report-post";
 import projectPut from "@/actions/projects/project-put";
@@ -171,7 +170,7 @@ export function SettingsModal({
             name="name"
             value={name}
             onChange={({ target }) => {
-              projectNameRegex(target.value, setName);
+              projectRegex.projectNameRegex(target.value, setName);
             }}
           />
           <TextArea
@@ -179,14 +178,22 @@ export function SettingsModal({
             name="description"
             value={description}
             onChange={({ target }) => {
-              projectDescriptionRegex(target.value, setDescription);
+              projectRegex.projectDescriptionRegex(
+                target.value,
+                setDescription
+              );
             }}
             rows={8}
           />
 
           <PhoneInput
-            phoneNumber={phoneNumber}
-            setPhoneNumber={setPhoneNumber}
+            value={phoneNumber}
+            onChange={({ target }) => {
+              projectRegex.projectPhoneNumberRegex(
+                target.value,
+                setPhoneNumber
+              );
+            }}
           />
           <Requirements
             inputValue={inputValue}

@@ -1,5 +1,6 @@
-import { Plus, X } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
+
+import { Plus, X } from "lucide-react";
 
 interface InputProps {
   inputValue: string;
@@ -28,13 +29,13 @@ export function Requirements({
             type="text"
             id="requirements"
             className="border border-zinc-700 block text-lg p-4 transition duration-200
-          w-full bg-zinc-800 focus:outline-none focus:border-amber-800 focus:shadow-2xl hover:outline-none hover:shadow-2xl"
+            w-full bg-zinc-800 focus:outline-none focus:border-amber-800 focus:shadow-2xl hover:outline-none hover:shadow-2xl"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
           <Plus
             className="border border-zinc-700 bg-zinc-800
-          cursor-pointer h-16 w-16 p-3 hover:border-amber-800 hover:shadow-2xl"
+            cursor-pointer h-16 w-16 p-3 hover:border-amber-800 hover:shadow-2xl"
             onClick={handleAddRequirement}
           />
         </div>

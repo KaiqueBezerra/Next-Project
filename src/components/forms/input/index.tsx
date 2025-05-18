@@ -2,7 +2,6 @@ import { ComponentProps } from "react";
 
 type InputProps = ComponentProps<"input"> & {
   label?: string;
-  error?: string;
 };
 
 export function Input({ label, ...props }: InputProps) {

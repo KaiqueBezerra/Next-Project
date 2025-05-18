@@ -3,9 +3,9 @@
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
-import { userNameRegex } from "@/functions/regex/user-regex/user-regex";
 import { USER_UPDATE } from "@/functions/api/users/users-api";
 import apiError from "@/functions/api-error";
+import { userRegex } from "@/functions/regex/user-regex/user-regex";
 
 export interface User {
   id: number;
@@ -28,7 +28,7 @@ export default async function userUpdate(
   try {
     if (!name) throw new Error("Preencha os dados.");
 
-    if (!userNameRegex(name)) {
+    if (!userRegex.userNameRegex(name)) {
       throw new Error("O nome deve conter apenas letras.");
     }
 

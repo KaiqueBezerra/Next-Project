@@ -1,6 +1,7 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
+
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -10,12 +11,10 @@ import { PhoneInput } from "@/components/forms/demand-form/phone-input";
 import { TextArea } from "@/components/forms/textarea";
 import { Button } from "@/components/forms/button";
 import { Input } from "@/components/forms/input";
-import {
-  projectDescriptionRegex,
-  projectNameRegex,
-} from "@/functions/regex/project-regex/project-regex";
+
 import { X } from "lucide-react";
 
+import { projectRegex } from "@/functions/regex/project-regex/project-regex";
 import projectPost from "@/actions/projects/project-post";
 
 function FormButton() {
@@ -101,7 +100,7 @@ export function CreateModal() {
             name="name"
             value={name}
             onChange={({ target }) => {
-              projectNameRegex(target.value, setName);
+              projectRegex.projectNameRegex(target.value, setName);
             }}
           />
           <TextArea
@@ -109,13 +108,23 @@ export function CreateModal() {
             name="description"
             value={description}
             onChange={({ target }) => {
-              projectDescriptionRegex(target.value, setDescription);
+              projectRegex.projectDescriptionRegex(
+                target.value,
+                setDescription
+              );
             }}
           />
 
           <PhoneInput
-            phoneNumber={phoneNumber}
-            setPhoneNumber={setPhoneNumber}
+            label="Telefone"
+            name="phoneNumber"
+            value={phoneNumber}
+            onChange={(e) =>
+              projectRegex.projectPhoneNumberRegex(
+                e.target.value,
+                setPhoneNumber
+              )
+            }
           />
 
           <Requirements

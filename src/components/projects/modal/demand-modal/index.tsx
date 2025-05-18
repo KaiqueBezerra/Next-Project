@@ -1,17 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ProjectAndCount } from "@/actions/projects/project-get";
+
+import { notFound } from "next/navigation";
+import Link from "next/link";
+
 import { Settings, Star } from "lucide-react";
+import { toast } from "react-toastify";
+
 import { SettingsModal } from "../settings-modal";
 import { useUser } from "@/context/userContext";
 
 import { formatDistanceToNow, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
-import { notFound } from "next/navigation";
-import Link from "next/link";
-
+import { ProjectAndCount } from "@/actions/projects/project-get";
 import verifyFavoriteByUser from "@/actions/favorites/verify-favorite-by-user";
 import favoriteDelete from "@/actions/favorites/favorite-delete";
 import favoritePost from "@/actions/favorites/favorite-post";
@@ -44,11 +47,17 @@ export function DemandModal({
   async function addFavorite() {
     if (user) {
       setLoading(true);
-      const { data } = await favoritePost(project.id);
+      const { data, ok } = await favoritePost(project.id);
       setLoading(false);
-      setIsFavorited(data);
+
+      if (ok) {
+        setIsFavorited(data);
+        toast.success("Projeto favoritado com sucesso!");
+      } else {
+        toast.error("Erro ao favoritar projeto.");
+      }
     } else {
-      alert("Vocês precisa estar logado para favoritar um projeto.");
+      toast.warning("Vocês precisa estar logado para favoritar um projeto.");
     }
   }
 
@@ -56,9 +65,15 @@ export function DemandModal({
   async function removeFavorite() {
     if (user) {
       setLoading(true);
-      const { data } = await favoriteDelete(project.id);
+      const { data, ok } = await favoriteDelete(project.id);
       setLoading(false);
-      setIsFavorited(data);
+
+      if (ok) {
+        setIsFavorited(data);
+        toast.success("Projeto desfavoritado com sucesso!");
+      } else {
+        toast.error("Erro ao desfavoritar projeto.");
+      }
     }
   }
 

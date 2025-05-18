@@ -1,8 +1,9 @@
 "use server";
 
 import { loginWithCredentials } from "./login-helper";
-import { userNameRegex } from "@/functions/regex/user-regex/user-regex";
+
 import { USER_POST } from "@/functions/api/users/users-api";
+import { userRegex } from "@/functions/regex/user-regex/user-regex";
 import apiError from "@/functions/api-error";
 
 export default async function userPost(
@@ -20,8 +21,14 @@ export default async function userPost(
   try {
     if (!name || !email || !password) throw new Error("Preencha os dados.");
 
-    if (!userNameRegex(name)) {
+    if (!userRegex.userNameRegex(name)) {
       throw new Error("O nome deve conter apenas letras.");
+    }
+
+    if (!userRegex.Password(password)) {
+      throw new Error(
+        "A senha deve ter no minimo 8 caracteres e ter ao menos uma letra maiúscula, uma minúscula e um caracter especial."
+      );
     }
 
     const controller = new AbortController();

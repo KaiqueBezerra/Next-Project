@@ -2,6 +2,7 @@
 
 import { Dispatch, FormEvent, SetStateAction } from "react";
 import { useFormStatus } from "react-dom";
+
 import { SearchIcon } from "lucide-react";
 
 export function SearchForm({

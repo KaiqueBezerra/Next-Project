@@ -12,14 +12,20 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
+    plugins: ["@typescript-eslint"],
     rules: {
+      // Ignora variáveis que começam com _
       "no-unused-vars": [
-        "warn",
-        { args: "none", vars: "all", varsIgnorePattern: "^_" },
+        "off", // Desativa a regra padrão do ESLint
       ],
       "@typescript-eslint/no-unused-vars": [
         "warn",
-        { args: "none", vars: "all", varsIgnorePattern: "^_" },
+        {
+          args: "after-used",
+          vars: "all",
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+        },
       ],
     },
   },

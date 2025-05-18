@@ -1,35 +1,29 @@
 "use client";
 
-import { Dispatch, SetStateAction, useState } from "react";
+import { ComponentProps, useState } from "react";
+
 import { Info } from "lucide-react";
 
-import { projectPhoneNumberRegex } from "@/functions/regex/project-regex/project-regex";
+type InputProps = ComponentProps<"input"> & {
+  label?: string;
+};
 
-export function PhoneInput({
-  phoneNumber,
-  setPhoneNumber,
-}: {
-  phoneNumber: string;
-  setPhoneNumber: Dispatch<SetStateAction<string>>;
-}) {
+export function PhoneInput({ label, ...props }: InputProps) {
   const [info, setInfo] = useState(false);
 
   return (
     <div>
-      <label htmlFor="phoneNumber" className="block leading-none pb-2">
-        Número para contato
+      <label htmlFor={props.name} className="block leading-none pb-2">
+        {label}
       </label>
 
       <div className="flex relative h-16 w-full">
         <input
           type="tel"
-          id="phoneNumber"
+          id={props.name}
           className="border border-zinc-700 block text-lg p-4 transition duration-200 w-full 
         bg-zinc-800 focus:outline-none focus:border-amber-800 focus:shadow-2xl hover:outline-none hover:shadow-2xl"
-          value={phoneNumber}
-          onChange={(e) =>
-            projectPhoneNumberRegex(e.target.value, setPhoneNumber)
-          }
+          {...props}
         />
         <Info
           className="border border-zinc-700 bg-zinc-800

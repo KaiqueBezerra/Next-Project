@@ -1,14 +1,18 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Projects } from "@/components/projects";
-import { Project } from "@/actions/projects/project-by-user-get";
-import { useUser } from "@/context/userContext";
-
-import projectsByUserNoTokenGet from "@/actions/projects/projects-by-user-no-token-get";
-import Loading from "@/app/loading";
 
 import { notFound } from "next/navigation";
+
+import { Projects } from "@/components/projects";
+import { useUser } from "@/context/userContext";
+
+import { Project } from "@/actions/projects/project-by-user-get";
+import projectsByUserNoTokenGet from "@/actions/projects/projects-by-user-no-token-get";
+
+import Loading from "@/app/loading";
+
+import { toast } from "react-toastify";
 
 export function UserProjects({ userId }: { userId: string }) {
   const [data, setData] = useState<Project[]>([]);
@@ -35,7 +39,13 @@ export function UserProjects({ userId }: { userId: string }) {
     async function getPageProjects() {
       const actionData = await projectsByUserNoTokenGet(page, 4, userId);
       if (actionData && actionData.data !== null) {
-        const { data } = actionData;
+        const { data, ok } = actionData;
+
+        if (!ok) {
+          toast.error("Erro ao buscar projetos. Tente novamente mais tarde.");
+          setInfinite(false);
+          return;
+        }
 
         // Verificando se os projetos já existentes têm o mesmo ID que os novos
         setData((currentProjects) => {

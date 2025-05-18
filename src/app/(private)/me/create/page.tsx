@@ -1,6 +1,6 @@
-import { CreateModal } from "@/components/me/profile/create-modal";
-
 import { Metadata } from "next";
+
+import { CreateModal } from "@/components/me/profile/create-modal";
 
 export const metadata: Metadata = {
   title: "Next Project | Criar",

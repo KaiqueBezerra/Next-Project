@@ -1,4 +1,5 @@
 import { ProjectCard } from "./project-card";
+
 import { Project } from "@/actions/projects/projects-get";
 
 export function Projects({ project }: { project: Project[] }) {

@@ -1,7 +1,7 @@
-import { DemandModal } from "@/components/projects/modal/demand-modal";
-
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
+import { DemandModal } from "@/components/projects/modal/demand-modal";
 
 import projectGet from "@/actions/projects/project-get";
 

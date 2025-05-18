@@ -1,8 +1,8 @@
 "use client";
 
-import { User } from "@/actions/users/user-get";
-
 import Link from "next/link";
+
+import { User } from "@/actions/users/user-get";
 
 interface LinksProps {
   pathname: string;

@@ -1,7 +1,8 @@
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/forms/button";
-
 import Link from "next/link";
+
+import { ArrowRight } from "lucide-react";
+
+import { Button } from "@/components/forms/button";
 
 export function Cards() {
   return (

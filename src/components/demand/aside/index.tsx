@@ -1,12 +1,13 @@
 "use client";
 
 import { FormEvent, useState, useEffect } from "react";
+
+import { useRouter } from "next/navigation";
+
 import { FiltersModal } from "./filters-modal";
 import { SearchForm } from "./search-form";
 import { MenuIcon } from "lucide-react";
 import { Filters } from "./filters";
-
-import { useRouter } from "next/navigation";
 
 export default function Aside() {
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);

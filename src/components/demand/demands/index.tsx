@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { Projects } from "@/components/projects";
-import projectsGet, { Project } from "@/actions/projects/projects-get";
 
 import { useSearchParams } from "next/navigation";
 
+import projectsGet, { Project } from "@/actions/projects/projects-get";
+
+import { Projects } from "@/components/projects";
 import Loading from "@/app/loading";
+
+import { toast } from "react-toastify";
 
 export default function Demands() {
   const [data, setData] = useState<Project[]>([]);
@@ -39,11 +42,17 @@ export default function Demands() {
   }, [filter, search]);
 
   useEffect(() => {
-    async function getPageProjects() {
+    async function getProjectsByScroll() {
       setLoading(true);
       const actionData = await projectsGet(search, filter, page, 9);
       if (actionData && actionData.data !== null) {
-        const { data } = actionData;
+        const { data, ok } = actionData;
+
+        if (!ok) {
+          toast.error("Erro ao buscar projetos. Tente novamente mais tarde.");
+          setInfinite(false);
+          return;
+        }
 
         // Verificando se os projetos já existentes têm o mesmo ID que os novos
         setData((currentProjects) => {
@@ -61,7 +70,7 @@ export default function Demands() {
       }
       setLoading(false);
     }
-    getPageProjects();
+    getProjectsByScroll();
   }, [filter, page, search]);
 
   useEffect(() => {

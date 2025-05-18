@@ -1,10 +1,10 @@
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+
 import { UserProjects } from "@/components/profile/user-projects";
 import { UserProfile } from "@/components/profile/user-profile";
 
 import { list } from "@vercel/blob";
-
-import { notFound } from "next/navigation";
-import { Metadata } from "next";
 
 import projectsCountByUserGet from "@/actions/projects/projects-count-by-user";
 import userByIdGet from "@/actions/users/user-by-Id-get";
